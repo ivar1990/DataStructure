@@ -19,9 +19,13 @@ using namespace std;
 
 struct Connection
 {
+	//incremental ID of the connection in a linked list 
 	unsigned int position;
+	//Parent node pointer
 	Node *Source;
+	//Child node pointer
 	Node *Target;
+	//Pointer to the next connection node in the linked list
 	Connection *Link;
 };
 
