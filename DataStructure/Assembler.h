@@ -31,10 +31,13 @@ public:
 	//Adds Data(numbers 1-255 of the ascii table) to the node_system
 	void LoadAsciiTable();
 
+	//create random nodes and assign them to the structure
 	void GenerateRandomNodes(Structure *structure);
 
+	//creates random connnections and assign them to the structure
 	void GenerateRandomConnections(Structure *structure);
 
+	//Displays the structure to the command prompt
 	void OutputStructure(Structure *structure);
 };
 
