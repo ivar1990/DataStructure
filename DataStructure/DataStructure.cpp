@@ -61,12 +61,30 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	//connector.ShowConnections();
 
+	//Reference Table
+	//1 = number
+	//2 = subtraction
+	//3 = addition
+	//4 = multiplication
+	//5 = division
+	//6 = equal
 	Assembler assembler;
 
 	Structure structure;
 
-	assembler.GenerateRandomNodes(&structure);
-	assembler.GenerateRandomConnections(&structure);
+	structure.nodes.Add(1);
+	structure.nodes.Add(3);
+	structure.nodes.Add(1);
+	structure.nodes.Add(6);
+	structure.nodes.Add(1);
+
+	structure.connections.Connect(1, 3);
+	structure.connections.Connect(3, 1);
+	structure.connections.Connect(1, 6);
+	structure.connections.Connect(6, 1);
+
+	//assembler.GenerateRandomNodes(&structure);
+	//assembler.GenerateRandomConnections(&structure);
 
 	assembler.OutputStructure(&structure);
 	
