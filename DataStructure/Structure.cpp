@@ -8,13 +8,16 @@ using namespace std;
 
 Structure::Structure()
 {
-	
+	NodeSystem  *node_system = new NodeSystem();
+	nodes = node_system;
+	Connector *connector = new Connector(nodes);
+	connections = connector;
 }
 
 void Structure::Add(int data)
 {
 	//Any data is added as a int 
-	nodes.Add(data);
+	nodes->Add(data);
 }
 
 
