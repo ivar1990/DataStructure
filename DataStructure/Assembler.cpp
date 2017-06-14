@@ -56,7 +56,7 @@ void Assembler::GenerateRandomNodes(Structure *structure)
 
 		rand_num = (rand() % 255) + 1;
 
-		structure->nodes.Add(rand_num);
+		structure->nodes->Add(rand_num);
 		cout << rand_num << endl;
 	}
 
@@ -78,7 +78,7 @@ void Assembler::GenerateRandomConnections(Structure *structure)
 		/* generate random number between 1 and 255: */
 
 		rand_num = (rand() % 255) + 1;
-		structure->connections.Connect(new_data, rand_num);
+		structure->connections->Connect(new_data, rand_num);
 		cout << rand_num << endl;
 	}
 }
@@ -88,6 +88,6 @@ void Assembler::OutputStructure(Structure *structure)
 {
 	cout << "Structure identifier: " << structure->structure_id << endl;
 	
-	structure->nodes.printList();
-	structure->connections.ShowConnections();
+	structure->nodes->printList();
+	structure->connections->ShowConnections();
 }
