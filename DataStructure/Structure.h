@@ -18,11 +18,12 @@ public:
 
 	unsigned int structure_id;
 
-	NodeSystem nodes;
-	Connector connections;
+	NodeSystem *nodes;
+	Connector *connections;
 
 
 	Structure();
+
 
 	
 
