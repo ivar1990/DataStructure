@@ -72,16 +72,16 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	Structure structure;
 
-	structure.nodes.Add(1);
-	structure.nodes.Add(3);
-	structure.nodes.Add(1);
-	structure.nodes.Add(6);
-	structure.nodes.Add(1);
+	structure.nodes->Add(1);
+	structure.nodes->Add(3);
+	structure.nodes->Add(1);
+	structure.nodes->Add(6);
+	structure.nodes->Add(1);
 
-	structure.connections.Connect(1, 3);
-	structure.connections.Connect(3, 1);
-	structure.connections.Connect(1, 6);
-	structure.connections.Connect(6, 1);
+	structure.connections->Connect(1, 3);
+	structure.connections->Connect(3, 1);
+	structure.connections->Connect(1, 6);
+	structure.connections->Connect(6, 1);
 
 	//assembler.GenerateRandomNodes(&structure);
 	//assembler.GenerateRandomConnections(&structure);
