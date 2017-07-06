@@ -46,6 +46,7 @@ private:
 
 	void Init();
 
+	bool RemoveAllReferenceToStructure();
 
 };
 
