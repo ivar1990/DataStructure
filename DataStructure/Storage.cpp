@@ -76,3 +76,8 @@ bool Storage::RemoveStructure(int structure_id)
 		return false;
 	}
 }
+
+bool Storage::RemoveAllReferenceToStructure()
+{
+	return true;
+}
