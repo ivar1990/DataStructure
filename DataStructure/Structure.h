@@ -20,7 +20,7 @@ public:
 
 	NodeSystem *nodes;
 	Connector *connections;
-
+	NodeSystem *instructions;
 
 	Structure();
 

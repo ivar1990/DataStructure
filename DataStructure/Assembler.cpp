@@ -42,7 +42,7 @@ void Assembler::LoadAsciiTable()
 
 void Assembler::GenerateRandomNodes(Structure *structure)
 {
-	cout << "List Length: " << pNodeSystem->listLength << endl;
+	cout << "Node Length: " << pNodeSystem->listLength << endl;
 
 	srand(time(NULL));
 
@@ -50,10 +50,9 @@ void Assembler::GenerateRandomNodes(Structure *structure)
 	int rand_num_nodes = (rand() % 50) + 1;
 	int rand_num = 0;
 
+	cout << "Amount of nodes generated: " << rand_num_nodes << endl;
 	for (int i = 0; i < rand_num_nodes; i++) {
-
 		/* generate random number between 1 and 255: */
-
 		rand_num = (rand() % 255) + 1;
 
 		structure->nodes->Add(rand_num);
@@ -65,14 +64,15 @@ void Assembler::GenerateRandomNodes(Structure *structure)
 
 void Assembler::GenerateRandomConnections(Structure *structure)
 {
-	cout << "List Length: " << pNodeSystem->listLength << endl;
+	cout << "Connection Length: " << pNodeSystem->listLength << endl;
 
 	srand(time(NULL));
 
 	int new_data = (rand() % (pNodeSystem->listLength - 1)) + 1;
-	int rand_num_conn = (rand() % 50) + 1;
+	int rand_num_conn = (rand() % 10) + 1;
 	int rand_num = 0;
 
+	cout << "Amount of connections generated: " << rand_num_conn << endl;
 	for (int i = 0; i < rand_num_conn; i++) {
 
 		/* generate random number between 1 and 255: */

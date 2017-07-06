@@ -71,22 +71,61 @@ int _tmain(int argc, _TCHAR* argv[])
 	Assembler assembler;
 
 	Structure structure;
+	Structure structure2;
+	Structure structure3;
 
-	structure.nodes->Add(1);
-	structure.nodes->Add(3);
-	structure.nodes->Add(1);
+	structure.nodes->Add(65);
+	structure.nodes->Add(67);
+	structure.nodes->Add(69);
 	structure.nodes->Add(6);
-	structure.nodes->Add(1);
 
-	structure.connections->Connect(1, 3);
-	structure.connections->Connect(3, 1);
-	structure.connections->Connect(1, 6);
-	structure.connections->Connect(6, 1);
+	structure.connections->Connect(6, 65);
+	structure.connections->Connect(6, 67);
+	structure.connections->Connect(6, 69);
+
+	structure2.nodes->Add(105);
+	structure2.nodes->Add(114);
+	structure2.nodes->Add(118);
+	structure2.nodes->Add(65);
+
+	structure2.connections->Connect(65, 105);
+	structure2.connections->Connect(65, 114);
+	structure2.connections->Connect(65, 65);
+	structure2.connections->Connect(65, 118);
+	structure2.nodes->FindNode(65);
+	structure.nodes->FindNode(105);
+	structure2.connections->AddConnection(structure2.nodes->search_node, structure.nodes->search_node);
+
+	structure3.nodes->Add(78);
+	structure3.nodes->Add(65);
+	structure3.nodes->Add(77);
+	structure3.nodes->Add(69);
+
+	
+	//structure3.connections->Connect(65, 65);
+	//structure3.connections->Connect(67, 68);
+	structure.nodes->FindNode(65);
+	structure2.nodes->FindNode(105);
+	structure3.connections->AddConnection(structure.nodes->search_node, structure2.nodes->search_node);
+
+	structure.nodes->FindNode(67);
+	structure2.nodes->FindNode(118);
+	structure3.connections->AddConnection(structure.nodes->search_node, structure2.nodes->search_node);
+
+	structure.nodes->FindNode(69);
+	structure2.nodes->FindNode(65);
+	structure3.connections->AddConnection(structure.nodes->search_node, structure2.nodes->search_node);
+
+	structure3.nodes->FindNode(65);
+	structure2.nodes->FindNode(114);
+	structure3.connections->AddConnection(structure3.nodes->search_node, structure2.nodes->search_node);
 
 	//assembler.GenerateRandomNodes(&structure);
 	//assembler.GenerateRandomConnections(&structure);
 
 	assembler.OutputStructure(&structure);
+	assembler.OutputStructure(&structure2);
+	assembler.OutputStructure(&structure3);
 	
 	//NodeSystem node_system;
 	//Connector connector(&node_system);

@@ -21,10 +21,16 @@ struct Connection
 {
 	//incremental ID of the connection in a linked list 
 	unsigned int position;
+
+	//checks likeness between source node and target node
+	int affinity = 0;
+
 	//Parent node pointer
 	Node *Source;
+
 	//Child node pointer
 	Node *Target;
+
 	//Pointer to the next connection node in the linked list
 	Connection *Link;
 };
