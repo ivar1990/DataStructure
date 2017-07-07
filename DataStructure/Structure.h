@@ -21,6 +21,8 @@ public:
 	NodeSystem *nodes;
 	Connector *connections;
 
+	int affinity = 0;
+
 
 	Structure();
 
