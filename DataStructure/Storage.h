@@ -34,6 +34,8 @@ public:
 
 	bool RemoveStructure(int structure_id);
 
+	void PrintAllStructures();
+
 	~Storage();
 
 private:

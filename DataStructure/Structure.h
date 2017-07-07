@@ -16,7 +16,7 @@ class Structure
 {
 public:
 
-	unsigned int structure_id;
+	unsigned int structure_id =0;
 
 	NodeSystem *nodes;
 	Connector *connections;

@@ -44,12 +44,15 @@ Structure* Storage::GetStructure(int structure_id)
 
 bool Storage::AddStructure(Structure *pStructure)
 {
-	int new_structure = GenerateStructureID();
-	storage.insert(pair<int, Structure*>(new_structure, pStructure));
+	int new_structure_id = GenerateStructureID();
+
+	pStructure->structure_id = new_structure_id;
+
+	storage.insert(pair<int, Structure*>(new_structure_id, pStructure));
 
 	map<int, Structure*>::iterator it;
 
-	it = storage.find(new_structure);
+	it = storage.find(new_structure_id);
 	if (it != storage.end())
 	{
 		num_of_structures++;
@@ -69,7 +72,9 @@ bool Storage::RemoveStructure(int structure_id)
 	it = storage.find(structure_id);
 	if (it == storage.end())
 	{
+		delete it->second;
 		num_of_structures--;
+
 		return true;
 	}
 	else {
@@ -77,7 +82,24 @@ bool Storage::RemoveStructure(int structure_id)
 	}
 }
 
+void Storage::PrintAllStructures()
+{
+	for (std::map<int, Structure*>::iterator it = storage.begin(); it != storage.end(); it++)
+	{
+		std::cout << it->first << " => " << it->second->structure_id << endl;
+
+		it->second->nodes->printList();
+		it->second->connections->ShowConnections();
+	}
+}
+
 bool Storage::RemoveAllReferenceToStructure()
 {
 	return true;
+}
+
+Storage::~Storage()
+{
+	for (std::map<int, Structure*>::iterator it = storage.begin(); it != storage.end(); it++)
+		delete it->second;
 }

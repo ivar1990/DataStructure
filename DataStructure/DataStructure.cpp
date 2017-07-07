@@ -6,6 +6,7 @@
 
 //#include "LinkedList.h"
 #include "Assembler.h"
+#include "Storage.h"
 
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -69,10 +70,21 @@ int _tmain(int argc, _TCHAR* argv[])
 	//5 = division
 	//6 = equal
 	Assembler assembler;
+	Storage storage;
 
-	Structure structure;
+	for (int i = 0; i < 256; i++)
+	{
+		Structure *structure = new Structure;
+		structure->Add(i);
+		storage.AddStructure(structure);
+	}
+
+	storage.PrintAllStructures();
+
+
+	/*Structure structure;
 	Structure structure2;
-	Structure structure3;
+	Structure *structure3 = new Structure;
 
 	structure.nodes->Add(65);
 	structure.nodes->Add(67);
@@ -96,36 +108,22 @@ int _tmain(int argc, _TCHAR* argv[])
 	structure.nodes->FindNode(105);
 	structure2.connections->AddConnection(structure2.nodes->search_node, structure.nodes->search_node);
 
-	structure3.nodes->Add(78);
-	structure3.nodes->Add(65);
-	structure3.nodes->Add(77);
-	structure3.nodes->Add(69);
+	structure3->nodes->Add(65);
+	structure3->nodes->Add(67);
 
-	
-	//structure3.connections->Connect(65, 65);
-	//structure3.connections->Connect(67, 68);
-	structure.nodes->FindNode(65);
-	structure2.nodes->FindNode(105);
-	structure3.connections->AddConnection(structure.nodes->search_node, structure2.nodes->search_node);
+	structure3->connections->Connect(65, 67);
 
-	structure.nodes->FindNode(67);
-	structure2.nodes->FindNode(118);
-	structure3.connections->AddConnection(structure.nodes->search_node, structure2.nodes->search_node);
-
-	structure.nodes->FindNode(69);
-	structure2.nodes->FindNode(65);
-	structure3.connections->AddConnection(structure.nodes->search_node, structure2.nodes->search_node);
-
-	structure3.nodes->FindNode(65);
-	structure2.nodes->FindNode(114);
-	structure3.connections->AddConnection(structure3.nodes->search_node, structure2.nodes->search_node);
+	storage.AddStructure(structure3);
+	storage.PrintAllStructures();
 
 	//assembler.GenerateRandomNodes(&structure);
 	//assembler.GenerateRandomConnections(&structure);
 
-	assembler.OutputStructure(&structure);
-	assembler.OutputStructure(&structure2);
-	assembler.OutputStructure(&structure3);
+	//assembler.OutputStructure(&structure);
+	//assembler.OutputStructure(&structure2);
+	//assembler.OutputStructure(&structure3);
+	*/
+	
 	
 	//NodeSystem node_system;
 	//Connector connector(&node_system);
