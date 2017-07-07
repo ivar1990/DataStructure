@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assembler.h" />
+    <ClInclude Include="Storage.h" />
     <ClInclude Include="Structure.h" />
     <ClInclude Include="Connector.h" />
     <ClInclude Include="NodeSystem.h" />
@@ -92,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Assembler.cpp" />
+    <ClCompile Include="Storage.cpp" />
     <ClCompile Include="Structure.cpp" />
     <ClCompile Include="Connector.cpp" />
     <ClCompile Include="DataStructure.cpp" />

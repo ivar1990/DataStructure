@@ -10,8 +10,12 @@ Structure::Structure()
 {
 	NodeSystem  *node_system = new NodeSystem();
 	nodes = node_system;
+
 	Connector *connector = new Connector(nodes);
 	connections = connector;
+
+	NodeSystem *instruction = new NodeSystem();
+	instructions = instruction;
 }
 
 void Structure::Add(int data)
