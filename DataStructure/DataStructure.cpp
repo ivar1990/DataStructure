@@ -79,6 +79,29 @@ int _tmain(int argc, _TCHAR* argv[])
 		storage.AddStructure(structure);
 	}
 
+	Structure *structure256 = new Structure;
+	structure256->Add(67);
+	structure256->Add(68);
+	structure256->Add(69);
+	structure256->Add(70);
+
+	structure256->connections->Connect(67, 68);
+	structure256->connections->Connect(68, 69);
+	structure256->connections->Connect(69, 70);
+	structure256->connections->Connect(70, 67);
+
+	Structure *structure257 = new Structure;
+	structure257->Add(256);
+	structure257->Add(68);
+
+	structure257->connections->Connect(68, 256);
+
+
+	storage.AddStructure(structure256);
+	storage.AddStructure(structure257);
+
+
+
 	storage.PrintAllStructures();
 
 

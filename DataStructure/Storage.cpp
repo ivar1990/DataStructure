@@ -84,12 +84,37 @@ bool Storage::RemoveStructure(int structure_id)
 
 void Storage::PrintAllStructures()
 {
+
+	
+
 	for (std::map<int, Structure*>::iterator it = storage.begin(); it != storage.end(); it++)
 	{
 		std::cout << it->first << " => " << it->second->structure_id << endl;
+		/*if (it->first < 256)
+		{			
+				it->second->nodes->printList();
+				it->second->connections->ShowConnections();
+		}
+		else
+		{
+			PrintInnerStructure(it->second);
+		}*/
+	
+		PrintInnerStructure(it->second);
+	}
+}
 
-		it->second->nodes->printList();
-		it->second->connections->ShowConnections();
+void Storage::PrintInnerStructure(Structure* pStructure)
+{
+	if (pStructure->structure_id > 256)
+	{
+		pStructure = GetStructure(pStructure->structure_id);
+		PrintInnerStructure(pStructure);
+	}
+	else
+	{
+		pStructure->nodes->printList();
+		pStructure->connections->ShowConnections();
 	}
 }
 

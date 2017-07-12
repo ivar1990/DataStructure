@@ -50,6 +50,8 @@ private:
 
 	bool RemoveAllReferenceToStructure();
 
+	void PrintInnerStructure(Structure* pStructure);
+
 };
 
 #endif
