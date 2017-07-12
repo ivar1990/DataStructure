@@ -39,6 +39,8 @@ public:
 
 	//void Input(string character);
 
+	void PrintNodes();
+
 
 	~Structure();
 };

@@ -72,14 +72,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	Assembler assembler;
 	Storage storage;
 
-	for (int i = 0; i < 256; i++)
+	for (int i = 0; i < 10000; i++)
 	{
 		Structure *structure = new Structure;
 		structure->Add(i);
 		storage.AddStructure(structure);
 	}
 
-	Structure *structure256 = new Structure;
+	/*Structure *structure256 = new Structure;
 	structure256->Add(67);
 	structure256->Add(68);
 	structure256->Add(69);
@@ -88,17 +88,17 @@ int _tmain(int argc, _TCHAR* argv[])
 	structure256->connections->Connect(67, 68);
 	structure256->connections->Connect(68, 69);
 	structure256->connections->Connect(69, 70);
-	structure256->connections->Connect(70, 67);
+	structure256->connections->Connect(70, 67);*/
 
-	Structure *structure257 = new Structure;
+	/*Structure *structure257 = new Structure;
 	structure257->Add(256);
 	structure257->Add(68);
 
-	structure257->connections->Connect(68, 256);
+	structure257->connections->Connect(68, 256);*/
 
 
-	storage.AddStructure(structure256);
-	storage.AddStructure(structure257);
+	//storage.AddStructure(structure256);
+	//storage.AddStructure(structure257);
 
 
 

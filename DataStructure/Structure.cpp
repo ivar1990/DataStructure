@@ -162,11 +162,10 @@ void Structure::LinkData()
 //
 //}
 //
-////void Structure::PrintStructure(Structure *pStructure)
-////{
-////	
-////
-////}
+void Structure::PrintNodes()
+{
+	
+}
 
 Structure::~Structure()
 {
