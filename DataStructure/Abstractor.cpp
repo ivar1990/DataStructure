@@ -23,14 +23,25 @@ void Abstractor::Input()
 	for (int i = 0; i<text.length(); i++)
 	{
 		ascChar = text[i];
+		dataset.push_back(ascChar);
 		cout << ascChar << ": " << static_cast<char>(ascChar) << endl;
 
 	}
 }
 
-bool Abstractor::GetFeedback(bool response)
+void Abstractor::GetFeedback()
 {
-	return false;
+	cout << "FeedBack Table: " << endl;
+	map<int, int>::iterator it;
+	int i = 0;
+	for (it = frequency_table.begin(); it != frequency_table.end(); it++)
+	{
+		cout << endl;
+		cout << "Solution No. " << i << endl;
+		i++;
+		cout << static_cast<char>(it->first) << " => " << it->second << '\n';
+		SeparateByFrequency(it->first);
+	}
 }
 
 void Abstractor::GenerateRandomDataSet(int max_size)
@@ -47,7 +58,7 @@ void Abstractor::GenerateRandomDataSet(int max_size)
 	cout << "Amount of nodes generated: " << max_size << endl;
 	for (int i = 0; i < max_size; i++) {
 		/* generate random number between 1 and 255: */
-		rand_num = (rand() % 10) + 1;
+		rand_num = (rand() % 255) + 1;
 
 		dataset.push_back(rand_num);
 		//cout << rand_num << endl;
@@ -71,7 +82,7 @@ void Abstractor::GenerateFrequencyTable()
 
 	for (dataset_it = dataset.begin(); dataset_it != dataset.end(); ++dataset_it)
 	{
-		std::cout << "dataset number: " << *dataset_it << endl;
+		//std::cout << "dataset number: " << *dataset_it << endl;
 
 		for (frequencytable_it = frequency_table.begin(); frequencytable_it != frequency_table.end(); ++frequencytable_it)
 		{
@@ -84,7 +95,7 @@ void Abstractor::GenerateFrequencyTable()
 					frequency_table.insert(pair<int, int>(*dataset_it, 0));
 				}
 
-			cout << frequencytable_it->first << " => " << frequencytable_it->second << '\n';
+			//cout << frequencytable_it->first << " => " << frequencytable_it->second << '\n';
 		}
 	}
 }
@@ -98,4 +109,37 @@ void Abstractor::OutputFrequencyTable()
 
 	for (it = frequency_table.begin(); it != frequency_table.end(); it++)
 		cout << it->first << " => " << it->second << '\n';
+}
+
+void Abstractor::SeparateByFrequency(int frequency_num)
+{
+	list<int>::iterator it;
+
+	for (it = dataset.begin(); it != dataset.end(); it++)
+	{
+		if (frequency_num != *it)
+		{
+			cout << static_cast<char>(*it);
+		}
+		else
+		{
+			cout << "\n";
+			cout << static_cast<char>(frequency_num) << "\n";
+		}
+	}
+}
+
+void Abstractor::Output()
+{
+	cout << "Response Table: " << endl;
+	map<int, int>::iterator it;
+	int i = 0;
+	for (it = frequency_table.begin(); it != frequency_table.end(); it++)
+	{
+		cout << endl;
+		cout << "Solution No. " << i << endl;
+		i++;
+		cout << static_cast<char>(it->first) << " => " << it->second << '\n';
+		SeparateByFrequency(it->first);
+	}
 }

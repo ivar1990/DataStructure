@@ -25,8 +25,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	Storage storage;
 	Abstractor abstractor;
 
-	abstractor.GenerateRandomDataSet(10);
+	//abstractor.GenerateRandomDataSet(20);
+	abstractor.Input();
 	abstractor.OutputFrequencyTable();
+
+	abstractor.Output();
 
 
 	/*for (int i = 0; i < 10000; i++)
