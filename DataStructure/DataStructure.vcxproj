@@ -79,7 +79,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Abstractor.h" />
     <ClInclude Include="Assembler.h" />
+    <ClInclude Include="Controller.h" />
     <ClInclude Include="Storage.h" />
     <ClInclude Include="Structure.h" />
     <ClInclude Include="Connector.h" />
@@ -92,7 +94,9 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Abstractor.cpp" />
     <ClCompile Include="Assembler.cpp" />
+    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Storage.cpp" />
     <ClCompile Include="Structure.cpp" />
     <ClCompile Include="Connector.cpp" />

@@ -7,6 +7,7 @@
 //#include "LinkedList.h"
 #include "Assembler.h"
 #include "Storage.h"
+#include "Abstractor.h"
 
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -22,13 +23,18 @@ int _tmain(int argc, _TCHAR* argv[])
 	//6 = equal
 	Assembler assembler;
 	Storage storage;
+	Abstractor abstractor;
 
-	for (int i = 0; i < 10000; i++)
+	abstractor.GenerateRandomDataSet(10);
+	abstractor.OutputFrequencyTable();
+
+
+	/*for (int i = 0; i < 10000; i++)
 	{
 		Structure *structure = new Structure;
 		structure->Add(i);
 		storage.AddStructure(structure);
-	}
+	}*/
 
 	/*Structure *structure256 = new Structure;
 	structure256->Add(67);
@@ -53,7 +59,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 
-	storage.PrintAllStructures();
+	//storage.PrintAllStructures();
 
 
 	/*Structure structure;
