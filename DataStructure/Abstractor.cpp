@@ -11,17 +11,11 @@ Abstractor::Abstractor()
 
 }
 
-void Abstractor::Begin()
-{
-//	Input();
-	OutputFrequencyTable();
 
-	Output();
-}
 
 void Abstractor::Input(int ascChar)
 {
-		dataset.push_back(ascChar);
+	dataset.push_back(ascChar);
 }
 
 void Abstractor::GetFeedback()
@@ -126,6 +120,9 @@ void Abstractor::SeparateByFrequency(int frequency_num)
 
 void Abstractor::Output()
 {
+
+	
+
 	cout << "Response Table: " << endl;
 	map<int, int>::iterator it;
 	int i = 0;
@@ -136,5 +133,17 @@ void Abstractor::Output()
 		i++;
 		cout << static_cast<char>(it->first) << " => " << it->second << '\n';
 		SeparateByFrequency(it->first);
+	}
+}
+
+bool Abstractor::IsChanged()
+{
+	if (dataset.size() > size)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }

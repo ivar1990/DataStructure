@@ -19,8 +19,12 @@ public:
 	list<int> dataset;
 	Controller controller;
 
+	int size = 0;
+
 	Abstractor();
+
 	void Input(int ascChar);
+
 	void GetFeedback();
 
 	void GenerateRandomDataSet(int max_size = 0);
@@ -31,7 +35,7 @@ public:
 
 	void Output();
 
-	void Begin();
+	bool IsChanged();
 
 private:
 	void GenerateFrequencyTable();

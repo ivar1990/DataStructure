@@ -29,7 +29,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	bool running = true;
 
 	//abstractor.GenerateRandomDataSet(20);
-
 	while (running)
 	{
 		string text;
@@ -49,6 +48,14 @@ int _tmain(int argc, _TCHAR* argv[])
 		abstractor.OutputFrequencyTable();
 
 		abstractor.Output();
+		
+		cout << "Dataset size: " << abstractor.size << endl;
+		cout << "Dataset list length: " << abstractor.dataset.size() << endl;
+		cout << "Dataset changed: " << abstractor.IsChanged() << endl;
+
+		abstractor.size = abstractor.dataset.size();
+
+		
 
 		cout << "Continue? y/n: " << endl;
 		cin.get(ch);
