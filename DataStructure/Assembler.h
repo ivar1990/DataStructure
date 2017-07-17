@@ -39,6 +39,9 @@ public:
 
 	//Displays the structure to the command prompt
 	void OutputStructure(Structure *structure);
+
+	
+
 };
 
 #endif

@@ -20,7 +20,7 @@ public:
 	Controller controller;
 
 	Abstractor();
-	void Input();
+	void Input(int ascChar);
 	void GetFeedback();
 
 	void GenerateRandomDataSet(int max_size = 0);
@@ -30,6 +30,8 @@ public:
 	void SeparateByFrequency(int frequency_count);
 
 	void Output();
+
+	void Begin();
 
 private:
 	void GenerateFrequencyTable();

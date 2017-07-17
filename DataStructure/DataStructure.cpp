@@ -25,11 +25,47 @@ int _tmain(int argc, _TCHAR* argv[])
 	Storage storage;
 	Abstractor abstractor;
 
-	//abstractor.GenerateRandomDataSet(20);
-	abstractor.Input();
-	abstractor.OutputFrequencyTable();
+	char ch;
+	bool running = true;
 
-	abstractor.Output();
+	//abstractor.GenerateRandomDataSet(20);
+
+	while (running)
+	{
+		string text;
+		int ascChar;
+		cout << "Please enter a line of text:" << endl;
+		getline(cin, text);
+
+		cout << text << endl;
+
+		for (int i = 0; i<text.length(); i++)
+		{
+			ascChar = text[i];
+			abstractor.Input(ascChar);
+			cout << ascChar << ": " << static_cast<char>(ascChar) << endl;
+
+		}
+		abstractor.OutputFrequencyTable();
+
+		abstractor.Output();
+
+		cout << "Continue? y/n: " << endl;
+		cin.get(ch);
+		cout << ch << endl;
+		if (ch == 'y')
+		{
+			running = true;
+		}
+		else
+		{
+			running = false;
+		}
+
+		text = " ";
+		getline(cin,text);
+	}
+	
 
 
 	/*for (int i = 0; i < 10000; i++)

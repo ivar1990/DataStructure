@@ -11,22 +11,17 @@ Abstractor::Abstractor()
 
 }
 
-void Abstractor::Input()
+void Abstractor::Begin()
 {
-	string text;
-	int ascChar;
-	cout << "Please enter a line of text:" << endl;
-	getline(cin, text);
+//	Input();
+	OutputFrequencyTable();
 
-	cout << text << endl;
+	Output();
+}
 
-	for (int i = 0; i<text.length(); i++)
-	{
-		ascChar = text[i];
+void Abstractor::Input(int ascChar)
+{
 		dataset.push_back(ascChar);
-		cout << ascChar << ": " << static_cast<char>(ascChar) << endl;
-
-	}
 }
 
 void Abstractor::GetFeedback()
