@@ -91,3 +91,17 @@ void Assembler::OutputStructure(Structure *structure)
 	structure->nodes->printList();
 	structure->connections->ShowConnections();
 }
+
+Structure* Assembler::AssembleStructure(list<int> components)
+{
+	Structure* structure = new Structure;
+
+	list<int>::iterator it;
+
+	for (it = components.begin(); it != components.end(); it++)
+	{
+		structure->nodes->Add(*it);
+	}
+
+	return structure;
+}

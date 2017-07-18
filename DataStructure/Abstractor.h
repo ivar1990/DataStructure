@@ -18,6 +18,7 @@ public:
 
 	list<int> dataset;
 	Controller controller;
+	Structure structure;
 
 	int size = 0;
 

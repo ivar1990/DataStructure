@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <list>
 
 #include "Structure.h"
 
@@ -41,7 +42,7 @@ public:
 	void OutputStructure(Structure *structure);
 
 	
-
+	Structure* AssembleStructure(list<int> components);
 };
 
 #endif

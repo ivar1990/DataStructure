@@ -40,6 +40,11 @@ class NodeSystem
 
 public:
 
+	// Applies to the Linked List.
+	// origin of the list contains no data, 
+	// but points to the end of the list.
+	Node *origin = new Node;
+	Node *end = new Node;
 
 	// Number of Nodes in the List.
 	int listLength;
@@ -81,7 +86,7 @@ public:
 	bool Move(int current_position, int destination_position);
 	/***********************List of Nodes***********************/
 
-
+	friend bool operator==(const NodeSystem &n_sys1, const NodeSystem &n_sys2);
 
 
 	// Prints each node in the list in consecutive order,
@@ -96,12 +101,35 @@ private:
 	//Max number of nodes required for parallel search.
 	unsigned const int MAX_LENGTH = 100;
 
-	// Applies to the Linked List.
-	// origin of the list contains no data, 
-	// but points to the end of the list.
-	Node *origin = new Node;
-	Node *end = new Node;
+	
 
 
 };
+
+bool operator==(const NodeSystem &n_sys1, const NodeSystem &n_sys2)
+{
+	bool is_equal = true;
+
+	Node *current_node = n_sys1.origin;
+	Node *current_node2 = n_sys2.origin;
+
+	//loop through NodeSystem1 nodes
+		while (current_node != n_sys1.end)
+		{
+			current_node = current_node->next;
+			current_node2 = current_node2->next;
+
+
+			if (current_node->position == current_node2->position && current_node->data == current_node2->data)
+			{
+				is_equal = true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+	
+		return is_equal;
+}
 #endif

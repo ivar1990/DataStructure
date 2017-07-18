@@ -124,6 +124,9 @@ bool Storage::RemoveAllReferenceToStructure()
 
 Storage::~Storage()
 {
-	for (std::map<int, Structure*>::iterator it = storage.begin(); it != storage.end(); it++)
-		delete it->second;
+	if (!storage.empty())
+	{
+		for (std::map<int, Structure*>::iterator it = storage.begin(); it != storage.end(); it++)
+			delete it->second;
+	}
 }

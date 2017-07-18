@@ -6,19 +6,23 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>  /* time */
 #include <map>
+#include <list>
 
 #include "Storage.h"
+
+using namespace std;
 
 
 class Controller
 {
 
 public:
-	map<int, int> frequency_table;
 	Storage storage;
+	Assembler assembler;
 
 	Controller();
-	void Input();
+
+	void HandleInput(list<int> dataset);
 	bool GetFeedback(bool response);
 
 
