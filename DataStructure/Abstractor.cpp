@@ -12,7 +12,6 @@ Abstractor::Abstractor()
 }
 
 
-
 void Abstractor::Input(int ascChar)
 {
 	dataset.push_back(ascChar);
@@ -136,6 +135,12 @@ void Abstractor::Output()
 	}
 }
 
+void Abstractor::LogInputs()
+{
+	int i = inputs.size() + 1;
+	inputs.insert(pair<int, list<int>>(i, dataset));
+}
+
 bool Abstractor::IsChanged()
 {
 	if (dataset.size() > size)
@@ -147,3 +152,24 @@ bool Abstractor::IsChanged()
 		return false;
 	}
 }
+
+
+void Abstractor::OutputInputs()
+{
+	cout << "Input Table: " << endl;
+	map<int, list<int>>::iterator it;
+	list<int>::iterator l_it;
+	int i = 0;
+
+	for (it = inputs.begin(); it != inputs.end(); it++)
+	{
+		cout << endl;
+		cout << "Inputs No. " << i << endl;
+		i++;
+		for (l_it = it->second.begin(); l_it != it->second.end(); l_it++)
+		{
+			cout << static_cast<char>(*l_it);
+		}
+	}
+}
+

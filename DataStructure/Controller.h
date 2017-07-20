@@ -9,6 +9,8 @@
 #include <list>
 
 #include "Storage.h"
+#include "Assembler.h"
+#include "Abstractor.h"
 
 using namespace std;
 
@@ -18,11 +20,16 @@ class Controller
 
 public:
 	Storage storage;
-	Assembler assembler;
+	//Assembler assembler;
+	//Abstractor abstractor;
+
+	//For handling inputs
+	list<int> dataset;
 
 	Controller();
 
-	void HandleInput(list<int> dataset);
+	void Input(int ascChar);
+	void HandleInput();
 	bool GetFeedback(bool response);
 
 

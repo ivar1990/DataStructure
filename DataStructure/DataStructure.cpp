@@ -8,6 +8,7 @@
 #include "Assembler.h"
 #include "Storage.h"
 #include "Abstractor.h"
+#include "NodeSystem.h"
 
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -21,6 +22,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	//4 = multiplication
 	//5 = division
 	//6 = equal
+
+	
+
+
 	Assembler assembler;
 	Storage storage;
 	Abstractor abstractor;
@@ -48,10 +53,18 @@ int _tmain(int argc, _TCHAR* argv[])
 		abstractor.OutputFrequencyTable();
 
 		abstractor.Output();
+
+		
 		
 		cout << "Dataset size: " << abstractor.size << endl;
 		cout << "Dataset list length: " << abstractor.dataset.size() << endl;
 		cout << "Dataset changed: " << abstractor.IsChanged() << endl;
+
+		if (abstractor.IsChanged())
+		{
+			abstractor.LogInputs();
+			abstractor.OutputInputs();
+		}
 
 		abstractor.size = abstractor.dataset.size();
 

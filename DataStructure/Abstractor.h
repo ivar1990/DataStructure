@@ -15,10 +15,9 @@ class Abstractor
 public:
 	map<int, int> frequency_table;
 	map<int, int> accepted_frequency;
+	map<int, list<int>> inputs;
 
 	list<int> dataset;
-	Controller controller;
-	Structure structure;
 
 	int size = 0;
 
@@ -35,6 +34,10 @@ public:
 	void SeparateByFrequency(int frequency_count);
 
 	void Output();
+
+	void LogInputs();
+
+	void OutputInputs();
 
 	bool IsChanged();
 

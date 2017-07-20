@@ -39,7 +39,7 @@ public:
 
 	//void Input(string character);
 
-	friend bool operator==(const Structure &str1, const Structure &str2);
+	
 
 	void PrintNodes();
 
@@ -47,10 +47,7 @@ public:
 	~Structure();
 };
 
-bool operator==(const Structure &str1, const Structure &str2)
-{
-	return (str1 == str2);
-}
+
 
 #endif
 

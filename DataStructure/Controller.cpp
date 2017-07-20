@@ -11,7 +11,12 @@ Controller::Controller()
 
 }
 
-void Controller::HandleInput(list<int> dataset)
+void Controller::Input(int ascChar)
+{
+	dataset.push_back(ascChar);
+}
+
+void Controller::HandleInput()
 {
 
 }
