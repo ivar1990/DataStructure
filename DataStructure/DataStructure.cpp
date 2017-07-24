@@ -50,11 +50,9 @@ int _tmain(int argc, _TCHAR* argv[])
 			cout << ascChar << ": " << static_cast<char>(ascChar) << endl;
 
 		}
+
 		abstractor.OutputFrequencyTable();
-
 		abstractor.Output();
-
-		
 		
 		cout << "Dataset size: " << abstractor.size << endl;
 		cout << "Dataset list length: " << abstractor.dataset.size() << endl;
@@ -64,11 +62,12 @@ int _tmain(int argc, _TCHAR* argv[])
 		{
 			abstractor.LogInputs();
 			abstractor.OutputInputs();
+			
+			abstractor.LogStream(text);
+			abstractor.OutputStream();
 		}
 
 		abstractor.size = abstractor.dataset.size();
-
-		
 
 		cout << "Continue? y/n: " << endl;
 		cin.get(ch);
