@@ -5,7 +5,7 @@
 #include <string>
 #include <map>
 
-#include "Structure.h"
+//#include "Structure.h"
 #include "Assembler.h"
 
 using namespace std;
@@ -16,12 +16,8 @@ class Storage
 public:
 
 	Storage();
-
-	
-	
 	int GetStructureCount();
 
-	
 	//increments the structure_id
 	//returns the new structure_id
 	//new structure id can be added or removed

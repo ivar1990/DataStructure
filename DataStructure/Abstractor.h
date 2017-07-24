@@ -8,7 +8,7 @@
 #include <map>
 #include <list>
 
-#include "Controller.h"
+using namespace std;
 
 class Abstractor
 {
@@ -16,7 +16,6 @@ public:
 	map<int, int> frequency_table;
 	map<int, int> accepted_frequency;
 	map<int, list<int>> inputs;
-	map<int, list<int>> inputstream;
 
 	list<int> dataset;
 
@@ -42,9 +41,7 @@ public:
 
 	bool IsChanged();
 
-	void LogStream(string text);
-
-	void OutputStream();
+	
 
 private:
 	void GenerateFrequencyTable();

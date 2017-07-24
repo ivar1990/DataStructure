@@ -8,35 +8,39 @@
 #include <map>
 #include <list>
 
+#include "Abstractor.h"
 #include "Storage.h"
 #include "Assembler.h"
-#include "Abstractor.h"
 
 using namespace std;
 
-
 class Controller
 {
-
 public:
-	Storage storage;
-	//Assembler assembler;
-	//Abstractor abstractor;
+
+	Storage *pStorage;
+	Assembler *pAssembler;
+	Abstractor *pAbstractor;
+
+	map<int, list<int>> inputstream;
 
 	//For handling inputs
 	list<int> dataset;
 
 	Controller();
 
-	void Input(int ascChar);
-	void HandleInput();
+	void HandleInput(string text);
 	bool GetFeedback(bool response);
 
+	void SetAbstractor(Abstractor *abstractor);
+
+	void LogStream(string text);
+	void OutputStream();
 
 
 private:
 	void Init();
-	bool CheckConnections(Connection* connection);
+	//bool CheckConnections(Connection *connection);
 };
 
 #endif

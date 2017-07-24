@@ -5,10 +5,11 @@
 #include <iostream>
 
 //#include "LinkedList.h"
+#include "NodeSystem.h"
 #include "Assembler.h"
 #include "Storage.h"
 #include "Abstractor.h"
-#include "NodeSystem.h"
+#include "Controller.h"
 
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -29,6 +30,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	Assembler assembler;
 	Storage storage;
 	Abstractor abstractor;
+	Controller controller;
 
 	char ch;
 	bool running = true;
@@ -37,19 +39,22 @@ int _tmain(int argc, _TCHAR* argv[])
 	while (running)
 	{
 		string text;
-		int ascChar;
+		//int ascChar;
 		cout << "Please enter a line of text:" << endl;
 		getline(cin, text);
 
 		cout << text << endl;
 
-		for (int i = 0; i<text.length(); i++)
+		/*for (int i = 0; i<text.length(); i++)
 		{
 			ascChar = text[i];
 			abstractor.Input(ascChar);
 			cout << ascChar << ": " << static_cast<char>(ascChar) << endl;
 
-		}
+		}*/
+
+		controller.SetAbstractor(&abstractor);
+		controller.HandleInput(text);
 
 		abstractor.OutputFrequencyTable();
 		abstractor.Output();
@@ -63,8 +68,8 @@ int _tmain(int argc, _TCHAR* argv[])
 			abstractor.LogInputs();
 			abstractor.OutputInputs();
 			
-			abstractor.LogStream(text);
-			abstractor.OutputStream();
+			controller.LogStream(text);
+			controller.OutputStream();
 		}
 
 		abstractor.size = abstractor.dataset.size();
