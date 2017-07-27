@@ -23,6 +23,7 @@ public:
 	Abstractor *pAbstractor;
 
 	map<int, list<int>> inputstream;
+	map<int, list<int>> history;
 
 	//For handling inputs
 	list<int> dataset;
@@ -36,6 +37,9 @@ public:
 
 	void LogStream(string text);
 	void OutputStream();
+
+	void LogHistory();
+	void ShowHistory();
 
 
 private:

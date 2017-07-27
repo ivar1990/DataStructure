@@ -70,6 +70,9 @@ int _tmain(int argc, _TCHAR* argv[])
 			
 			controller.LogStream(text);
 			controller.OutputStream();
+
+			controller.LogHistory();
+			controller.ShowHistory();
 		}
 
 		abstractor.size = abstractor.dataset.size();

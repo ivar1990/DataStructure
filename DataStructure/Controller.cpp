@@ -23,6 +23,7 @@ void Controller::HandleInput(string text)
 	{
 		ascChar = text[i];
 		pAbstractor->Input(ascChar);
+		dataset.push_back(ascChar);
 		cout << ascChar << ": " << static_cast<char>(ascChar) << endl;
 	}
 }
@@ -75,5 +76,30 @@ void Controller::OutputStream()
 		}
 
 		cout << endl;
+	}
+}
+
+void Controller::LogHistory()
+{
+	int i = history.size() + 1;
+	history.insert(pair<int, list<int>>(i, dataset));
+}
+
+void Controller::ShowHistory()
+{
+	cout << "History Table: " << endl;
+	map<int, list<int>>::iterator it;
+	list<int>::iterator l_it;
+	int i = 0;
+
+	for (it = history.begin(); it != history.end(); it++)
+	{
+		cout << endl;
+		cout << "History No. " << i << endl;
+		i++;
+		for (l_it = it->second.begin(); l_it != it->second.end(); l_it++)
+		{
+			cout << static_cast<char>(*l_it);
+		}
 	}
 }
