@@ -33,7 +33,11 @@ public:
 	void HandleInput(string text);
 	bool GetFeedback(bool response);
 
+	void SetStorage(Storage *storage);
+	void SetAssembler(Assembler *assembler);
 	void SetAbstractor(Abstractor *abstractor);
+	
+
 
 	void LogStream(string text);
 	void OutputStream();

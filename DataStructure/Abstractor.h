@@ -16,6 +16,8 @@ public:
 	map<int, int> frequency_table;
 	map<int, int> accepted_frequency;
 	map<int, list<int>> inputs;
+	map<int, list<int>> patterns;
+	list<int> current_pattern;
 
 	list<int> dataset;
 
