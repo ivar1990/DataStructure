@@ -6,7 +6,7 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 
-#include "LinkedList.h"
+//#include "LinkedList.h"
 #include "NodeSystem.h"
 #include "Connector.h"
 
@@ -16,13 +16,14 @@ class Structure
 {
 public:
 
-	unsigned int structure_id;
+	unsigned int structure_id =0;
 
-	NodeSystem nodes;
-	Connector connections;
-
+	NodeSystem *nodes;
+	Connector *connections;
+	NodeSystem *instructions;
 
 	Structure();
+
 
 	
 
@@ -38,9 +39,15 @@ public:
 
 	//void Input(string character);
 
+	
+
+	void PrintNodes();
+
 
 	~Structure();
 };
+
+
 
 #endif
 

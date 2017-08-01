@@ -290,6 +290,34 @@ void NodeSystem::printList()
 }
 
 
+bool operator==(const NodeSystem &n_sys1, const NodeSystem &n_sys2)
+{
+	bool is_equal = true;
+
+	Node *current_node = n_sys1.origin;
+	Node *current_node2 = n_sys2.origin;
+
+	//loop through NodeSystem1 nodes
+	while (current_node != n_sys1.end)
+	{
+		current_node = current_node->next;
+		current_node2 = current_node2->next;
+
+
+		if (current_node->position == current_node2->position && current_node->data == current_node2->data)
+		{
+			is_equal = true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	return is_equal;
+}
+
+
 NodeSystem::~NodeSystem()
 {
 	//Applies to Nodes List;

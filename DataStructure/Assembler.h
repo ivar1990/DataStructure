@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <list>
 
 #include "Structure.h"
 
@@ -39,6 +40,9 @@ public:
 
 	//Displays the structure to the command prompt
 	void OutputStructure(Structure *structure);
+
+	
+	Structure* AssembleStructure(list<int> components);
 };
 
 #endif
