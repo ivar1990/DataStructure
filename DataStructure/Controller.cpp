@@ -11,6 +11,16 @@ Controller::Controller()
 
 }
 
+void Controller::SetStorage(Storage* storage)
+{
+	pStorage = storage;
+}
+
+void Controller::SetAssembler(Assembler* assembler)
+{
+	pAssembler = assembler;
+}
+
 void Controller::SetAbstractor(Abstractor* abstractor)
 {
 	pAbstractor = abstractor;
