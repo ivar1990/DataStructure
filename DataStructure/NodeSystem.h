@@ -44,6 +44,8 @@ public:
 	// origin of the list contains no data, 
 	// but points to the end of the list.
 	Node *origin = new Node;
+
+	// End of Linked list
 	Node *end = new Node;
 
 	// Number of Nodes in the List.
@@ -56,36 +58,40 @@ public:
 	NodeSystem();
 
 	/***********************List of Nodes***********************/
-	///Takes the nodes and repositions them in ascending order.
-	///Position starts at 1 with the origin as position 0.
+	//Takes the nodes and repositions them in ascending order.
+	//Position starts at 1 with the origin as position 0.
 	void repositionNodes();
 
-	//// Setter adds a node to the list at a pre-determined position.
-	//// Duplicates are allowed.
-	//// Takes a value as parameters.
-	//// Position is calculated between 1 and the number of data nodes.
-	//// Returns true if the operation is successful.
+	// adds a node to the list at a pre-determined position.
+	// Duplicates are allowed.
+	// Takes a value as parameters.
+	// Position is calculated between 1 and the number of data nodes.
+	// Returns true if the operation is successful.
 	bool Add(int node_value);
 
-	//// Setter removes a single node by a given value.
-	//// Returns true if the operation is successful.
+	// removes a single node by a given value.
+	// Returns true if the operation is successful.
 	bool removeNode(int node_value);
 
-	//// Setter removes all duplicate nodes by a given value;
-	//// Returns the number of nodes that were removed.
+	// Setter removes all duplicate nodes by a given value;
+	// Returns the number of nodes that were removed.
 	int removeAllNodes(int node_value);
 
-	//// Searches for a node by a given value.
-	//// Or seach by a given position.
-	//// Returns true if the operation is successful.
-	//// Node can be access via *search_node
+	// Searches for a node by a given value.
+	// Or search by a given position.
+	// Returns true if the operation is successful.
+	// Node can be access via *search_node
 	bool FindNode(int node_value, int position = 0);
 
+	// Checks to see if the NodeSystem has nodes to deallocate
 	bool HasNodes();
 
+	// Moves node to a different position
+	//
 	bool Move(int current_position, int destination_position);
 	/***********************List of Nodes***********************/
 
+	// Checks if nodes are the same in both NodeSystem list of nodes.
 	friend bool operator==(const NodeSystem &n_sys1, const NodeSystem &n_sys2);
 
 
