@@ -27,10 +27,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	
 
 
-	Assembler assembler;
-	Storage storage;
+	//Assembler assembler;
+	//Storage storage;
 	Abstractor abstractor;
-	Controller controller;
+	//Controller controller;
 
 	char ch;
 	bool running = true;
@@ -53,7 +53,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		}*/
 
-		controller.SetAbstractor(&abstractor);
+		/*controller.SetAbstractor(&abstractor);
 		controller.HandleInput(text);
 
 		abstractor.OutputFrequencyTable();
@@ -75,7 +75,10 @@ int _tmain(int argc, _TCHAR* argv[])
 			controller.ShowHistory();
 		}
 
-		abstractor.size = abstractor.dataset.size();
+		abstractor.size = abstractor.dataset.size();*/
+
+		abstractor.GenerateRandomNodes(2);
+		abstractor.GenerateRandomConnections(3);
 
 		cout << "Continue? y/n: " << endl;
 		cin.get(ch);
