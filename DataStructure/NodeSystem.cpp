@@ -303,7 +303,7 @@ bool operator==(const NodeSystem &n_sys1, const NodeSystem &n_sys2)
 		current_node = current_node->next;
 		current_node2 = current_node2->next;
 
-
+		// Check postion and data for match
 		if (current_node->position == current_node2->position && current_node->data == current_node2->data)
 		{
 			is_equal = true;

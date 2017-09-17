@@ -8,11 +8,16 @@
 #include <map>
 #include <list>
 
+#include "NodeSystem.h"
+#include "Connector.h"
+
+
 using namespace std;
 
 class Abstractor
 {
 public:
+
 	map<int, int> frequency_table;
 	map<int, int> accepted_frequency;
 	map<int, list<int>> inputs;
@@ -20,6 +25,9 @@ public:
 	list<int> current_pattern;
 
 	list<int> dataset;
+	
+	NodeSystem *node_system;
+	Connector *connections;
 
 	int size = 0;
 
@@ -30,6 +38,10 @@ public:
 	void GetFeedback();
 
 	void GenerateRandomDataSet(int max_size = 0);
+
+	void GenerateRandomNodes(int max_size = 0);
+
+	void GenerateRandomConnections(int max_size = 0);
 
 	void OutputFrequencyTable();
 

@@ -5,7 +5,11 @@ using namespace std;
 
 Abstractor::Abstractor()
 {
+	NodeSystem *n_sys = new NodeSystem();
+	Connector *conn = new Connector(n_sys);
 
+	node_system = n_sys;
+	connections = conn;
 }
 
 
@@ -46,6 +50,7 @@ void Abstractor::GenerateRandomDataSet(int max_size)
 		rand_num = (rand() % 255) + 1;
 
 		dataset.push_back(rand_num);
+		
 		//cout << rand_num << endl;
 	}
 
@@ -53,6 +58,66 @@ void Abstractor::GenerateRandomDataSet(int max_size)
 		std::cout << ' ' << *it;
 
 	std::cout << '\n';
+}
+
+void Abstractor::GenerateRandomNodes(int max_size)
+{
+	if (max_size < 1)
+	{
+		max_size = (rand() % 50) + 1;
+	}
+
+
+	srand(time(NULL));
+	int rand_num = 0;
+
+	cout << "Amount of nodes generated: " << max_size << endl;
+	for (int i = 0; i < max_size; i++) {
+		/* generate random number between 1 and 255: */
+		rand_num = (rand() % 255) + 1;
+
+		node_system->Add(rand_num);
+
+		//cout << rand_num << endl;
+	}
+
+	cout << "NodeSystem from Abstractor" << endl;
+	node_system->printList();
+}
+
+void Abstractor::GenerateRandomConnections(int max_size)
+{
+	int parent_node_position = 0;
+	int child_node_position = 0;
+
+	Node *parent_node;
+	Node *child_node;
+
+	if (max_size < 1)
+	{
+		max_size = (rand() % 50) + 1;
+	}
+
+	srand(time(NULL));
+	int rand_num = 0;
+
+	cout << "Amount of nodes generated: " << max_size << endl;
+	for (int i = 0; i < max_size; i++) {
+		/* generate random number between 1 and 255: */
+		parent_node_position = (rand() % node_system->listLength) + 1;
+		node_system->FindNode(0, parent_node_position);
+		parent_node = node_system->search_node;
+
+		child_node_position = (rand() % node_system->listLength) + 1;
+		node_system->FindNode(0, child_node_position);
+		child_node = node_system->search_node;
+
+		connections->AddConnection(parent_node, child_node);
+
+		//cout << rand_num << endl;
+	}
+
+	connections->ShowConnections();
 }
 
 void Abstractor::GenerateFrequencyTable()
