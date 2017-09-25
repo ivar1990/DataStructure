@@ -418,7 +418,7 @@ void Connector::ShowConnections()
 				if (p->Source != NULL)
 				{
 					cout << "P: " << p->Source->data << "---->" << "C: " << p->Target->data << endl;
-					cout << "Node: " << p->Source->data << "---->" << " " << static_cast<char>(p->Target->data) << endl;
+					cout << "Node: " << static_cast<char>(p->Source->data) << "---->" << " " << static_cast<char>(p->Target->data) << endl;
 				}
 			cout << "|| Next Connection: " << p->Link << endl;
 			cout << "n*****************************n" << endl;

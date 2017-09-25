@@ -62,6 +62,7 @@ void Abstractor::GenerateRandomDataSet(int max_size)
 
 void Abstractor::GenerateRandomNodes(int max_size)
 {
+	//Maximun of 50 nodes will be generated
 	if (max_size < 1)
 	{
 		max_size = (rand() % 50) + 1;
@@ -71,7 +72,7 @@ void Abstractor::GenerateRandomNodes(int max_size)
 	srand(time(NULL));
 	int rand_num = 0;
 
-	cout << "Amount of nodes generated: " << max_size << endl;
+	cout << "Amount of NODES generated: " << max_size << endl;
 	for (int i = 0; i < max_size; i++) {
 		/* generate random number between 1 and 255: */
 		rand_num = (rand() % 255) + 1;
@@ -87,12 +88,15 @@ void Abstractor::GenerateRandomNodes(int max_size)
 
 void Abstractor::GenerateRandomConnections(int max_size)
 {
+	//Node positions
 	int parent_node_position = 0;
 	int child_node_position = 0;
 
+	//Node with data
 	Node *parent_node;
 	Node *child_node;
 
+	//Maximun of 50 connections will be generated
 	if (max_size < 1)
 	{
 		max_size = (rand() % 50) + 1;
@@ -101,12 +105,16 @@ void Abstractor::GenerateRandomConnections(int max_size)
 	srand(time(NULL));
 	int rand_num = 0;
 
-	cout << "Amount of nodes generated: " << max_size << endl;
+	cout << "Amount of CONNECTIONS generated: " << max_size << endl;
 	for (int i = 0; i < max_size; i++) {
-		/* generate random number between 1 and 255: */
+		//generate random number between 1 and node list length
+		//sets the random number as the position of the parent node's position in the list
 		parent_node_position = (rand() % node_system->listLength) + 1;
+		//search for the node in the position(the generated random number) in the list of nodes 
 		node_system->FindNode(0, parent_node_position);
+		//assigns the searched node to the parent node pointer.
 		parent_node = node_system->search_node;
+
 
 		child_node_position = (rand() % node_system->listLength) + 1;
 		node_system->FindNode(0, child_node_position);
