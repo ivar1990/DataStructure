@@ -240,4 +240,51 @@ void Abstractor::OutputInputs()
 	}
 }
 
+Node* Abstractor::CreateNode()
+{
+	Node *pResult;
 
+	//Create new node ID
+	int new_node_id = node_system->listLength + 1;
+	node_system->Add(new_node_id);
+
+	//Find and set resulting node
+	node_system->FindNode(new_node_id);
+	pResult = node_system->search_node;
+	return pResult;
+	
+}
+
+void Abstractor::CreateRandomNodeConnections(Node *pNode, int max_size)
+{
+	//Node positions
+	int parent_node_position = 0;
+	int child_node_position = 0;
+
+	//Node with data
+	Node *parent_node = pNode;
+	Node *child_node;
+
+	//Maximun of 50 connections will be generated
+	if (max_size < 1)
+	{
+		max_size = (rand() % 50) + 1;
+	}
+
+	srand(time(NULL));
+	//int rand_num = 0;
+
+	cout << "Amount of CONNECTIONS generated: " << max_size << endl;
+	for (int i = 0; i < max_size; i++) {
+		
+		child_node_position = (rand() % node_system->listLength) + 1;
+		node_system->FindNode(0, child_node_position);
+		child_node = node_system->search_node;
+
+		connections->AddConnection(parent_node, child_node);
+
+		//cout << rand_num << endl;
+	}
+
+	connections->ShowConnections();
+}
