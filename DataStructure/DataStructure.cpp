@@ -77,11 +77,11 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		abstractor.size = abstractor.dataset.size();*/
 
-		//abstractor.GenerateRandomNodes(2);
-		//abstractor.GenerateRandomConnections(3);
+		abstractor.GenerateRandomNodes(2);
+		abstractor.GenerateRandomConnections(3);
 
 		
-		abstractor.CreateRandomNodeConnections(abstractor.CreateNode(), 15);
+		abstractor.CreateRandomNodeConnections(abstractor.CreateNode(), 6);
 
 		cout << "Continue? y/n: " << endl;
 		cin.get(ch);
