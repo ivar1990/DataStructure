@@ -55,6 +55,9 @@ public:
 
 	bool IsChanged();
 
+	//Node creation process
+	Node* CreateNode();
+	void CreateRandomNodeConnections(Node *pNode, int max_size = 0);
 	
 
 private:
