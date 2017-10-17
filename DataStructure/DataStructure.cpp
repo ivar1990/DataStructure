@@ -30,7 +30,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	//Assembler assembler;
 	//Storage storage;
 	Abstractor abstractor;
-	//Controller controller;
+	Controller controller;
 
 	char ch;
 	bool running = true;
@@ -39,13 +39,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	while (running)
 	{
 		string text;
-		//int ascChar;
+		int ascChar;
 		cout << "Please enter a line of text:" << endl;
 		getline(cin, text);
 
-		cout << text << endl;
-
-		/*for (int i = 0; i<text.length(); i++)
+		//cout << text << endl;
+		/*
+		for (int i = 0; i<text.length(); i++)
 		{
 			ascChar = text[i];
 			abstractor.Input(ascChar);
@@ -53,7 +53,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		}*/
 
-		/*controller.SetAbstractor(&abstractor);
+		controller.SetAbstractor(&abstractor);
 		controller.HandleInput(text);
 
 		abstractor.OutputFrequencyTable();
@@ -75,13 +75,13 @@ int _tmain(int argc, _TCHAR* argv[])
 			controller.ShowHistory();
 		}
 
-		abstractor.size = abstractor.dataset.size();*/
+		abstractor.size = abstractor.dataset.size();
 
-		abstractor.GenerateRandomNodes(2);
-		abstractor.GenerateRandomConnections(3);
+		//abstractor.GenerateRandomNodes(2);
+		//abstractor.GenerateRandomConnections(3);
 
 		
-		abstractor.CreateRandomNodeConnections(abstractor.CreateNode(), 6);
+		//abstractor.CreateRandomNodeConnections(abstractor.CreateNode(), 6);
 
 		cout << "Continue? y/n: " << endl;
 		cin.get(ch);
