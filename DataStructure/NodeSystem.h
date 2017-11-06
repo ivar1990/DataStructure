@@ -29,6 +29,7 @@ struct Node
 {
 	int data;
 	unsigned int position;
+	unsigned int node_id;
 	Node *next;
 
 };

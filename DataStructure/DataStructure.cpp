@@ -28,9 +28,10 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 	//Assembler assembler;
-	//Storage storage;
+	Storage storage;
 	Abstractor abstractor;
 	Controller controller;
+
 
 	char ch;
 	bool running = true;
@@ -53,6 +54,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		}*/
 
+		controller.SetStorage(&storage);
 		controller.SetAbstractor(&abstractor);
 		controller.HandleInput(text);
 

@@ -16,37 +16,27 @@ class Storage
 public:
 
 	Storage();
-	int GetStructureCount();
 
-	//increments the structure_id
-	//returns the new structure_id
-	//new structure id can be added or removed
-	int GenerateStructureID();
+	unsigned int structure_id = 0;
 
-	//returns a stored structure
-	Structure* GetStructure(int structure_id);
+	//Manages all Nodes and Connections
+	//Reads and writes all nodes and connections to disk
+	//Modify existing and new entries
+	NodeSystem *nodes;
+	Connector *connections;
 
-	bool AddStructure(Structure *pStructure);
 
-	bool RemoveStructure(int structure_id);
-
-	void PrintAllStructures();
+	void PrintStorage();
 
 	~Storage();
 
 private:
 
-	//Container for structures
-	map<int, Structure*> storage;
-
-	//Total amount of structures
-	int num_of_structures = 0;
-
 	void Init();
 
-	bool RemoveAllReferenceToStructure();
+	void LoadFromDisk();
 
-	void PrintInnerStructure(Structure* pStructure);
+	void WriteToDisk();
 
 };
 

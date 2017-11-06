@@ -130,6 +130,9 @@ void Abstractor::GenerateRandomConnections(int max_size)
 
 void Abstractor::GenerateFrequencyTable()
 {
+	//dataset is a list<int> container
+	//frequency_table is a map<int, int> container
+
 	list<int>::iterator dataset_it;
 	map<int, int>::iterator frequencytable_it;
 
@@ -138,18 +141,30 @@ void Abstractor::GenerateFrequencyTable()
 		frequency_table.insert(pair<int, int>(0, 0));
 	}
 
+	///Traverse list<int> container
 	for (dataset_it = dataset.begin(); dataset_it != dataset.end(); ++dataset_it)
 	{
 		//std::cout << "dataset number: " << *dataset_it << endl;
-
+		///traverse map<int,int> container
 		for (frequencytable_it = frequency_table.begin(); frequencytable_it != frequency_table.end(); ++frequencytable_it)
 		{
+				//*dataset_it is the numeric value stored from input
+				//frequencytable_it->first is a none repeating numeric value from input
+				//frequencytable_it->second is how many time the *dataset_it value is repeated
+				//E.g: *dataset_it  = { 1, 2, 2, 4, 3, 1  }   
+				//frequencytable_it->first   | frequencytable_it->second
+				//		1					 |			2
+				//		2					 |			2
+				//		3					 |			1
+				//		4					 |			1
 				if (*dataset_it == frequencytable_it->first)
 				{
+					//increment the count
 					frequencytable_it->second++;
 				}
 				else
 				{
+					//insert a new unique value
 					frequency_table.insert(pair<int, int>(*dataset_it, 0));
 				}
 
@@ -171,6 +186,7 @@ void Abstractor::OutputFrequencyTable()
 
 void Abstractor::SeparateByFrequency(int frequency_num)
 {
+
 	list<int>::iterator it;
 
 	for (it = dataset.begin(); it != dataset.end(); it++)

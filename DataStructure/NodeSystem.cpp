@@ -14,10 +14,12 @@ NodeSystem::NodeSystem()
 
 	origin->data = 0;
 	origin->position = 0;
+	origin->node_id = 0;
 	origin->next = NULL;
 
 	end->data = 0;
 	end->position = 0;
+	end->node_id = 0;
 	end->next = NULL;
 
 	listLength = 0;

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <iostream>
+#include <fstream>
 #include <string>
 
 #include "Storage.h"
@@ -8,125 +9,58 @@ using namespace std;
 
 Storage::Storage()
 {
-
+	Init();
 }
 
 void Storage::Init()
 {
-	
+	NodeSystem  *node_system = new NodeSystem();
+	nodes = node_system;
+
+	Connector *connector = new Connector(nodes);
+	connections = connector;
 }
 
-int Storage::GetStructureCount()
+void Storage::PrintStorage()
 {
-	return num_of_structures;
-}
+	//track node in the node system
+	int current_node_position = 1;
 
-int Storage::GenerateStructureID()
-{
-	//tracks Structures
-	static unsigned int structure_id = 0;
-	return structure_id++;
-}
-
-Structure* Storage::GetStructure(int structure_id)
-{
-	map<int, Structure*>::iterator it;
-
-	it = storage.find(structure_id);
-	if (it != storage.end())
+	if (nodes->HasNodes())
 	{
-		return it->second;
-	}
-	else {
-		return NULL;
-	}
-}
-
-bool Storage::AddStructure(Structure *pStructure)
-{
-	int new_structure_id = GenerateStructureID();
-
-	pStructure->structure_id = new_structure_id;
-
-	storage.insert(pair<int, Structure*>(new_structure_id, pStructure));
-
-	map<int, Structure*>::iterator it;
-
-	it = storage.find(new_structure_id);
-	if (it != storage.end())
-	{
-		num_of_structures++;
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-
-bool Storage::RemoveStructure(int structure_id)
-{
-
-	storage.erase(structure_id);
-	map<int, Structure*>::iterator it;
-
-	it = storage.find(structure_id);
-	if (it == storage.end())
-	{
-		delete it->second;
-		num_of_structures--;
-
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-
-void Storage::PrintAllStructures()
-{
-
-	for (std::map<int, Structure*>::iterator it = storage.begin(); it != storage.end(); it++)
-	{
-		std::cout << it->first << " => " << it->second->structure_id << endl;
-		it->second->nodes->printList();
-		/*if (it->first < 256)
-		{			
-				it->second->nodes->printList();
-				it->second->connections->ShowConnections();
-		}
-		else
+		while (nodes->search_node != NULL)
 		{
-			PrintInnerStructure(it->second);
-		}*/
-	
-		//PrintInnerStructure(it->second);
+
+			nodes->FindNode(0, current_node_position);
+
+			if (nodes->search_node != NULL)
+			{
+				//Write Node data to console
+				cout << "Node " << nodes->search_node->position << ": " << nodes->search_node << endl;
+
+				cout << "n-----------------------------n" << endl;
+				cout << "|| value: " << nodes->search_node->data << endl;
+					//Write Node Connections to console
+					connections->GetConnections(nodes->search_node);
+					connections->PrintNodeConnections();
+
+				cout << "n*****************************n" << endl;
+
+				current_node_position++;
+			}
+			
+		}
 	}
+	cout << "End Node: n" << endl;
 }
 
-void Storage::PrintInnerStructure(Structure* pStructure)
+void Storage::WriteToDisk()
 {
-	if (pStructure->structure_id > 256)
-	{
-		pStructure = GetStructure(pStructure->structure_id);
-		PrintInnerStructure(pStructure);
-	}
-	else
-	{
-		pStructure->nodes->printList();
-		pStructure->connections->ShowConnections();
-	}
+
 }
 
-bool Storage::RemoveAllReferenceToStructure()
-{
-	return true;
-}
 
 Storage::~Storage()
 {
-	if (!storage.empty())
-	{
-		for (std::map<int, Structure*>::iterator it = storage.begin(); it != storage.end(); it++)
-			delete it->second;
-	}
+	WriteToDisk();
 }

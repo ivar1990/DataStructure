@@ -146,7 +146,6 @@
     <ClInclude Include="Assembler.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Storage.h" />
-    <ClInclude Include="Structure.h" />
     <ClInclude Include="Connector.h" />
     <ClInclude Include="NodeSystem.h" />
     <ClInclude Include="Organizer.h" />
@@ -161,7 +160,6 @@
     <ClCompile Include="Assembler.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Storage.cpp" />
-    <ClCompile Include="Structure.cpp" />
     <ClCompile Include="Connector.cpp" />
     <ClCompile Include="DataStructure.cpp" />
     <ClCompile Include="NodeSystem.cpp" />
