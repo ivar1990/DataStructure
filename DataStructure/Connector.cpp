@@ -13,11 +13,17 @@ Connector::Connector(NodeSystem *pNode_system)
 	pNodeSystem = pNode_system;
 
 	start_connection->position = 0;
+	start_connection->connection_id = 0;
+	start_connection->source_id = 0;
+	start_connection->target_id = 0;
 	start_connection->Source = NULL;
 	start_connection->Target = NULL;
 	start_connection->Link = NULL;
 
 	end_connection->position = 0;
+	end_connection->connection_id = 0;
+	end_connection->source_id = 0;
+	end_connection->target_id = 0;
 	end_connection->Source = NULL;
 	end_connection->Target = NULL;
 	end_connection->Link = NULL;
@@ -51,11 +57,17 @@ Connector::Connector()
 	connection_count = 0;
 
 	start_connection->position = 0;
+	start_connection->connection_id = 0;
+	start_connection->source_id = 0;
+	start_connection->target_id = 0;
 	start_connection->Source = NULL;
 	start_connection->Target = NULL;
 	start_connection->Link = NULL;
 
 	end_connection->position = 0;
+	end_connection->connection_id = 0;
+	end_connection->source_id = 0;
+	end_connection->target_id = 0;
 	end_connection->Source = NULL;
 	end_connection->Target = NULL;
 	end_connection->Link = NULL;
@@ -106,6 +118,33 @@ bool Connector::Connect(int source_data_value, int target_data_value)
 	else
 	{
 		cout << "Could not find Source Value: " << source_data_value << endl;
+		return false;
+	}
+}
+
+bool Connector::Connect(unsigned int source_node_id, unsigned int target_node_id)
+{
+	Node *source;
+	Node *target;
+
+	if (pNodeSystem->FindNode(0,0,source_node_id))
+	{
+		source = pNodeSystem->search_node;
+		if (pNodeSystem->FindNode(0,0,target_node_id))
+		{
+			target = pNodeSystem->search_node;
+			AddConnection(source, target);
+			return true;
+		}
+		else
+		{
+			cout << "Could not find Target Value: " << target_node_id << endl;
+			return false;
+		}
+	}
+	else
+	{
+		cout << "Could not find Source Value: " << source_node_id << endl;
 		return false;
 	}
 }
@@ -296,9 +335,21 @@ bool Connector::MoveConnection(int current_position, int destination_position)
 	}
 }
 
-bool Connector::GetConnection(Node *source, int position)
+bool Connector::GetConnection(Node *source, int position, unsigned int connection_id)
 {
 	Connection *current_connection = start_connection;
+
+	//Search by given Source node;
+	while (current_connection != end_connection)
+	{
+		current_connection = current_connection->Link;
+		if (current_connection->Source == source)
+		{
+			connection = current_connection;
+			return true;
+		}
+	}
+	return false;
 
 	//Search by Position.
 	if (position > 0)
@@ -314,17 +365,21 @@ bool Connector::GetConnection(Node *source, int position)
 		}
 	}
 
-	//Search by given Source node;
-	while (current_connection != end_connection)
+	//Search by Connection ID.
+	if (connection_id > 0)
 	{
-		current_connection = current_connection->Link;
-		if (current_connection->Source == source)
+		while (current_connection != end_connection)
 		{
-			connection = current_connection;
-			return true;
+			current_connection = current_connection->Link;
+			if (current_connection->position == position)
+			{
+				connection = current_connection;
+				return true;
+			}
 		}
 	}
-	return false;
+
+	
 }
 
 void Connector::GetConnections(Node *source)

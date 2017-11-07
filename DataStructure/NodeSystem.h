@@ -82,7 +82,7 @@ public:
 	// Or search by a given position.
 	// Returns true if the operation is successful.
 	// Node can be access via *search_node
-	bool FindNode(int node_value, int position = 0);
+	bool FindNode(int node_value, int position = 0, unsigned int node_id = 0);
 
 	// Checks to see if the NodeSystem has nodes to deallocate
 	bool HasNodes();

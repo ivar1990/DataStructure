@@ -54,6 +54,7 @@ bool NodeSystem::Add(int node_value)
 		newNode->next = end;
 		listLength++;
 		newNode->position = listLength;
+		newNode->node_id = listLength;
 		return true;
 	}
 	else
@@ -67,6 +68,7 @@ bool NodeSystem::Add(int node_value)
 				newNode->next = end;
 				listLength++;
 				newNode->position = listLength;
+				newNode->node_id = listLength;
 				return true;
 			}
 		}
@@ -155,7 +157,7 @@ int NodeSystem::removeAllNodes(int node_value)
 }
 
 
-bool NodeSystem::FindNode(int node_value, int position)
+bool NodeSystem::FindNode(int node_value, int position, unsigned int node_id)
 {
 	Node *current_node = origin;
 
@@ -166,6 +168,20 @@ bool NodeSystem::FindNode(int node_value, int position)
 		{
 			current_node = current_node->next;
 			if (current_node->position == position)
+			{
+				search_node = current_node;
+				return true;
+			}
+		}
+	}
+
+	//Search by Node ID.
+	if (node_id > 0)
+	{
+		while (current_node != end)
+		{
+			current_node = current_node->next;
+			if (current_node->node_id == node_id)
 			{
 				search_node = current_node;
 				return true;
