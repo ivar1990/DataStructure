@@ -36,8 +36,6 @@ public:
 	void SetStorage(Storage *storage);
 	void SetAssembler(Assembler *assembler);
 	void SetAbstractor(Abstractor *abstractor);
-	
-
 
 	void LogStream(string text);
 	void OutputStream();
