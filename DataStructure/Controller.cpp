@@ -137,3 +137,8 @@ void Controller::ShowHistory()
 		cout << endl;
 	}
 }
+
+void Controller::Close()
+{
+	pStorage->WriteToDisk();
+}

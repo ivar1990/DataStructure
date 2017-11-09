@@ -45,6 +45,8 @@ public:
 	void LogHistory();
 	void ShowHistory();
 
+	void Close();
+
 
 private:
 	void Init();

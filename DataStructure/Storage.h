@@ -28,6 +28,8 @@ public:
 
 	void PrintStorage();
 
+	void WriteToDisk();
+
 	~Storage();
 
 private:
@@ -36,7 +38,7 @@ private:
 
 	void LoadFromDisk();
 
-	void WriteToDisk();
+	
 
 };
 
