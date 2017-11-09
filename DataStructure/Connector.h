@@ -25,6 +25,15 @@ struct Connection
 	//checks likeness between source node and target node
 	int affinity = 0;
 
+	//Connection ID
+	unsigned int connection_id;
+
+	//Parent Node ID
+	unsigned int source_id;
+
+	//Child Node ID 
+	unsigned int target_id;
+
 	//Parent node pointer
 	Node *Source;
 
@@ -63,13 +72,15 @@ public:
 
 	bool Connect(int source_data_value, int target_data_value);
 
+	bool Connect(unsigned int source_node_id, unsigned int target_node_id);
+
 	bool AddConnection(Node *source, Node *target);
 
 	bool RemoveConnection(Node *source, Node *target, int position = 0);
 
 	bool MoveConnection(int current_position, int destination_postion);
 
-	bool GetConnection(Node *source, int position = 0);
+	bool GetConnection(Node *source, int position = 0, unsigned int connection_id = 0);
 
 	void GetConnections(Node *source);
 
