@@ -112,7 +112,7 @@ void Storage::WriteToDisk()
 
 				outFile.write((char*)&nodes->search_node->data, sizeof(nodes->search_node->data));
 				outFile.write((char*)&nodes->search_node->position, sizeof(nodes->search_node->position));
-				outFile.write((char*)&nodes->search_node->data, sizeof(nodes->search_node->data));
+				outFile.write((char*)&nodes->search_node->node_id, sizeof(nodes->search_node->node_id));
 				outFile.write(&separator, sizeof(separator));
 				current_node_position++;
 			
