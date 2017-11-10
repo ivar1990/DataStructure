@@ -66,10 +66,11 @@ void Storage::PrintStorage()
 void Storage::LoadFromDisk()
 {
 	ifstream inFile;
-	inFile.open("data.dat", ios::binary);
+	inFile.open("data.dat");
 
 	//string STRING;
 	char ch;
+	int file_out = 0;
 
 	if (inFile.is_open()) {
 		while (!inFile.eof()) {
@@ -77,11 +78,23 @@ void Storage::LoadFromDisk()
 			//cout << STRING; // Prints our STRING.
 			inFile.get(ch);
 
-			cout << ch << ":" << static_cast<int>(ch);
+			//cout << ch << ":" << static_cast<int>(ch);
+			
+			
 
 			if (ch == ',')
 			{
+				cout << ch;
+			}
+			
+			if (ch == ';')
+			{
 				cout << endl;
+			}
+
+			if (ch != ',' && ch != ';')
+			{
+				cout << atoi(&ch);
 			}
 			
 		}
@@ -93,7 +106,8 @@ void Storage::WriteToDisk()
 {
 	ofstream outFile;
 	const char separator = ',';
-	outFile.open("data.dat", ios::binary | ios::app);
+	const char terminator = ';';
+	outFile.open("data.dat", ios::app);
 
 	//track node in the node system
 	int current_node_position = 1;
@@ -119,11 +133,16 @@ void Storage::WriteToDisk()
 				//connections->PrintNodeConnections();
 
 				cout << "n*****************************n" << endl;
-
-				outFile.write((char*)&nodes->search_node->data, sizeof(nodes->search_node->data));
-				outFile.write((char*)&nodes->search_node->position, sizeof(nodes->search_node->position));
-				outFile.write((char*)&nodes->search_node->node_id, sizeof(nodes->search_node->node_id));
-				outFile.write(&separator, sizeof(separator));
+				
+				outFile << nodes->search_node->data << separator;
+				outFile << nodes->search_node->position << separator;
+				outFile << nodes->search_node->node_id << terminator;
+				//outFile.write((char*)&nodes->search_node->data, sizeof(nodes->search_node->data));
+				//outFile.write(&separator, sizeof(separator));
+				//outFile.write((char*)&nodes->search_node->position, sizeof(nodes->search_node->position));
+				//outFile.write(&separator, sizeof(separator));
+				//outFile.write((char*)&nodes->search_node->node_id, sizeof(nodes->search_node->node_id));
+				//outFile.write(&separator, sizeof(separator));
 				current_node_position++;
 			
 
