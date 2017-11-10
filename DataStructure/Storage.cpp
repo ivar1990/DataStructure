@@ -68,14 +68,24 @@ void Storage::LoadFromDisk()
 	ifstream inFile;
 	inFile.open("data.dat", ios::binary);
 
-	string STRING;
+	//string STRING;
+	char ch;
 
 	if (inFile.is_open()) {
 		while (!inFile.eof()) {
-			getline(inFile, STRING); // Saves the line in STRING.
-			cout << STRING; // Prints our STRING.
+			//get(inFile, STRING); // Saves the line in STRING.
+			//cout << STRING; // Prints our STRING.
+			inFile.get(ch);
+
+			cout << ch << ":" << static_cast<int>(ch);
+
+			if (ch == ',')
+			{
+				cout << endl;
+			}
+			
 		}
-		}
+	}
 	inFile.close();
 }
 

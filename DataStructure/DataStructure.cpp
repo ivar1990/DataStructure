@@ -58,6 +58,8 @@ int _tmain(int argc, _TCHAR* argv[])
 		controller.SetAbstractor(&abstractor);
 		controller.HandleInput(text);
 
+		storage.LoadFromDisk();
+
 		abstractor.OutputFrequencyTable();
 		abstractor.Output();
 		
@@ -101,7 +103,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		getline(cin,text);
 	}
 	
-	controller.Close();
+	//controller.Close();
 
 
 	/*for (int i = 0; i < 10000; i++)
