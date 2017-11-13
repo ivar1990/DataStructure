@@ -63,6 +63,9 @@ public:
 	//Position starts at 1 with the origin as position 0.
 	void repositionNodes();
 
+	///
+	bool Insert(int node_is, int data, int position);
+
 	// adds a node to the list at a pre-determined position.
 	// Duplicates are allowed.
 	// Takes a value as parameters.

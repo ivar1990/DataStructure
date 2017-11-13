@@ -41,7 +41,41 @@ void NodeSystem::repositionNodes()
 
 }
 
+bool NodeSystem::Insert(int node_id, int data, int position)
+{
+	if (!FindNode(0, position, 0))
+	{
+		Node *newNode = new Node;
+		Node *p;
 
+		newNode->data = data;
+		if (origin->next == NULL)
+		{
+			origin->next = newNode;
+			newNode->next = end;
+			listLength++;
+			newNode->position = position;
+			newNode->node_id = node_id;
+			return true;
+		}
+		else
+		{
+			FindNode(0, position - 1, 0);
+			p = search_node;
+			p->next = newNode;
+			newNode->next = end;
+			newNode->position = position;
+			newNode->node_id = node_id;
+			listLength++;
+			return true;
+				
+		}
+	}
+	else
+	{
+		Add(data);
+	}
+}
 
 
 bool NodeSystem::Add(int node_value)

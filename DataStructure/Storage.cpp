@@ -68,7 +68,7 @@ void Storage::LoadFromDisk()
 	ifstream inFile;
 	inFile.open("data.dat");
 
-	//string STRING;
+	string numbers;
 	char ch;
 	int file_out = 0;
 
@@ -80,34 +80,38 @@ void Storage::LoadFromDisk()
 
 			//cout << ch << ":" << static_cast<int>(ch);
 			
-			
-
-			if (ch == ',')
+			if (ch == '|')
 			{
-				cout << ch;
+				numbers = "";
+				cout << ch << endl;
 			}
 			
-			if (ch == ';')
+			if (ch == '\n')
 			{
+				numbers = "";
 				cout << endl;
 			}
 
-			if (ch != ',' && ch != ';')
+			if (ch != '|' && ch != '\n')
 			{
-				nodes->Add(atoi(&ch));
-				cout << atoi(&ch);
+				//nodes->Add(atoi(&ch));
+				numbers = numbers + ch;
+				cout << "char:" << atoi(&ch) << endl;
+				cout << "numbers:" << numbers << endl;
 			}
 			
 		}
 	}
 	inFile.close();
+
+	nodes->printList();
 }
 
 void Storage::WriteToDisk()
 {
 	ofstream outFile;
-	const char separator = ',';
-	const char terminator = ';';
+	const char separator = '|';
+	const char terminator = '\n';
 	outFile.open("data.dat", ios::app);
 
 	//track node in the node system
