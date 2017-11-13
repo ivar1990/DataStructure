@@ -42,6 +42,8 @@ void NodeSystem::repositionNodes()
 }
 
 
+
+
 bool NodeSystem::Add(int node_value)
 {
 	Node *newNode = new Node;

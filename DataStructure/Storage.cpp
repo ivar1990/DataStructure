@@ -22,12 +22,12 @@ void Storage::Init()
 
 	//Adds 1-255 as nodes
 	//See Ascii table for reference
-	for (int i = 0; i < 256; i++)
+	/*for (int i = 0; i < 256; i++)
 	{
 		nodes->Add(i);
 		cout << i << ": " << static_cast<char>(i) << endl;
 
-	}
+	}*/
 }
 
 void Storage::PrintStorage()
@@ -94,6 +94,7 @@ void Storage::LoadFromDisk()
 
 			if (ch != ',' && ch != ';')
 			{
+				nodes->Add(atoi(&ch));
 				cout << atoi(&ch);
 			}
 			
