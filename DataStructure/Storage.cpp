@@ -82,22 +82,23 @@ void Storage::LoadFromDisk()
 			
 			if (ch == '|')
 			{
+				cout << "at |: " << numbers << endl;
+				//cout << ch << endl;
 				numbers = "";
-				cout << ch << endl;
 			}
 			
 			if (ch == '\n')
 			{
+				cout << "at new line: " << numbers << endl;
 				numbers = "";
-				cout << endl;
 			}
 
 			if (ch != '|' && ch != '\n')
 			{
 				//nodes->Add(atoi(&ch));
 				numbers = numbers + ch;
-				cout << "char:" << atoi(&ch) << endl;
-				cout << "numbers:" << numbers << endl;
+				//cout << "char:" << atoi(&ch) << endl;
+				//cout << "numbers:" << numbers << endl;
 			}
 			
 		}
@@ -139,9 +140,10 @@ void Storage::WriteToDisk()
 
 				cout << "n*****************************n" << endl;
 				
-				outFile << nodes->search_node->data << separator;
-				outFile << nodes->search_node->position << separator;
-				outFile << nodes->search_node->node_id << terminator;
+				
+				//outFile << nodes->search_node->position << separator;
+				outFile << nodes->search_node->node_id << separator;
+				outFile << nodes->search_node->data << terminator;
 				//outFile.write((char*)&nodes->search_node->data, sizeof(nodes->search_node->data));
 				//outFile.write(&separator, sizeof(separator));
 				//outFile.write((char*)&nodes->search_node->position, sizeof(nodes->search_node->position));
