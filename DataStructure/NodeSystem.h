@@ -64,7 +64,7 @@ public:
 	void repositionNodes();
 
 	///
-	bool Insert(int node_is, int data, int position);
+	bool Insert(int data, int node_id = 0);
 
 	// adds a node to the list at a pre-determined position.
 	// Duplicates are allowed.

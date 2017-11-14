@@ -41,12 +41,12 @@ void NodeSystem::repositionNodes()
 
 }
 
-bool NodeSystem::Insert(int node_id, int data, int position)
+bool NodeSystem::Insert(int data, int node_id)
 {
-	if (!FindNode(0, position, 0))
+	if (node_id > 0 && FindNode(0,0,node_id) == false)
 	{
 		Node *newNode = new Node;
-		Node *p;
+		Node *p = origin;
 
 		newNode->data = data;
 		if (origin->next == NULL)
@@ -54,26 +54,32 @@ bool NodeSystem::Insert(int node_id, int data, int position)
 			origin->next = newNode;
 			newNode->next = end;
 			listLength++;
-			newNode->position = position;
+			newNode->position = listLength;
 			newNode->node_id = node_id;
 			return true;
 		}
 		else
 		{
-			FindNode(0, position - 1, 0);
-			p = search_node;
-			p->next = newNode;
-			newNode->next = end;
-			newNode->position = position;
-			newNode->node_id = node_id;
-			listLength++;
-			return true;
-				
+			while (p != end)
+			{
+				p = p->next;
+				if (p->next == end)
+				{
+					p->next = newNode;
+					newNode->next = end;
+					listLength++;
+					newNode->position = listLength;
+					newNode->node_id = node_id;
+					return true;
+				}
+			}
 		}
+
+		return false;
 	}
 	else
 	{
-		Add(data);
+		return false;
 	}
 }
 
@@ -200,7 +206,7 @@ bool NodeSystem::FindNode(int node_value, int position, unsigned int node_id)
 	//Search by Position.
 	if (position > 0)
 	{
-		while (current_node != end)
+		while (current_node->next != end || current_node->next != NULL)
 		{
 			current_node = current_node->next;
 			if (current_node->position == position)
@@ -214,7 +220,7 @@ bool NodeSystem::FindNode(int node_value, int position, unsigned int node_id)
 	//Search by Node ID.
 	if (node_id > 0)
 	{
-		while (current_node != end)
+		while (current_node->next != NULL)
 		{
 			current_node = current_node->next;
 			if (current_node->node_id == node_id)
@@ -223,10 +229,15 @@ bool NodeSystem::FindNode(int node_value, int position, unsigned int node_id)
 				return true;
 			}
 		}
+		return false;
+	}
+	else
+	{
+		return false;
 	}
 
 	//Search by given Value;
-	while (current_node != end)
+	while (current_node->next != end || current_node->next != NULL)
 	{
 		current_node = current_node->next;
 		if (current_node->data == node_value)

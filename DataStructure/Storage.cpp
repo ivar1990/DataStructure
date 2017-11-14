@@ -69,6 +69,8 @@ void Storage::LoadFromDisk()
 	inFile.open("data.dat");
 
 	string numbers;
+	int node_id = 0;
+	int data_value = 0;
 	char ch;
 	int file_out = 0;
 
@@ -84,12 +86,15 @@ void Storage::LoadFromDisk()
 			{
 				cout << "at |: " << numbers << endl;
 				//cout << ch << endl;
+				node_id = stoi(numbers);
 				numbers = "";
 			}
 			
 			if (ch == '\n')
 			{
 				cout << "at new line: " << numbers << endl;
+				data_value = stoi(numbers);
+				nodes->Insert(data_value, node_id);
 				numbers = "";
 			}
 
