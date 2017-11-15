@@ -203,27 +203,46 @@ bool NodeSystem::FindNode(int node_value, int position, unsigned int node_id)
 {
 	Node *current_node = origin;
 
-	//Search by Position.
-	if (position > 0)
+	if (HasNodes())
 	{
+		//Search by Position.
+		if (position > 0)
+		{
+			while (current_node->next != end || current_node->next != NULL)
+			{
+				current_node = current_node->next;
+				if (current_node->position == position)
+				{
+					search_node = current_node;
+					return true;
+				}
+			}
+		}
+
+		//Search by Node ID.
+		if (node_id > 0)
+		{
+			while (current_node->next != NULL)
+			{
+				current_node = current_node->next;
+				if (current_node->node_id == node_id)
+				{
+					search_node = current_node;
+					return true;
+				}
+			}
+			return false;
+		}
+		else
+		{
+			return false;
+		}
+
+		//Search by given Value;
 		while (current_node->next != end || current_node->next != NULL)
 		{
 			current_node = current_node->next;
-			if (current_node->position == position)
-			{
-				search_node = current_node;
-				return true;
-			}
-		}
-	}
-
-	//Search by Node ID.
-	if (node_id > 0)
-	{
-		while (current_node->next != NULL)
-		{
-			current_node = current_node->next;
-			if (current_node->node_id == node_id)
+			if (current_node->data == node_value)
 			{
 				search_node = current_node;
 				return true;
@@ -235,18 +254,6 @@ bool NodeSystem::FindNode(int node_value, int position, unsigned int node_id)
 	{
 		return false;
 	}
-
-	//Search by given Value;
-	while (current_node->next != end || current_node->next != NULL)
-	{
-		current_node = current_node->next;
-		if (current_node->data == node_value)
-		{
-			search_node = current_node;
-			return true;
-		}
-	}
-	return false;
 }
 
 bool NodeSystem::HasNodes()
