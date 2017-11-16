@@ -351,46 +351,54 @@ bool Connector::GetConnection(Node *source, int position, unsigned int connectio
 {
 	Connection *current_connection = start_connection;
 
-	//Search by given Source node;
-	while (current_connection != end_connection)
+	if (HasConnections())
 	{
-		current_connection = current_connection->Link;
-		if (current_connection->Source == source)
-		{
-			connection = current_connection;
-			return true;
-		}
-	}
-	return false;
-
-	//Search by Position.
-	if (position > 0)
-	{
+		//Search by given Source node;
 		while (current_connection != end_connection)
 		{
 			current_connection = current_connection->Link;
-			if (current_connection->position == position)
+			if (current_connection->Source == source)
 			{
 				connection = current_connection;
 				return true;
 			}
 		}
-	}
+	
 
-	//Search by Connection ID.
-	if (connection_id > 0)
-	{
-		while (current_connection != end_connection)
+		//Search by Position.
+		if (position > 0)
 		{
-			current_connection = current_connection->Link;
-			if (current_connection->position == position)
+			while (current_connection != end_connection)
 			{
-				connection = current_connection;
-				return true;
+				current_connection = current_connection->Link;
+				if (current_connection->position == position)
+				{
+					connection = current_connection;
+					return true;
+				}
 			}
+			return false;
+		}
+
+		//Search by Connection ID.
+		if (connection_id > 0)
+		{
+			while (current_connection != end_connection)
+			{
+				current_connection = current_connection->Link;
+				if (current_connection->position == position)
+				{
+					connection = current_connection;
+					return true;
+				}
+			}
+			return false;
 		}
 	}
-
+	else
+	{
+		return false;
+	}
 	
 }
 
@@ -443,6 +451,48 @@ bool Connector::HasConnections()
 		return false;
 	}
 
+}
+
+bool Connector::FindConnection(unsigned int position, unsigned int connection_id)
+{
+	Connection *current_connection = start_connection;
+
+	if (HasConnections())
+	{
+		//Search by Position.
+		if (position > 0)
+		{
+			while (current_connection->Link != NULL || current_connection->Link != end_connection)
+			{
+				current_connection = current_connection->Link;
+				if (current_connection->position == position)
+				{
+					result_connection = current_connection;
+					return true;
+				}
+			}
+			return false;
+		}
+
+		//Search by Connection ID.
+		if (connection_id > 0)
+		{
+			while (current_connection->Link != NULL || current_connection->Link != end_connection)
+			{
+				current_connection = current_connection->Link;
+				if (current_connection->connection_id == connection_id)
+				{
+					result_connection = current_connection;
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+	else
+	{
+		return false;
+	}
 }
 
 bool Connector::SearchConnections(Connection *source, int data)

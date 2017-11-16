@@ -60,6 +60,9 @@ public:
 	// Connection result at GetConnection() operation
 	Connection *connection;
 
+	//Connection result at FindConnection() operation
+	Connection *result_connection;
+
 	// Connections result at GetConnections() operation
 	Connection *node_connections;
 
@@ -85,6 +88,8 @@ public:
 	void GetConnections(Node *source);
 
 	bool HasConnections();
+
+	bool FindConnection(unsigned int position = 0, unsigned int connection_id = 0);
 
 	bool SearchConnections(Connection *source, int data);
 

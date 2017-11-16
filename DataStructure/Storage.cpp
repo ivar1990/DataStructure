@@ -65,6 +65,12 @@ void Storage::PrintStorage()
 
 void Storage::LoadFromDisk()
 {
+	LoadNodes();
+	LoadConnections();
+}
+
+void Storage::LoadNodes()
+{
 	ifstream inFile;
 	inFile.open("data.dat");
 
@@ -81,7 +87,7 @@ void Storage::LoadFromDisk()
 			inFile.get(ch);
 
 			//cout << ch << ":" << static_cast<int>(ch);
-			
+
 			if (ch == '|')
 			{
 				cout << "at |: " << numbers << endl;
@@ -89,7 +95,7 @@ void Storage::LoadFromDisk()
 				node_id = stoi(numbers);
 				numbers = "";
 			}
-			
+
 			if (ch == '\n' && numbers != "")
 			{
 				cout << "at new line: " << numbers << endl;
@@ -105,12 +111,65 @@ void Storage::LoadFromDisk()
 				//cout << "char:" << atoi(&ch) << endl;
 				//cout << "numbers:" << numbers << endl;
 			}
-			
+
 		}
 	}
 	inFile.close();
 
 	nodes->printList();
+}
+
+void Storage::LoadConnections()
+{
+	ifstream inFile;
+	inFile.open("Connections.dat");
+
+	string numbers;
+	
+	int affinity = 0;
+	int connection_id = 0;
+	int source_id = 0;
+	int target_id = 0;
+	char ch;
+	int file_out = 0;
+
+	if (inFile.is_open()) {
+		while (!inFile.eof()) {
+			//get(inFile, STRING); // Saves the line in STRING.
+			//cout << STRING; // Prints our STRING.
+			inFile.get(ch);
+
+			//cout << ch << ":" << static_cast<int>(ch);
+
+			if (ch == '|')
+			{
+				cout << "at |: " << numbers << endl;
+				//cout << ch << endl;
+				node_id = stoi(numbers);
+				numbers = "";
+			}
+
+			if (ch == '\n' && numbers != "")
+			{
+				cout << "at new line: " << numbers << endl;
+				data_value = stoi(numbers);
+				nodes->Insert(data_value, node_id);
+				numbers = "";
+			}
+
+			if (ch != '|' && ch != '\n')
+			{
+				//nodes->Add(atoi(&ch));
+				numbers = numbers + ch;
+				//cout << "char:" << atoi(&ch) << endl;
+				//cout << "numbers:" << numbers << endl;
+			}
+
+		}
+	}
+	inFile.close();
+
+	//nodes->printList();
 }
 
 void Storage::WriteToDisk()
@@ -146,14 +205,8 @@ void Storage::SaveNodes()
 
 			cout << "n-----------------------------n" << endl;
 			cout << "|| value: " << nodes->search_node->data << endl;
-			//Write Node Connections to console
-			//connections->GetConnections(nodes->search_node);
-			//connections->PrintNodeConnections();
-
 			cout << "n*****************************n" << endl;
 
-
-			//outFile << nodes->search_node->position << separator;
 			outFile << nodes->search_node->node_id << separator;
 			outFile << nodes->search_node->data << terminator;
 
@@ -175,7 +228,55 @@ void Storage::SaveNodes()
 
 void Storage::SaveConnections()
 {
+	ofstream outFile;
+	const char pipe_separator = '|';
+	const char comma_separator = ',';
+	const char caret_separator = '^';
+	const char terminator = '\n';
+	outFile.open("Connections.dat");
 
+	//track connections in the connector
+	int current_connection_position = 1;
+	cout << "Begin write.!!!!" << endl;
+	if (connections->HasConnections())
+	{
+		
+		cout << "Has Connections to write.!!!!" << endl;
+		while (current_connection_position != connections->connection_count + 1)
+		{
+
+			connections->FindConnection(current_connection_position,0);
+
+
+			//Write Node data to console
+			cout << "Connection: " << connections->result_connection << endl;
+			cout << "n-----------------------------n" << endl;
+			cout << "position: " << connections->result_connection->position << endl;
+			cout << "Affinity: " << connections->result_connection->affinity << endl;
+			cout << "Connection ID" << connections->result_connection->connection_id << endl;
+			cout << "Source ID" << connections->result_connection->source_id << endl;
+			cout << "Target ID" << connections->result_connection->target_id << endl;
+			cout << "n*****************************n" << endl;
+
+			outFile << connections->result_connection->affinity << comma_separator;
+			outFile << connections->result_connection->connection_id << caret_separator;
+			outFile << connections->result_connection->source_id << pipe_separator;
+			outFile << connections->result_connection->target_id << terminator;
+
+			current_connection_position++;
+
+
+		}
+	}
+	else
+	{
+		cout << "No connections to write to disk!!!!." << endl;
+	}
+
+	cout << "End Connection: n" << endl;
+
+
+	outFile.close();
 }
 
 

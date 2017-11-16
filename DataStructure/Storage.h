@@ -38,6 +38,10 @@ private:
 
 	void Init();
 
+	void LoadNodes();
+
+	void LoadConnections();
+
 	void SaveNodes();
 
 	void SaveConnections();

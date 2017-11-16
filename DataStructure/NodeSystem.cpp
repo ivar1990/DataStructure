@@ -218,6 +218,7 @@ bool NodeSystem::FindNode(int node_value, int position, unsigned int node_id)
 					return true;
 				}
 			}
+			return false;
 		}
 
 		//Search by Node ID.
