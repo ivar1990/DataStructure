@@ -43,7 +43,8 @@ void NodeSystem::repositionNodes()
 
 bool NodeSystem::Insert(int data, int node_id)
 {
-	if (node_id > 0 && FindNode(0,0,node_id) == false)
+	//&& FindNode(0,0,node_id) == false
+	if (node_id > 0 )
 	{
 		Node *newNode = new Node;
 		Node *p = origin;
@@ -222,7 +223,7 @@ bool NodeSystem::FindNode(int node_value, int position, unsigned int node_id)
 		//Search by Node ID.
 		if (node_id > 0)
 		{
-			while (current_node->next != NULL)
+			while (current_node->next != NULL || current_node->next != end)
 			{
 				current_node = current_node->next;
 				if (current_node->node_id == node_id)
@@ -349,6 +350,7 @@ void NodeSystem::printList()
 				cout << "Node: " << p << endl;
 
 				cout << "n-----------------------------n" << endl;
+				cout << "|| Node ID: " << p->node_id << endl;
 				cout << "|| position: " << p->position << " value: " << p->data << endl;
 				cout << "|| Next Node: " << p->next << endl;
 				cout << "n*****************************n" << endl;

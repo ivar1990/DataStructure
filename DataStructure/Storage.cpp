@@ -90,7 +90,7 @@ void Storage::LoadFromDisk()
 				numbers = "";
 			}
 			
-			if (ch == '\n')
+			if (ch == '\n' && numbers != "")
 			{
 				cout << "at new line: " << numbers << endl;
 				data_value = stoi(numbers);
@@ -115,10 +115,17 @@ void Storage::LoadFromDisk()
 
 void Storage::WriteToDisk()
 {
+	SaveNodes();
+	SaveConnections();
+	
+}
+
+void Storage::SaveNodes()
+{
 	ofstream outFile;
 	const char separator = '|';
 	const char terminator = '\n';
-	outFile.open("data.dat", ios::app);
+	outFile.open("data.dat");
 
 	//track node in the node system
 	int current_node_position = 1;
@@ -130,33 +137,28 @@ void Storage::WriteToDisk()
 		cout << "Has Node to write.!!!!" << endl;
 		while (current_node_position != nodes->listLength + 1)
 		{
-			
+
 			nodes->FindNode(0, current_node_position);
 
-			
-				//Write Node data to console
-				cout << "Node " << nodes->search_node->position << ": " << nodes->search_node << endl;
 
-				cout << "n-----------------------------n" << endl;
-				cout << "|| value: " << nodes->search_node->data << endl;
-				//Write Node Connections to console
-				//connections->GetConnections(nodes->search_node);
-				//connections->PrintNodeConnections();
+			//Write Node data to console
+			cout << "Node " << nodes->search_node->position << ": " << nodes->search_node << endl;
 
-				cout << "n*****************************n" << endl;
-				
-				
-				//outFile << nodes->search_node->position << separator;
-				outFile << nodes->search_node->node_id << separator;
-				outFile << nodes->search_node->data << terminator;
-				//outFile.write((char*)&nodes->search_node->data, sizeof(nodes->search_node->data));
-				//outFile.write(&separator, sizeof(separator));
-				//outFile.write((char*)&nodes->search_node->position, sizeof(nodes->search_node->position));
-				//outFile.write(&separator, sizeof(separator));
-				//outFile.write((char*)&nodes->search_node->node_id, sizeof(nodes->search_node->node_id));
-				//outFile.write(&separator, sizeof(separator));
-				current_node_position++;
-			
+			cout << "n-----------------------------n" << endl;
+			cout << "|| value: " << nodes->search_node->data << endl;
+			//Write Node Connections to console
+			//connections->GetConnections(nodes->search_node);
+			//connections->PrintNodeConnections();
+
+			cout << "n*****************************n" << endl;
+
+
+			//outFile << nodes->search_node->position << separator;
+			outFile << nodes->search_node->node_id << separator;
+			outFile << nodes->search_node->data << terminator;
+
+			current_node_position++;
+
 
 		}
 	}
@@ -164,12 +166,16 @@ void Storage::WriteToDisk()
 	{
 		cout << "No nodes to write to disk!!!!." << endl;
 	}
-	
+
 	cout << "End Node: n" << endl;
 
 
 	outFile.close();
-	
+}
+
+void Storage::SaveConnections()
+{
+
 }
 
 

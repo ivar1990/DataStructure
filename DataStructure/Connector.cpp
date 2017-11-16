@@ -160,9 +160,15 @@ bool Connector::AddConnection(Node *source, Node *target)
 	if (start_connection->Link == NULL)
 	{
 		start_connection->Link = new_connection;
-		new_connection->Link = end_connection;
 		connection_count++;
 		new_connection->position = connection_count;
+		new_connection->affinity = 0;
+		new_connection->connection_id = connection_count;
+		new_connection->source_id = source->node_id;
+		new_connection->target_id = target->node_id;
+		new_connection->Source = source;
+		new_connection->Target = target;
+		new_connection->Link = end_connection;
 		return true;
 	}
 	else
@@ -173,9 +179,15 @@ bool Connector::AddConnection(Node *source, Node *target)
 			if (p->Link == end_connection)
 			{
 				p->Link = new_connection;
-				new_connection->Link = end_connection;
 				connection_count++;
 				new_connection->position = connection_count;
+				new_connection->affinity = 0;
+				new_connection->connection_id = connection_count;
+				new_connection->source_id = source->node_id;
+				new_connection->target_id = target->node_id;
+				new_connection->Source = source;
+				new_connection->Target = target;
+				new_connection->Link = end_connection;
 				return true;
 			}
 		}
@@ -418,6 +430,19 @@ void Connector::GetConnections(Node *source)
 	cout << "Number of connections: " << count << endl;
 	//sets a linked list of nodes beginning at the head.
 	node_connections = head;
+}
+
+bool Connector::HasConnections()
+{
+	if (start_connection->Link != NULL || start_connection->Link != end_connection)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
 }
 
 bool Connector::SearchConnections(Connection *source, int data)

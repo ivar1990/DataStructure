@@ -38,7 +38,9 @@ private:
 
 	void Init();
 
-	
+	void SaveNodes();
+
+	void SaveConnections();
 
 	
 

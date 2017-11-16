@@ -84,6 +84,8 @@ public:
 
 	void GetConnections(Node *source);
 
+	bool HasConnections();
+
 	bool SearchConnections(Connection *source, int data);
 
 	void ShowConnections();
