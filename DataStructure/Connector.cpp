@@ -196,6 +196,55 @@ bool Connector::AddConnection(Node *source, Node *target)
 	return false;
 }
 
+bool Connector::Insert(int affinity, int connection_id, int source_id, int target_id)
+{
+	Connection *new_connection = new Connection;
+	Connection *p = start_connection;
+
+
+	if (start_connection->Link == NULL)
+	{
+		start_connection->Link = new_connection;
+		connection_count++;
+		new_connection->position = connection_count;
+		new_connection->affinity = 0;
+		new_connection->connection_id = connection_count;
+		new_connection->source_id = source_id;
+		new_connection->target_id = target_id;
+		pNodeSystem->FindNode(0, 0, source_id);
+		new_connection->Source = pNodeSystem->search_node;
+		pNodeSystem->FindNode(0, 0, target_id);
+		new_connection->Target = pNodeSystem->search_node;
+		new_connection->Link = end_connection;
+		return true;
+	}
+	else
+	{
+		while (p != end_connection)
+		{
+			p = p->Link;
+			if (p->Link == end_connection)
+			{
+				p->Link = new_connection;
+				connection_count++;
+				new_connection->position = connection_count;
+				new_connection->affinity = 0;
+				new_connection->connection_id = connection_count;
+				new_connection->source_id = source_id;
+				new_connection->target_id = target_id;
+				pNodeSystem->FindNode(0, 0, source_id);
+				new_connection->Source = pNodeSystem->search_node;
+				pNodeSystem->FindNode(0, 0, target_id);
+				new_connection->Target = pNodeSystem->search_node;
+				new_connection->Link = end_connection;
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
 bool Connector::RemoveConnection(Node *source, Node *target, int position)
 {
 	///Needs to finish

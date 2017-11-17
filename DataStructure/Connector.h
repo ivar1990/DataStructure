@@ -79,6 +79,8 @@ public:
 
 	bool AddConnection(Node *source, Node *target);
 
+	bool Insert(int affinity, int connection_id, int source_id, int target_id);
+
 	bool RemoveConnection(Node *source, Node *target, int position = 0);
 
 	bool MoveConnection(int current_position, int destination_postion);

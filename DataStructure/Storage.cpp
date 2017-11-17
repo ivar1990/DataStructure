@@ -34,32 +34,33 @@ void Storage::PrintStorage()
 {
 	//track node in the node system
 	int current_node_position = 1;
-
+	cout << "Begin write.!!!!" << endl;
 	if (nodes->HasNodes())
 	{
-		while (nodes->search_node != NULL)
+		//Set search Node to node position 0
+		nodes->FindNode(0, 0);
+		cout << "Has Node to write.!!!!" << endl;
+		while (current_node_position != nodes->listLength + 1)
 		{
 
 			nodes->FindNode(0, current_node_position);
 
-			if (nodes->search_node != NULL)
-			{
-				//Write Node data to console
-				cout << "Node " << nodes->search_node->position << ": " << nodes->search_node << endl;
 
-				cout << "n-----------------------------n" << endl;
-				cout << "|| value: " << nodes->search_node->data << endl;
-					//Write Node Connections to console
-					connections->GetConnections(nodes->search_node);
-					connections->PrintNodeConnections();
+			//Write Node data to console
+			cout << "Node " << nodes->search_node->position << ": " << nodes->search_node << endl;
 
-				cout << "n*****************************n" << endl;
+			cout << "n-----------------------------n" << endl;
+			cout << "|| value: " << nodes->search_node->data << endl;
+			cout << "n*****************************n" << endl;
+			current_node_position++;
 
-				current_node_position++;
-			}
-			
 		}
 	}
+	else
+	{
+		cout << "No nodes to write to disk!!!!." << endl;
+	}
+
 	cout << "End Node: n" << endl;
 }
 
@@ -141,23 +142,39 @@ void Storage::LoadConnections()
 
 			//cout << ch << ":" << static_cast<int>(ch);
 
+			if (ch == ',')
+			{
+				cout << "at ,: " << numbers << endl;
+				//cout << ch << endl;
+				affinity = stoi(numbers);
+				numbers = "";
+			}
+
+			if (ch == '^')
+			{
+				cout << "at ^: " << numbers << endl;
+				//cout << ch << endl;
+				connection_id = stoi(numbers);
+				numbers = "";
+			}
+
 			if (ch == '|')
 			{
 				cout << "at |: " << numbers << endl;
 				//cout << ch << endl;
-				node_id = stoi(numbers);
+				source_id = stoi(numbers);
 				numbers = "";
 			}
 
 			if (ch == '\n' && numbers != "")
 			{
 				cout << "at new line: " << numbers << endl;
-				data_value = stoi(numbers);
-				nodes->Insert(data_value, node_id);
+				target_id = stoi(numbers);
+				connections->Insert(affinity, connection_id, source_id, target_id);
 				numbers = "";
 			}
 
-			if (ch != '|' && ch != '\n')
+			if (ch != ',' && ch != '^' && ch != '|' && ch != '\n')
 			{
 				//nodes->Add(atoi(&ch));
 				numbers = numbers + ch;
