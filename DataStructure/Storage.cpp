@@ -191,8 +191,19 @@ void Storage::LoadConnections()
 
 void Storage::WriteToDisk()
 {
-	SaveNodes();
-	SaveConnections();
+	if (nodes->listLength > 0)
+	{
+		cout << "Saving Nodes:.........." << endl;
+		SaveNodes();
+		cout << "Nodes Saved!" << endl;
+	}
+	
+	if (connections->connection_count > 0)
+	{
+		cout << "Saving Connections:.........." << endl;
+		SaveConnections();
+		cout << "Connections Saved!" << endl;
+	}
 	
 }
 

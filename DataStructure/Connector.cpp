@@ -403,7 +403,7 @@ bool Connector::GetConnection(Node *source, int position, unsigned int connectio
 	if (HasConnections())
 	{
 		//Search by given Source node;
-		while (current_connection != end_connection)
+		while (current_connection->Link != end_connection || current_connection->Link != NULL)
 		{
 			current_connection = current_connection->Link;
 			if (current_connection->Source == source)
@@ -417,7 +417,7 @@ bool Connector::GetConnection(Node *source, int position, unsigned int connectio
 		//Search by Position.
 		if (position > 0)
 		{
-			while (current_connection != end_connection)
+			while (current_connection->Link != end_connection || current_connection->Link != NULL)
 			{
 				current_connection = current_connection->Link;
 				if (current_connection->position == position)
@@ -432,7 +432,7 @@ bool Connector::GetConnection(Node *source, int position, unsigned int connectio
 		//Search by Connection ID.
 		if (connection_id > 0)
 		{
-			while (current_connection != end_connection)
+			while (current_connection->Link != end_connection || current_connection->Link != NULL)
 			{
 				current_connection = current_connection->Link;
 				if (current_connection->position == position)
@@ -443,6 +443,7 @@ bool Connector::GetConnection(Node *source, int position, unsigned int connectio
 			}
 			return false;
 		}
+		return false;
 	}
 	else
 	{
@@ -460,6 +461,10 @@ void Connector::GetConnections(Node *source)
 	Connection *head = new_connection;
 	Connection *old_connection;
 	new_connection->position = 0;
+	new_connection->affinity = 0;
+	new_connection->connection_id = 0;
+	new_connection->source_id = 0;
+	new_connection->target_id = 0;
 	new_connection->Source = NULL;
 	new_connection->Target = NULL;
 	new_connection->Link = NULL;
@@ -477,6 +482,10 @@ void Connector::GetConnections(Node *source)
 
 			new_connection = new Connection;
 			new_connection->position = current_connection->position;
+			new_connection->affinity = current_connection->affinity;
+			new_connection->connection_id = current_connection->connection_id;
+			new_connection->source_id = current_connection->source_id;
+			new_connection->target_id = current_connection->target_id;
 			new_connection->Source = current_connection->Source;
 			new_connection->Target = current_connection->Target;
 			new_connection->Link = NULL;
@@ -537,6 +546,7 @@ bool Connector::FindConnection(unsigned int position, unsigned int connection_id
 			}
 			return false;
 		}
+		return false;
 	}
 	else
 	{
