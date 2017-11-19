@@ -73,7 +73,7 @@ public:
 	/***********************List of Connections***********************/
 	void RepositionConnections();
 
-	bool Connect(int source_data_value, int target_data_value);
+	//bool Connect(int source_data_value, int target_data_value);
 
 	bool Connect(unsigned int source_node_id, unsigned int target_node_id);
 

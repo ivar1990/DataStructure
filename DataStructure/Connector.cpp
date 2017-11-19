@@ -95,32 +95,32 @@ void Connector::RepositionConnections()
 
 }
 
-bool Connector::Connect(int source_data_value, int target_data_value)
-{
-	Node *source;
-	Node *target;
-
-	if (pNodeSystem->FindNode(source_data_value))
-	{
-		source = pNodeSystem->search_node;
-		if (pNodeSystem->FindNode(target_data_value))
-		{
-			target = pNodeSystem->search_node;
-			AddConnection(source, target);
-			return true;
-		}
-		else
-		{
-			cout << "Could not find Target Value: " << target_data_value << endl;
-			return false;
-		}
-	}
-	else
-	{
-		cout << "Could not find Source Value: " << source_data_value << endl;
-		return false;
-	}
-}
+//bool Connector::Connect(int source_data_value, int target_data_value)
+//{
+//	Node *source;
+//	Node *target;
+//
+//	if (pNodeSystem->FindNode(source_data_value))
+//	{
+//		source = pNodeSystem->search_node;
+//		if (pNodeSystem->FindNode(target_data_value))
+//		{
+//			target = pNodeSystem->search_node;
+//			AddConnection(source, target);
+//			return true;
+//		}
+//		else
+//		{
+//			cout << "Could not find Target Value: " << target_data_value << endl;
+//			return false;
+//		}
+//	}
+//	else
+//	{
+//		cout << "Could not find Source Value: " << source_data_value << endl;
+//		return false;
+//	}
+//}
 
 bool Connector::Connect(unsigned int source_node_id, unsigned int target_node_id)
 {

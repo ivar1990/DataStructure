@@ -28,6 +28,8 @@ void Storage::Init()
 		cout << i << ": " << static_cast<char>(i) << endl;
 
 	}*/
+
+	
 }
 
 void Storage::PrintStorage()
@@ -186,11 +188,17 @@ void Storage::LoadConnections()
 	}
 	inFile.close();
 
-	//nodes->printList();
+	connections->ShowConnections();
 }
 
 void Storage::WriteToDisk()
 {
+	connections->Connect(1, 5);
+	connections->Connect(2, 54);
+	connections->Connect(43, 67);
+
+	connections->ShowConnections();
+
 	if (nodes->listLength > 0)
 	{
 		cout << "Saving Nodes:.........." << endl;
@@ -281,9 +289,9 @@ void Storage::SaveConnections()
 			cout << "n-----------------------------n" << endl;
 			cout << "position: " << connections->result_connection->position << endl;
 			cout << "Affinity: " << connections->result_connection->affinity << endl;
-			cout << "Connection ID" << connections->result_connection->connection_id << endl;
-			cout << "Source ID" << connections->result_connection->source_id << endl;
-			cout << "Target ID" << connections->result_connection->target_id << endl;
+			cout << "Connection ID: " << connections->result_connection->connection_id << endl;
+			cout << "Source ID: " << connections->result_connection->source_id << endl;
+			cout << "Target ID: " << connections->result_connection->target_id << endl;
 			cout << "n*****************************n" << endl;
 
 			outFile << connections->result_connection->affinity << comma_separator;
