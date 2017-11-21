@@ -12,6 +12,15 @@ Abstractor::Abstractor()
 	connections = conn;
 }
 
+Abstractor::Abstractor(NodeSystem *pNodeSystem)
+{
+
+	Connector *conn = new Connector(pNodeSystem);
+
+	node_system = pNodeSystem;
+	connections = conn;
+}
+
 
 void Abstractor::Input(int ascChar)
 {

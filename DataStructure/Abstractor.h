@@ -33,6 +33,8 @@ public:
 
 	Abstractor();
 
+	Abstractor(NodeSystem *pNodeSystem);
+
 	void Input(int ascChar);
 
 	void GetFeedback();
