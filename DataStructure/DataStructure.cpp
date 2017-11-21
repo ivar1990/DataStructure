@@ -29,7 +29,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	//Assembler assembler;
 	Storage storage;
-	Abstractor abstractor;
+	Abstractor abstractor(storage.nodes);
 	Controller controller;
 
 
@@ -60,6 +60,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		storage.LoadFromDisk();
 
+	
 		abstractor.OutputFrequencyTable();
 		abstractor.Output();
 		
@@ -85,7 +86,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		//abstractor.GenerateRandomConnections(3);
 
 		
-		//abstractor.CreateRandomNodeConnections(abstractor.CreateNode(), 6);
+		abstractor.CreateRandomNodeConnections(abstractor.CreateNode(), 6);
 
 		cout << "Continue? y/n: " << endl;
 		cin.get(ch);

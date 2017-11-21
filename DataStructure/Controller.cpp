@@ -140,5 +140,7 @@ void Controller::ShowHistory()
 
 void Controller::Close()
 {
+	
 	pStorage->WriteToDisk();
+	//pStorage->PrintStorage();
 }

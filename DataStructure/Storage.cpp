@@ -51,8 +51,19 @@ void Storage::PrintStorage()
 			//Write Node data to console
 			cout << "Node " << nodes->search_node->position << ": " << nodes->search_node << endl;
 
-			cout << "n-----------------------------n" << endl;
-			cout << "|| value: " << nodes->search_node->data << endl;
+			cout << "n*****************************n" << endl;
+			cout << "Node ID: " << nodes->search_node->node_id << endl;
+			cout << "Date: " << nodes->search_node->data << endl;
+
+			///Print the Node Connections
+			if (connections->HasConnections())
+			{
+				connections->GetConnections(nodes->search_node);
+				connections->PrintConnections(connections->node_connections);
+			}
+
+
+
 			cout << "n*****************************n" << endl;
 			current_node_position++;
 
@@ -193,10 +204,6 @@ void Storage::LoadConnections()
 
 void Storage::WriteToDisk()
 {
-	connections->Connect(1, 5);
-	connections->Connect(2, 54);
-	connections->Connect(43, 67);
-
 	connections->ShowConnections();
 
 	if (nodes->listLength > 0)

@@ -274,7 +274,7 @@ Node* Abstractor::CreateNode()
 	node_system->Add(new_node_id);
 
 	//Find and set resulting node
-	node_system->FindNode(new_node_id);
+	node_system->FindNode(0,0,new_node_id);
 	pResult = node_system->search_node;
 	return pResult;
 	
