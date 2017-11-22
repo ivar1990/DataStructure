@@ -60,6 +60,8 @@ public:
 	//Node creation process
 	Node* CreateNode();
 	void CreateRandomNodeConnections(Node *pNode, int max_size = 0);
+
+	float GetFeedback(float affinity);
 	
 
 private:

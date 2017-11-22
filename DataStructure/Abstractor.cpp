@@ -313,3 +313,10 @@ void Abstractor::CreateRandomNodeConnections(Node *pNode, int max_size)
 
 	connections->ShowConnections();
 }
+
+float GetFeedback(float affinity)
+{
+
+
+	return 0.0;
+}
