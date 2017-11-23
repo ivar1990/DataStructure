@@ -57,11 +57,30 @@ public:
 
 	bool IsChanged();
 
+	/*   
+	*Abstraction of trial and error method
+	*Create a new node.
+	*Create random connections.
+	*Get Feedback on correctness of sugesstion(guess).
+	*modify guess by add or remove nodes.
+	*Get feedback on nodes
+	*retry until solution is reached.
+	*/
+
+	Node *test_node = NULL;
+
 	//Node creation process
 	Node* CreateNode();
-	void CreateRandomNodeConnections(Node *pNode, int max_size = 0);
+	void CreateRandomNodeConnection(Node *pNode);
 
-	float GetFeedback(float affinity);
+	void CreateRandomNodeConnections(Node *pNode, int max_size = 0);
+	
+
+	//Feedback and update
+	float GetFeedBack();
+
+	void ModifyTestNode(int hint = 0, float affinity = 0.0);
+
 	
 
 private:

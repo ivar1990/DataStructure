@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include <Windows.h>
 
 //#include "LinkedList.h"
 #include "NodeSystem.h"

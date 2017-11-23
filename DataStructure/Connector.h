@@ -81,13 +81,13 @@ public:
 
 	bool Insert(int affinity, int connection_id, int source_id, int target_id);
 
-	bool RemoveConnection(Node *source, Node *target, int position = 0);
+	bool RemoveConnection(Node *source = NULL, Node *target = NULL, int position = 0, int connection_id = 0);
 
 	bool MoveConnection(int current_position, int destination_postion);
 
 	bool GetConnection(Node *source, int position = 0, unsigned int connection_id = 0);
 
-	void GetConnections(Node *source);
+	int GetConnections(Node *source);
 
 	bool HasConnections();
 

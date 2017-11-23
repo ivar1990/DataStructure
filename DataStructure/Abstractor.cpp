@@ -265,6 +265,9 @@ void Abstractor::OutputInputs()
 	}
 }
 
+/* Abstraction of Trial and Error method*/
+
+/*Node Creation Process*/
 Node* Abstractor::CreateNode()
 {
 	Node *pResult;
@@ -278,6 +281,28 @@ Node* Abstractor::CreateNode()
 	pResult = node_system->search_node;
 	return pResult;
 	
+}
+
+void Abstractor::CreateRandomNodeConnection(Node *pNode)
+{
+	//Node positions
+	int parent_node_position = 0;
+	int child_node_position = 0;
+
+	//Node with data
+	Node *parent_node = pNode;
+	Node *child_node;
+
+	
+	//random number generation
+	srand(time(NULL));
+	//Get a random Node position in the LinkedList 
+	child_node_position = (rand() % node_system->listLength) + 1;
+	//Get Node 
+	node_system->FindNode(0, child_node_position);
+	child_node = node_system->search_node;
+
+	connections->AddConnection(parent_node, child_node);
 }
 
 void Abstractor::CreateRandomNodeConnections(Node *pNode, int max_size)
@@ -313,10 +338,50 @@ void Abstractor::CreateRandomNodeConnections(Node *pNode, int max_size)
 
 	connections->ShowConnections();
 }
+/*End of Node Creation Process*/
 
-float GetFeedback(float affinity)
+
+float Abstractor::GetFeedBack()
 {
+	float affinity = 0.0;
+	cout << "********************************" << endl;
+	cout << "Test Node: " << test_node << endl;
+	cout << "Node ID: " << test_node->node_id << endl;
+	cout << "Position: " << test_node->position << endl;
+	cout << "Node Data: " << test_node->data << endl;
+	cout << "--------------------------------" << endl;
+	connections->GetConnections(test_node);
+	cout << "--------------------------------" << endl;
+
+	cout << "Enter correctness of node using float 0.0 - 0.1: " << endl;
+	cin >> affinity;
+
+	return affinity;
+}
+
+void Abstractor::ModifyTestNode(int hint, float affinity)
+{
+	//Needs to finish
+	switch (hint)
+	{
+		case 1 :
+			///Add another connection
+			CreateRandomNodeConnection(test_node);
+			break;
+
+		case 2 :
+			///remove a connection
+			connections->RemoveConnection(test_node, NULL, 0, 0);
+			break;
+		case 3 :
+			///reorder connections
+			break;
+	default:
+		///generate new connections
+		connections->RemoveConnection(test_node, NULL, 0, 0);
+		CreateRandomNodeConnections(test_node);
+		break;
+	}
 
 
-	return 0.0;
 }

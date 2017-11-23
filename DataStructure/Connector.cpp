@@ -245,7 +245,7 @@ bool Connector::Insert(int affinity, int connection_id, int source_id, int targe
 	return false;
 }
 
-bool Connector::RemoveConnection(Node *source, Node *target, int position)
+bool Connector::RemoveConnection(Node *source, Node *target, int position, int connection_id)
 {
 	///Needs to finish
 	Connection *previous_connection = start_connection;
@@ -275,6 +275,24 @@ bool Connector::RemoveConnection(Node *source, Node *target, int position)
 
 	}
 
+	//Remove by Connection ID.
+	if (connection_id > 0)
+	{
+		while (current_conn != end_connection)
+		{
+			previous_conn = current_conn;
+			current_conn = current_conn->Link;
+			next_conn = next_conn->Link;
+			if (current_conn->connection_id == connection_id)
+			{
+				previous_conn->Link = next_conn;
+				delete current_conn;
+				RepositionConnections();
+				return true;
+			}
+		}
+
+	}
 
 
 	while (current_connection != end_connection)
@@ -452,7 +470,7 @@ bool Connector::GetConnection(Node *source, int position, unsigned int connectio
 	
 }
 
-void Connector::GetConnections(Node *source)
+int Connector::GetConnections(Node *source)
 {
 	int count = 0;
 
@@ -496,6 +514,8 @@ void Connector::GetConnections(Node *source)
 	cout << "Number of connections: " << count << endl;
 	//sets a linked list of nodes beginning at the head.
 	node_connections = head;
+
+	return count;
 }
 
 bool Connector::HasConnections()
