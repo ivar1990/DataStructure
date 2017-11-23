@@ -351,6 +351,7 @@ float Abstractor::GetFeedBack()
 	cout << "Node Data: " << test_node->data << endl;
 	cout << "--------------------------------" << endl;
 	connections->GetConnections(test_node);
+	connections->ShowConnections();
 	cout << "--------------------------------" << endl;
 
 	cout << "Enter correctness of node using float 0.0 - 0.1: " << endl;
@@ -359,9 +360,10 @@ float Abstractor::GetFeedBack()
 	return affinity;
 }
 
-void Abstractor::ModifyTestNode(int hint, float affinity)
+void Abstractor::ModifyTestNode(int hint, float affinity, int connection_id)
 {
 	//Needs to finish
+	int rand_num = 0;
 	switch (hint)
 	{
 		case 1 :
@@ -371,7 +373,16 @@ void Abstractor::ModifyTestNode(int hint, float affinity)
 
 		case 2 :
 			///remove a connection
-			connections->RemoveConnection(test_node, NULL, 0, 0);
+			if (connection_id > 0)
+			{
+				//user specified
+				connections->RemoveConnection(NULL, NULL, 0, connection_id);
+			}
+			else
+			{
+				//random
+				connections->RemoveConnection(NULL, NULL, 0, (rand() % connections->connection_count) + 1);
+			}
 			break;
 		case 3 :
 			///reorder connections
@@ -384,4 +395,33 @@ void Abstractor::ModifyTestNode(int hint, float affinity)
 	}
 
 
+}
+
+void Abstractor::Run()
+{
+	bool running = true;
+	int hint = 0;
+	float affinity = 0.0;
+	test_node = CreateNode();
+	CreateRandomNodeConnections(test_node, 6);
+	GetFeedBack();
+
+	while (running)
+	{
+		
+		cout << "Enter hint 1 or 2: " << endl;
+		cin >> hint;
+
+		ModifyTestNode(hint, 0.0, 0);
+		affinity = GetFeedBack();
+
+		if ( affinity < 0.7)
+		{
+			running = true;
+		}
+		else
+		{
+			running = false;
+		}
+	}
 }

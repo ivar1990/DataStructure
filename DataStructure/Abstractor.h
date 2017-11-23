@@ -79,9 +79,9 @@ public:
 	//Feedback and update
 	float GetFeedBack();
 
-	void ModifyTestNode(int hint = 0, float affinity = 0.0);
+	void ModifyTestNode(int hint = 0, float affinity = 0.0, int connection_id = 0);
 
-	
+	void Run();
 
 private:
 	void GenerateFrequencyTable();

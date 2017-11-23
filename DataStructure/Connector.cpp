@@ -259,7 +259,7 @@ bool Connector::RemoveConnection(Node *source, Node *target, int position, int c
 	//Remove by Position.
 	if (position > 0)
 	{
-		while (current_conn != end_connection)
+		while (next_conn != NULL || next_conn != end_connection)
 		{
 			previous_conn = current_conn;
 			current_conn = current_conn->Link;
@@ -278,12 +278,20 @@ bool Connector::RemoveConnection(Node *source, Node *target, int position, int c
 	//Remove by Connection ID.
 	if (connection_id > 0)
 	{
-		while (current_conn != end_connection)
+		while (next_conn != NULL || next_conn != end_connection)
 		{
 			previous_conn = current_conn;
 			current_conn = current_conn->Link;
-			next_conn = next_conn->Link;
-			if (current_conn->connection_id == connection_id)
+			if (next_conn->Link != NULL)
+			{
+				next_conn = next_conn->Link;
+			}
+			else
+			{
+				next_conn = end_connection;
+			}
+
+			if (current_conn->connection_id != NULL && current_conn->connection_id == connection_id)
 			{
 				previous_conn->Link = next_conn;
 				delete current_conn;
@@ -295,7 +303,7 @@ bool Connector::RemoveConnection(Node *source, Node *target, int position, int c
 	}
 
 
-	while (current_connection != end_connection)
+	while (next_connection != NULL || next_connection != end_connection)
 	{
 		previous_connection = current_connection;
 		current_connection = current_connection->Link;
