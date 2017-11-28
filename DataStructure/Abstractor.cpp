@@ -360,10 +360,11 @@ float Abstractor::GetFeedBack()
 	return affinity;
 }
 
-void Abstractor::ModifyTestNode(int hint, float affinity, int connection_id)
+void Abstractor::ModifyTestNode(int hint, float affinity, int postion)
 {
 	//Needs to finish
-	int rand_num = 0;
+	srand(time(NULL));
+	int rand_num = (rand() % connections->connection_count) + 1;
 	switch (hint)
 	{
 		case 1 :
@@ -373,15 +374,24 @@ void Abstractor::ModifyTestNode(int hint, float affinity, int connection_id)
 
 		case 2 :
 			///remove a connection
-			if (connection_id > 0)
+			if (postion > 0)
 			{
 				//user specified
-				connections->RemoveConnection(NULL, NULL, 0, connection_id);
+				connections->RemoveConnection(NULL, NULL, postion, 0);
 			}
 			else
 			{
 				//random
-				connections->RemoveConnection(NULL, NULL, 0, (rand() % connections->connection_count) + 1);
+				cout << endl;
+				cout << "Looking for random connection position: " << rand_num << endl;
+				if (connections->FindConnection(rand_num,0))
+				{
+					connections->RemoveConnection(NULL, NULL, rand_num, 0);
+				}
+				else
+				{
+					cout << "Connection ID: " << rand_num << " not found. Please try again!" << endl;
+				}
 			}
 			break;
 		case 3 :

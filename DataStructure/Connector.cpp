@@ -73,23 +73,38 @@ Connector::Connector()
 	end_connection->Link = NULL;
 
 
-	Connect(1, 5);
-	Connect(2, 54);
-	Connect(43, 67);
-
 	PrintNodeConnections();
 }
 
 /*****************Connection**********************/
 void Connector::RepositionConnections()
 {
+	cout << "Start connection: " << start_connection << endl;
+	Connection *current_connection = start_connection;
+	cout << "Current Connection: " << current_connection->Link << endl;
 	connection_count = 0;
-	Connection *p = start_connection;
-	while (p != end_connection)
+
+	bool running = true;
+
+	while (running)
 	{
-		p = p->Link;
-		connection_count++;
-		p->position = connection_count;
+		if (current_connection->Link == NULL || current_connection->Link == end_connection)
+		{
+			running = false;
+		}
+		else
+		{
+			cout << "Current Connection Link: " << current_connection << endl;
+			current_connection = current_connection->Link;
+			connection_count++;
+			current_connection->position = connection_count;
+		}
+		
+	//	
+	//	current_connection = current_connection->Link;
+	//	connection_count++;
+	//	//current_connection->position = connection_count;
+	//	
 	}
 
 
@@ -256,17 +271,37 @@ bool Connector::RemoveConnection(Node *source, Node *target, int position, int c
 	Connection *current_conn = start_connection;
 	Connection *next_conn = start_connection->Link;
 
+	
+
 	//Remove by Position.
 	if (position > 0)
 	{
 		while (next_conn != NULL || next_conn != end_connection)
 		{
 			previous_conn = current_conn;
-			current_conn = current_conn->Link;
-			next_conn = next_conn->Link;
+			current_conn = next_conn;
+
+			if (next_conn->Link != NULL)
+			{
+				next_conn = next_conn->Link;
+			}
+			else
+			{
+				next_conn = end_connection;
+			}
+
 			if (current_conn->position == position)
 			{
-				previous_conn->Link = next_conn;
+				if (previous_conn->Link != NULL)
+				{
+					//Set previous node pointer to the next node
+					previous_conn->Link = current_conn->Link;
+				}
+				else
+				{
+					previous_conn->Link = end_connection;
+				}
+
 				delete current_conn;
 				RepositionConnections();
 				return true;
@@ -281,7 +316,8 @@ bool Connector::RemoveConnection(Node *source, Node *target, int position, int c
 		while (next_conn != NULL || next_conn != end_connection)
 		{
 			previous_conn = current_conn;
-			current_conn = current_conn->Link;
+			current_conn = next_conn;
+
 			if (next_conn->Link != NULL)
 			{
 				next_conn = next_conn->Link;
@@ -291,9 +327,18 @@ bool Connector::RemoveConnection(Node *source, Node *target, int position, int c
 				next_conn = end_connection;
 			}
 
-			if (current_conn->connection_id != NULL && current_conn->connection_id == connection_id)
+			if (current_conn->connection_id == connection_id)
 			{
-				previous_conn->Link = next_conn;
+
+				if (previous_conn->Link != NULL)
+				{
+					//Set previous node pointer to the next node
+					previous_conn->Link = current_conn->Link;
+				}
+				else
+				{
+					previous_conn->Link = end_connection;
+				}
 				delete current_conn;
 				RepositionConnections();
 				return true;
@@ -303,7 +348,7 @@ bool Connector::RemoveConnection(Node *source, Node *target, int position, int c
 	}
 
 
-	while (next_connection != NULL || next_connection != end_connection)
+	/*while (next_connection != NULL || next_connection != end_connection)
 	{
 		previous_connection = current_connection;
 		current_connection = current_connection->Link;
@@ -355,7 +400,7 @@ bool Connector::RemoveConnection(Node *source, Node *target, int position, int c
 			return true;
 		}
 
-	}
+	}*/
 
 	return false;
 }
@@ -550,11 +595,20 @@ bool Connector::FindConnection(unsigned int position, unsigned int connection_id
 		{
 			while (current_connection->Link != NULL || current_connection->Link != end_connection)
 			{
-				current_connection = current_connection->Link;
 				if (current_connection->position == position)
 				{
 					result_connection = current_connection;
 					return true;
+				}
+
+
+				if (current_connection->Link == NULL || current_connection->Link == end_connection)
+				{
+					return false;
+				}
+				else
+				{
+					current_connection = current_connection->Link;
 				}
 			}
 			return false;
@@ -563,13 +617,23 @@ bool Connector::FindConnection(unsigned int position, unsigned int connection_id
 		//Search by Connection ID.
 		if (connection_id > 0)
 		{
-			while (current_connection->Link != NULL || current_connection->Link != end_connection)
+			while (current_connection != NULL || current_connection != end_connection)
 			{
-				current_connection = current_connection->Link;
+				
 				if (current_connection->connection_id == connection_id)
 				{
 					result_connection = current_connection;
 					return true;
+				}
+				
+
+				if (current_connection->Link == NULL || current_connection->Link == end_connection)
+				{
+					return false;
+				}
+				else
+				{
+					current_connection = current_connection->Link;
 				}
 			}
 			return false;
