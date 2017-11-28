@@ -303,10 +303,14 @@ void Abstractor::CreateRandomNodeConnection(Node *pNode)
 	child_node = node_system->search_node;
 
 	connections->AddConnection(parent_node, child_node);
+
 }
 
 void Abstractor::CreateRandomNodeConnections(Node *pNode, int max_size)
 {
+	//Modification Log for children nodes
+	list<int> changes;
+
 	//Node positions
 	int parent_node_position = 0;
 	int child_node_position = 0;
@@ -341,9 +345,9 @@ void Abstractor::CreateRandomNodeConnections(Node *pNode, int max_size)
 /*End of Node Creation Process*/
 
 
-float Abstractor::GetFeedBack()
+int Abstractor::GetFeedBack()
 {
-	float affinity = 0.0;
+	int affinity = 0;
 	cout << "********************************" << endl;
 	cout << "Test Node: " << test_node << endl;
 	cout << "Node ID: " << test_node->node_id << endl;
@@ -354,17 +358,23 @@ float Abstractor::GetFeedBack()
 	connections->ShowConnections();
 	cout << "--------------------------------" << endl;
 
-	cout << "Enter correctness of node using float 0.0 - 0.1: " << endl;
+	cout << "Enter correctness of node using 0 - 9: " << endl;
 	cin >> affinity;
 
 	return affinity;
 }
 
-void Abstractor::ModifyTestNode(int hint, float affinity, int postion)
+void Abstractor::ModifyTestNode(int hint, int affinity, int postion)
 {
 	//Needs to finish
+
+
 	srand(time(NULL));
 	int rand_num = (rand() % connections->connection_count) + 1;
+
+	//Refresh changes  for new modifications.
+	changes.clear();
+
 	switch (hint)
 	{
 		case 1 :
@@ -407,31 +417,90 @@ void Abstractor::ModifyTestNode(int hint, float affinity, int postion)
 
 }
 
+void Abstractor::LogChanges(int responses,int affinity)
+{
+	//get all child node ids
+	for (int i = 1; i < connections->connection_count; i++)
+	{
+		connections->FindConnection(i, 0);
+		changes.push_back(connections->result_connection->target_id);
+	}
+
+	//Log changes
+	modifications.insert(pair<int, list<int>>(responses, changes));
+	//Log Feedback response
+	feedback.insert(pair<int, int>(responses, affinity));
+	//clear changes for next modification
+	changes.clear();
+
+}
+
+void Abstractor::OutputModifications()
+{
+	cout << "Modifications: " << endl;
+	map<int, list<int>>::iterator it;
+	list<int>::iterator l_it;
+	int i = 0;
+
+	for (it = modifications.begin(); it != modifications.end(); it++)
+	{
+		cout << endl;
+		cout << "Change No." << i << ":  ";
+		i++;
+		for (l_it = it->second.begin(); l_it != it->second.end(); l_it++)
+		{
+			cout << *l_it << ",";
+
+		}
+		cout << endl;
+	}
+}
+
+void Abstractor::OutputFeedback()
+{
+	cout << "FeedBack: " << endl;
+	map<int,int>::iterator it;
+	
+	int i = 0;
+
+	for (it = feedback.begin(); it != feedback.end(); it++)
+	{
+		cout << endl;
+		cout << "Modification No." << it->first << ":  " << it->second;
+		cout << endl;
+	}
+}
+
 void Abstractor::Run()
 {
 	bool running = true;
 	int hint = 0;
-	float affinity = 0.0;
+	int affinity = 0;
+	int responses = 0;
+
 	test_node = CreateNode();
 	CreateRandomNodeConnections(test_node, 6);
-	GetFeedBack();
+	
 
 	while (running)
 	{
-		
+		affinity = GetFeedBack();
 		cout << "Enter hint 1 or 2: " << endl;
 		cin >> hint;
 
-		ModifyTestNode(hint, 0.0, 0);
-		affinity = GetFeedBack();
+		ModifyTestNode(hint, affinity, 0);
+		responses++;
+		LogChanges(responses, affinity);
 
-		if ( affinity < 0.7)
+		if ( affinity < 7)
 		{
 			running = true;
 		}
 		else
 		{
 			running = false;
+			OutputModifications();
+			OutputFeedback();
 		}
 	}
 }
