@@ -424,6 +424,7 @@ void Abstractor::LogChanges(int responses,int affinity)
 	{
 		connections->FindConnection(i, 0);
 		changes.push_back(connections->result_connection->target_id);
+		current_modification.push_back(connections->result_connection->target_id);
 	}
 
 	//Log changes
@@ -469,6 +470,26 @@ void Abstractor::OutputFeedback()
 		cout << "Modification No." << it->first << ":  " << it->second;
 		cout << endl;
 	}
+}
+
+void Abstractor::AnalizeModifications(int modifcation_id)
+{
+	//Check the current modifications with the previous ones
+
+
+}
+
+int Abstractor::CompareFeedBack()
+{
+	//check this feedback with prevoius feedback 
+	//call AnalizeModifications to see which nodes changed
+	//see which list of modifications gave higher affinity
+}
+
+void Abstractor::GenerateHint()
+{
+	//get feedback and make a decision to 
+	//add, change, or remove children nodes
 }
 
 void Abstractor::Run()

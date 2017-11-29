@@ -73,6 +73,9 @@ public:
 	*/
 
 	Node *test_node = NULL;
+	//use to compare modification
+	//with previous modifications
+	list<int> current_modification;
 
 	//Node creation process
 	Node* CreateNode();
@@ -91,6 +94,12 @@ public:
 	void OutputModifications();
 
 	void OutputFeedback();
+
+	void AnalizeModifications(int modification_id);
+
+	int CompareFeedBack();
+
+	void GenerateHint();
 
 	void Run();
 
