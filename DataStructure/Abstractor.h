@@ -7,6 +7,7 @@
 #include <time.h>  /* time */
 #include <map>
 #include <list>
+#include <algorithm>
 
 #include "NodeSystem.h"
 #include "Connector.h"
@@ -95,13 +96,14 @@ public:
 
 	void OutputFeedback();
 
-	void AnalizeModifications(int modification_id);
+	int AnalizeModification(int modification_id);
 
-	int CompareFeedBack();
+	int CompareFeedBack(int feedback);
 
-	void GenerateHint();
+	int GenerateHint(int feedback);
 
 	void Run();
+
 
 private:
 	void GenerateFrequencyTable();

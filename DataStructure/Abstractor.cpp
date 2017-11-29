@@ -420,7 +420,7 @@ void Abstractor::ModifyTestNode(int hint, int affinity, int postion)
 void Abstractor::LogChanges(int responses,int affinity)
 {
 	//get all child node ids
-	for (int i = 1; i < connections->connection_count; i++)
+	for (int i = 1; i < connections->connection_count + 1; i++)
 	{
 		connections->FindConnection(i, 0);
 		changes.push_back(connections->result_connection->target_id);
@@ -441,18 +441,19 @@ void Abstractor::OutputModifications()
 	cout << "Modifications: " << endl;
 	map<int, list<int>>::iterator it;
 	list<int>::iterator l_it;
-	int i = 0;
+	int i = 1;
 
-	for (it = modifications.begin(); it != modifications.end(); it++)
+	for (it = modifications.begin(); it != modifications.end(); ++it)
 	{
 		cout << endl;
-		cout << "Change No." << i << ":  ";
-		i++;
+		cout << "Modification No." << i << ":  ";
+		
 		for (l_it = it->second.begin(); l_it != it->second.end(); l_it++)
 		{
 			cout << *l_it << ",";
 
 		}
+		i++;
 		cout << endl;
 	}
 }
@@ -467,29 +468,80 @@ void Abstractor::OutputFeedback()
 	for (it = feedback.begin(); it != feedback.end(); it++)
 	{
 		cout << endl;
-		cout << "Modification No." << it->first << ":  " << it->second;
+		cout << "Modification No:" << it->first << " FeedBack: " << it->second;
 		cout << endl;
 	}
 }
 
-void Abstractor::AnalizeModifications(int modifcation_id)
+int Abstractor::AnalizeModification(int modifcation_id)
 {
-	//Check the current modifications with the previous ones
+	//Check the current modifications with the previous one
+	//Gets last action(hint)
+	//map<int, list<int>>::iterator it;
+	//list<int>::iterator l_it;
+	//list<int>::iterator current_modifications_it;
 
+	int hint = 0;
+	
+	//it = modifications.find(modifcation_id);
+
+	/*for (l_it = it->second.begin(); l_it != it->second.end(); l_it++)
+	{
+		if (find(current_modification.begin(), current_modification.end(), *l_it) != current_modification.end())
+		{
+
+		}
+
+	}
+	cout << endl;*/
+
+	int current_modification_size = distance(current_modification.begin(), current_modification.end());
+	int target_modification_list_size = distance(modifications.find(modifcation_id)->second.begin(), modifications.find(modifcation_id)->second.end());
+
+	if (current_modification_size > target_modification_list_size)
+	{
+		hint = 1;
+	}
+	else
+	{
+		hint = 2;
+	}
+
+	return hint;
 
 }
 
-int Abstractor::CompareFeedBack()
+int Abstractor::CompareFeedBack(int current_feedback)
 {
+
 	//check this feedback with prevoius feedback 
 	//call AnalizeModifications to see which nodes changed
 	//see which list of modifications gave higher affinity
+	map<int, int>::iterator it;
+	//tracks the modification id with best feedback
+	int modification_id = 0;
+
+	for (it = feedback.begin(); it != feedback.end(); it++)
+	{
+		cout << endl;
+		cout << "Modification No." << it->first << " FeedBack:  " << it->second;
+		if (it->second > current_feedback)
+		{
+			//Sets modification id to best choice
+			modification_id = it->first;
+		}
+		cout << endl;
+	}
+
+	return modification_id;
+
 }
 
-void Abstractor::GenerateHint()
+int Abstractor::GenerateHint(int feedback)
 {
 	//get feedback and make a decision to 
 	//add, change, or remove children nodes
+	return AnalizeModification(CompareFeedBack(feedback));
 }
 
 void Abstractor::Run()
@@ -501,17 +553,46 @@ void Abstractor::Run()
 
 	test_node = CreateNode();
 	CreateRandomNodeConnections(test_node, 6);
-	
+	//for (int i = 1; i < connections->connection_count; i++)
+	//{
+	//	connections->FindConnection(i, 0);
+	//	changes.push_back(connections->result_connection->target_id);
+	//	current_modification.push_back(connections->result_connection->target_id);
+	//}
+
+	////Log changes
+	//modifications.insert(pair<int, list<int>>(responses, changes));
+	//changes.clear();
+	list<int>::iterator l_it;
 
 	while (running)
 	{
 		affinity = GetFeedBack();
-		cout << "Enter hint 1 or 2: " << endl;
-		cin >> hint;
-
+		if (responses < 4)
+		{
+			cout << "Enter hint 1 or 2: " << endl;
+			cin >> hint;
+		}
+		else
+		{
+			hint = GenerateHint(affinity);
+			cout << "Generated hint: " << hint << endl;
+		}
 		ModifyTestNode(hint, affinity, 0);
 		responses++;
 		LogChanges(responses, affinity);
+		
+
+		
+		cout << "Current Modifications: ";
+		for (l_it = current_modification.begin(); l_it != current_modification.end(); l_it++)
+		{
+			cout << *l_it << ",";
+		}
+		cout << endl;
+		OutputModifications();
+		OutputFeedback();
+		current_modification.clear();
 
 		if ( affinity < 7)
 		{
