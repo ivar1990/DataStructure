@@ -364,16 +364,13 @@ int Abstractor::GetFeedBack()
 	return affinity;
 }
 
-void Abstractor::ModifyTestNode(int hint, int affinity, int postion)
+void Abstractor::ModifyTestNode(int hint, int position)
 {
 	//Needs to finish
 
 
 	srand(time(NULL));
 	int rand_num = (rand() % connections->connection_count) + 1;
-
-	//Refresh changes  for new modifications.
-	changes.clear();
 
 	switch (hint)
 	{
@@ -388,10 +385,10 @@ void Abstractor::ModifyTestNode(int hint, int affinity, int postion)
 
 		case 2 :
 			///remove a connection
-			if (postion > 0)
+			if (position > 0)
 			{
 				//user specified
-				connections->RemoveConnection(NULL, NULL, postion, 0);
+				connections->RemoveConnection(NULL, NULL, position, 0);
 			}
 			else
 			{
@@ -424,19 +421,20 @@ void Abstractor::ModifyTestNode(int hint, int affinity, int postion)
 void Abstractor::LogChanges(int responses,int affinity)
 {
 	//get all child node ids
-	for (int i = 1; i < connections->connection_count + 1; i++)
-	{
-		connections->FindConnection(i, 0);
-		changes.push_back(connections->result_connection->target_id);
-		current_modification.push_back(connections->result_connection->target_id);
-	}
+	//for (int i = 1; i < connections->connection_count + 1; i++)
+	//{
+	//	connections->FindConnection(i, 0);
+	//	changes.push_back(connections->result_connection->target_id);
+	//	//current_modification.push_back(connections->result_connection->target_id);
+	//}
 
 	//Log changes
 	modifications.insert(pair<int, list<int>>(responses, changes));
 	//Log Feedback response
 	feedback.insert(pair<int, int>(responses, affinity));
 	//clear changes for next modification
-	changes.clear();
+	//changes.clear();
+
 
 }
 
@@ -477,45 +475,32 @@ void Abstractor::OutputFeedback()
 	}
 }
 
-int Abstractor::AnalizeModification(int modification_id)
+int Abstractor::GetModifiedNodeID(int modification_id)
 {
-	//Check the current modifications with the previous one
-	//Gets last action(hint)
-	//map<int, list<int>>::iterator it;
-	//list<int>::iterator l_it;
-	//list<int>::iterator current_modifications_it;
+	//Check the nodes in current modifications List a previously modified list identified by a modification id.
+	//if node was removed. Return node that was removed.
+	//if node was added. Return node that was added.
+	map<int, list<int>>::iterator it;
+	list<int>::iterator l_it;
+	list<int>::iterator current_modifications_it;
 
-	int hint = 0;
+	int node_id = 0;
 	
-	//it = modifications.find(modifcation_id);
+	it = modifications.find(modification_id);
 
-	/*for (l_it = it->second.begin(); l_it != it->second.end(); l_it++)
+	for (l_it = it->second.begin(); l_it != it->second.end(); l_it++)
 	{
 		if (find(current_modification.begin(), current_modification.end(), *l_it) != current_modification.end())
 		{
-
+			node_id = *l_it;
+			cout << "Found Node ID: " << node_id << " in Current Modification List." << endl;
 		}
 
 	}
-	cout << endl;*/
-	cout << "ID: " << modification_id << endl;
+	cout << endl;
+	
 
-	int current_modification_size =  current_modification.size();
-	cout << "Current Modification size: " << current_modification_size << endl;
-
-	int target_modification_list_size = modifications.find(modification_id)->second.size();
-	cout << "Target Modification size: " << target_modification_list_size << endl;
-
-	if (current_modification_size > target_modification_list_size)
-	{
-		hint = 1;
-	}
-	else
-	{
-		hint = 2;
-	}
-
-	return hint;
+	return node_id;
 
 }
 
@@ -541,7 +526,7 @@ int Abstractor::CompareFeedBack(int current_feedback)
 		}
 		cout << endl;
 	}
-	//Modification id tend to give trouble with values greater than seven or if it is 0
+
 	return modification_id;
 
 }
@@ -554,69 +539,124 @@ int Abstractor::GenerateHint(int feedback)
 	//return AnalizeModification(CompareFeedBack(feedback));
 
 	int id = CompareFeedBack(feedback);
-	AnalizeModification(id);
+	GetPreviousAction(id);
+	GetModifiedNodeID(id);
+
 	return 1;
+}
+
+int Abstractor::GetPreviousAction(int modification_id)
+{
+	cout << "ID: " << modification_id << endl;
+	//Check if the any node in the current modification list
+	//has been added or removed
+	int action = 0;
+
+	int current_modification_size = current_modification.size();
+	cout << "Current Modification size: " << current_modification_size << endl;
+
+	int target_modification_list_size = modifications.find(modification_id)->second.size();
+	cout << "Target Modification size: " << target_modification_list_size << endl;
+
+	if (current_modification_size > target_modification_list_size)
+	{
+		//A node was added
+		action = 1;
+		cout << "Action: Node was Add." << endl;
+	}
+	else
+	{
+		//A node was removed
+		action = 2;
+		cout << "Action: Node was removed." << endl;
+	}
+
+	return action;
+}
+
+void Abstractor::UpdateChanges()
+{
+	//get all child node ids
+	for (int i = 1; i < connections->connection_count + 1; i++)
+	{
+		connections->FindConnection(i, 0);
+		changes.push_back(connections->result_connection->target_id);
+		current_modification.push_back(connections->result_connection->target_id);
+	}
+
+}
+
+void Abstractor::ClearChanges()
+{
+	current_modification.clear();
+	changes.clear();
 }
 
 void Abstractor::Run()
 {
 	bool running = true;
-	int hint = 0;
+	int action = 0;
 	int affinity = 0;
 	int responses = 0;
 
 	test_node = CreateNode();
 	CreateRandomNodeConnections(test_node, 6);
-	//for (int i = 1; i < connections->connection_count; i++)
-	//{
-	//	connections->FindConnection(i, 0);
-	//	changes.push_back(connections->result_connection->target_id);
-	//	current_modification.push_back(connections->result_connection->target_id);
-	//}
-
-	////Log changes
-	//modifications.insert(pair<int, list<int>>(responses, changes));
-	//changes.clear();
+	
 	list<int>::iterator l_it;
 
 	while (running)
 	{
+		//Output Node and Connections
 		affinity = GetFeedBack();
-		if (responses < 4)
+
+		if (affinity < 7)
 		{
-			cout << "Enter hint 1 or 2: " << endl;
-			cin >> hint;
-		}
-		else
-		{
-			hint = GenerateHint(affinity);
-			cout << "Generated hint: " << hint << endl;
-		}
-		ModifyTestNode(hint, affinity, 0);
-		responses++;
-		LogChanges(responses, affinity);
+			//update trackers
+			UpdateChanges();
+			//Get users help 3x
+			if (responses < 4)
+			{
+				//User tells system what to do.
+				cout << "Enter hint 1 or 2: " << endl;
+				cin >> action;
+			}
+			else
+			{
+				//Computer try to guess on its own
+				action = GenerateHint(affinity);
+				cout << "Generated hint: " << action << endl;
+			}
+			//Clear trackers
+			ClearChanges();
+			//execute action generated by user or computer
+			ModifyTestNode(action, 0);
+			//Update trackers
+			UpdateChanges();
+			//Tracker for user input
+			responses++;
+			//update modification table and feedback table
+			LogChanges(responses, affinity);
 		
+			cout << "Current Modifications: ";
+			for (l_it = current_modification.begin(); l_it != current_modification.end(); l_it++)
+			{
+				cout << *l_it << ",";
+			}
+			cout << endl;
+
+			OutputModifications();
+			OutputFeedback();
+		
+			//Clear trackers
+			ClearChanges();
 
 		
-		cout << "Current Modifications: ";
-		for (l_it = current_modification.begin(); l_it != current_modification.end(); l_it++)
-		{
-			cout << *l_it << ",";
-		}
-		cout << endl;
-		OutputModifications();
-		OutputFeedback();
-		current_modification.clear();
-
-		if ( affinity < 7)
-		{
 			running = true;
 		}
 		else
 		{
 			running = false;
-			OutputModifications();
-			OutputFeedback();
+			//write connections to disk
 		}
 	}
 }

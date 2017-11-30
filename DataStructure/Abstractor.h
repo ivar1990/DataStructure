@@ -67,7 +67,8 @@ public:
 	*Abstraction of trial and error method
 	*Create a new node.
 	*Create random connections.
-	*Get Feedback on correctness of sugesstion(guess).
+	*Get Feedback on correctness of the random generated connection nodes(guess).
+	*Compare previous node connections
 	*modify guess by add or remove nodes.
 	*Get feedback on nodes
 	*retry until solution is reached.
@@ -88,7 +89,7 @@ public:
 	//Feedback and update
 	int GetFeedBack();
 
-	void ModifyTestNode(int hint = 0, int affinity = 0, int connection_id = 0);
+	void ModifyTestNode(int hint = 0, int  position = 0);
 
 	void LogChanges(int responses, int affinity);
 
@@ -96,11 +97,17 @@ public:
 
 	void OutputFeedback();
 
-	int AnalizeModification(int modification_id);
+	int GetModifiedNodeID(int modification_id);
 
 	int CompareFeedBack(int feedback);
 
 	int GenerateHint(int feedback);
+
+	int GetPreviousAction(int modification_id);
+
+	void UpdateChanges();
+
+	void ClearChanges();
 
 	void Run();
 
