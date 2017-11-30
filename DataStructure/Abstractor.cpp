@@ -377,6 +377,10 @@ void Abstractor::ModifyTestNode(int hint, int affinity, int postion)
 
 	switch (hint)
 	{
+		case 0:
+			//do nothing
+		break;
+
 		case 1 :
 			///Add another connection
 			CreateRandomNodeConnection(test_node);
@@ -473,7 +477,7 @@ void Abstractor::OutputFeedback()
 	}
 }
 
-int Abstractor::AnalizeModification(int modifcation_id)
+int Abstractor::AnalizeModification(int modification_id)
 {
 	//Check the current modifications with the previous one
 	//Gets last action(hint)
@@ -494,9 +498,13 @@ int Abstractor::AnalizeModification(int modifcation_id)
 
 	}
 	cout << endl;*/
+	cout << "ID: " << modification_id << endl;
 
-	int current_modification_size = distance(current_modification.begin(), current_modification.end());
-	int target_modification_list_size = distance(modifications.find(modifcation_id)->second.begin(), modifications.find(modifcation_id)->second.end());
+	int current_modification_size =  current_modification.size();
+	cout << "Current Modification size: " << current_modification_size << endl;
+
+	int target_modification_list_size = modifications.find(modification_id)->second.size();
+	cout << "Target Modification size: " << target_modification_list_size << endl;
 
 	if (current_modification_size > target_modification_list_size)
 	{
@@ -519,20 +527,21 @@ int Abstractor::CompareFeedBack(int current_feedback)
 	//see which list of modifications gave higher affinity
 	map<int, int>::iterator it;
 	//tracks the modification id with best feedback
-	int modification_id = 0;
+	int modification_id = current_feedback;
 
-	for (it = feedback.begin(); it != feedback.end(); it++)
+	for (it = feedback.begin(); it != feedback.end(); ++it)
 	{
-		cout << endl;
-		cout << "Modification No." << it->first << " FeedBack:  " << it->second;
-		if (it->second > current_feedback)
+		
+		if (it->second >= current_feedback)
 		{
+			cout << endl;
+			cout << "Modification No." << it->first << " Highest FeedBack:  " << it->second;
 			//Sets modification id to best choice
 			modification_id = it->first;
 		}
 		cout << endl;
 	}
-
+	//Modification id tend to give trouble with values greater than seven or if it is 0
 	return modification_id;
 
 }
@@ -541,7 +550,12 @@ int Abstractor::GenerateHint(int feedback)
 {
 	//get feedback and make a decision to 
 	//add, change, or remove children nodes
-	return AnalizeModification(CompareFeedBack(feedback));
+	
+	//return AnalizeModification(CompareFeedBack(feedback));
+
+	int id = CompareFeedBack(feedback);
+	AnalizeModification(id);
+	return 1;
 }
 
 void Abstractor::Run()
