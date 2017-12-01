@@ -504,6 +504,17 @@ int Abstractor::GetModifiedNodeID(int modification_id)
 
 }
 
+void Abstractor::GenerateModifiedConnections()
+{
+	//loop through feedbacks and modifications
+	//determine action for each loop pass
+	//feedbacks iterator
+	map<int, int>::iterator f_it;
+	//modifications iterator
+	list<int>::iterator m_it;
+
+}
+
 int Abstractor::CompareFeedBack(int current_feedback)
 {
 
@@ -547,7 +558,7 @@ int Abstractor::GenerateHint(int feedback)
 
 int Abstractor::GetPreviousAction(int modification_id)
 {
-	cout << "ID: " << modification_id << endl;
+	cout << "Modification ID: " << modification_id << endl;
 	//Check if the any node in the current modification list
 	//has been added or removed
 	int action = 0;

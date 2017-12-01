@@ -109,6 +109,8 @@ public:
 
 	void ClearChanges();
 
+	void GenerateModifiedConnections();
+
 	void Run();
 
 
