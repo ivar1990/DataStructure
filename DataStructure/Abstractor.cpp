@@ -508,10 +508,62 @@ void Abstractor::GenerateModifiedConnections()
 {
 	//loop through feedbacks and modifications
 	//determine action for each loop pass
+
+	//Holds the modification that have the best feedback
+	list<int> best_modifications;
+
+	//modifications iterator
+	map<int, list<int>>::iterator ml_it;
 	//feedbacks iterator
 	map<int, int>::iterator f_it;
 	//modifications iterator
 	list<int>::iterator m_it;
+
+	list<int>::iterator best_modifications_it;
+
+	int modification_id = 0;
+	int table_feedback = 0;
+	int node_id = 0;
+
+	for (f_it = feedback.begin(); f_it != feedback.end(); f_it++)
+	{
+		
+		//Get Feedback with the highest value
+		if (f_it->second >= table_feedback)
+		{
+			//Set Feedback to highest value
+			table_feedback = f_it->second;
+			//Get the modification id to reference the
+			//Id in the list of modifications
+			modification_id = f_it->first;
+		}
+	}
+
+
+	ml_it = modifications.find(modification_id);
+
+	//popluate list with elements
+	for (m_it = ml_it->second.begin(); m_it != ml_it->second.end(); m_it++)
+	{
+		best_modifications.push_back(*m_it);
+	}
+	
+	//compare best modification list
+	//with other lists within the modification table
+
+	//Pass through each FeedBack and get its modification id
+	for (f_it = feedback.begin(); f_it != feedback.end(); f_it++)
+	{
+		for (m_it = ml_it->second.begin(); m_it != ml_it->second.end(); m_it++)
+		{
+			if (find(best_modifications.begin(), best_modifications.end(), *m_it) != best_modifications.end())
+			{
+				node_id = *m_it;
+				cout << "Found Node ID: " << node_id << " in Current Modification List." << endl;
+			}
+
+		}
+	}
 
 }
 
