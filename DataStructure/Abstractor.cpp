@@ -542,24 +542,33 @@ void Abstractor::GenerateModifiedConnections()
 
 	ml_it = modifications.find(modification_id);
 
+
+	cout << "Best Modifications: ";
 	//popluate list with elements
 	for (m_it = ml_it->second.begin(); m_it != ml_it->second.end(); m_it++)
 	{
 		best_modifications.push_back(*m_it);
+		cout << *m_it << ",";
 	}
-	
+	cout << endl;
 	//compare best modification list
 	//with other lists within the modification table
 
 	//Pass through each FeedBack and get its modification id
 	for (f_it = feedback.begin(); f_it != feedback.end(); f_it++)
 	{
+		ml_it = modifications.find(f_it->first);
+		//Compare the modifications list in the modification table
 		for (m_it = ml_it->second.begin(); m_it != ml_it->second.end(); m_it++)
 		{
 			if (find(best_modifications.begin(), best_modifications.end(), *m_it) != best_modifications.end())
 			{
 				node_id = *m_it;
-				cout << "Found Node ID: " << node_id << " in Current Modification List." << endl;
+				cout << "Found Node ID: " << node_id << " in Best Nodes Modification List." << endl;
+			}
+			else
+			{
+				cout << "Did not find Node ID: " << node_id << " in Best Nodes Modification List." << endl;
 			}
 
 		}
@@ -604,7 +613,7 @@ int Abstractor::GenerateHint(int feedback)
 	int id = CompareFeedBack(feedback);
 	GetPreviousAction(id);
 	GetModifiedNodeID(id);
-
+	GenerateModifiedConnections();
 	return 1;
 }
 
@@ -625,13 +634,13 @@ int Abstractor::GetPreviousAction(int modification_id)
 	{
 		//A node was added
 		action = 1;
-		cout << "Action: Node was Add." << endl;
+		cout << "Action: Node was ADDED." << endl;
 	}
 	else
 	{
 		//A node was removed
 		action = 2;
-		cout << "Action: Node was removed." << endl;
+		cout << "Action: Node was REMOVED." << endl;
 	}
 
 	return action;
