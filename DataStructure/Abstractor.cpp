@@ -543,7 +543,7 @@ void Abstractor::GenerateModifiedConnections()
 	ml_it = modifications.find(modification_id);
 
 
-	cout << "Best Modifications: ";
+	cout << "Modification ID: " << modification_id << " Best Modifications: ";
 	//popluate list with elements
 	for (m_it = ml_it->second.begin(); m_it != ml_it->second.end(); m_it++)
 	{
@@ -558,6 +558,7 @@ void Abstractor::GenerateModifiedConnections()
 	for (f_it = feedback.begin(); f_it != feedback.end(); f_it++)
 	{
 		ml_it = modifications.find(f_it->first);
+		cout << "Comparing Modification ID: "<< f_it->first << endl;
 		//Compare the modifications list in the modification table
 		for (m_it = ml_it->second.begin(); m_it != ml_it->second.end(); m_it++)
 		{
