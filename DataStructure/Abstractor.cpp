@@ -548,6 +548,7 @@ void Abstractor::GenerateModifiedConnections()
 	for (m_it = ml_it->second.begin(); m_it != ml_it->second.end(); m_it++)
 	{
 		best_modifications.push_back(*m_it);
+		consolidated_modification.push_back(*m_it);
 		cout << *m_it << ",";
 	}
 	cout << endl;
@@ -569,12 +570,73 @@ void Abstractor::GenerateModifiedConnections()
 			}
 			else
 			{
-				cout << "Did not find Node ID: " << node_id << " in Best Nodes Modification List." << endl;
+				cout << "Did not find Node ID: " << *m_it << " in Best Nodes Modification List." << endl;
 			}
 
 		}
 	}
 
+}
+
+void Abstractor::ConsolidateBestModification()
+{
+
+	bool running = true;
+
+	//Consolidated modifications iterator
+	list<int>::iterator m_it;
+	list<int>::iterator it;
+	list<int> unwanted_items;
+
+	srand(time(NULL));
+
+	int affinity = 0;
+	int rand_num = 0;
+
+	char should_remove;
+	
+
+	while (running)
+	{
+		
+		std::cout << "Consolidated Modifications:";
+		for (it = consolidated_modification.begin(); it != consolidated_modification.end(); ++it)
+			std::cout << ' ' << *it;
+		std::cout << '\n';
+
+		rand_num = (rand() % consolidated_modification.size()) + 1;
+
+		//unwanted_items.assign(consolidated_modification.begin(), consolidated_modification.end());
+
+		m_it = consolidated_modification.begin();
+		cout << "Consolidated Modification iterator position:" << *m_it << endl;
+		advance(m_it, rand_num);
+		cout << "Advancing position:" << rand_num << endl;
+		cout << "item to be deleted:" << *m_it << endl;
+
+		////Removing element at random position
+		//cout << "Remove item from best modification? y/n: " << endl;
+		//cin.get(ch);
+
+		consolidated_modification.erase(m_it);
+
+		std::cout << "Consolidated Modifications:";
+		for (it = consolidated_modification.begin(); it != consolidated_modification.end(); ++it)
+			std::cout << ' ' << *it;
+		std::cout << '\n';
+
+		cout << "Enter correctness of node using 0 - 9: " << endl;
+		cin >> affinity;
+
+		if (affinity < 9)
+		{
+			running = true;
+		}
+		else
+		{
+			running = false;
+		}
+	}
 }
 
 int Abstractor::CompareFeedBack(int current_feedback)
@@ -615,6 +677,7 @@ int Abstractor::GenerateHint(int feedback)
 	GetPreviousAction(id);
 	GetModifiedNodeID(id);
 	GenerateModifiedConnections();
+	ConsolidateBestModification();
 	return 1;
 }
 

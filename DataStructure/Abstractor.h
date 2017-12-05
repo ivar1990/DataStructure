@@ -79,6 +79,10 @@ public:
 	//with previous modifications
 	list<int> current_modification;
 
+	list<int> consolidated_modification;
+
+	list<int> unwanted_items;
+
 	//Node creation process
 	Node* CreateNode();
 	void CreateRandomNodeConnection(Node *pNode);
@@ -110,6 +114,8 @@ public:
 	void ClearChanges();
 
 	void GenerateModifiedConnections();
+
+	void ConsolidateBestModification();
 
 	void Run();
 
