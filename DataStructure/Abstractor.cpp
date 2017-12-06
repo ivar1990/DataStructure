@@ -397,6 +397,7 @@ void Abstractor::ModifyTestNode(int hint, int position)
 				cout << "Looking for random connection position: " << rand_num << endl;
 				if (connections->FindConnection(rand_num,0))
 				{
+					connections->result_connection->Target->data;
 					connections->RemoveConnection(NULL, NULL, rand_num, 0);
 				}
 				else
