@@ -19,6 +19,10 @@ Abstractor::Abstractor(NodeSystem *pNodeSystem)
 
 	node_system = pNodeSystem;
 	connections = conn;
+
+	
+
+
 }
 
 
@@ -738,6 +742,11 @@ void Abstractor::Run()
 
 	test_node = CreateNode();
 	CreateRandomNodeConnections(test_node, 6);
+
+	//Setup Console Display
+	textdiagram.SetNodeSystem(node_system);
+	textdiagram.SetConnections(connections);
+	textdiagram.PrintNode(test_node);
 	
 	list<int>::iterator l_it;
 

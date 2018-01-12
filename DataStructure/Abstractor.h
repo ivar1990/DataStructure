@@ -11,6 +11,7 @@
 
 #include "NodeSystem.h"
 #include "Connector.h"
+#include "Diagram.h"
 
 
 using namespace std;
@@ -34,6 +35,8 @@ public:
 	
 	NodeSystem *node_system;
 	Connector *connections;
+
+	TextDiagram textdiagram;
 
 	int size = 0;
 
