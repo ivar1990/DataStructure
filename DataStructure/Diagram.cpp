@@ -16,12 +16,13 @@ void TextDiagram::Init()
 
 void TextDiagram::DisplayNode(Node *pNode)
 {
+	cout << endl;
 	cout << "Node: " << pNode->data << endl;
 }
 
 void TextDiagram::DisplayConnection(Connection *pConnection)
 {
-	cout << "		------->" << pConnection->Target->data << endl;
+	cout << "	------->" << pConnection->Target->data << endl;
 }
 
 bool TextDiagram::IsPrintable()
@@ -43,6 +44,21 @@ void TextDiagram::Print()
 		//needs to finish
 		//print all nodes and connection in
 		//treelist text format
+
+		//Set Node to beginning of Node System nodes
+		node_system->FindNode(0, 1, 0);
+
+		Node *p = node_system->search_node;
+
+		while (p->next != NULL)
+		{
+			if (p != NULL)
+			{
+				PrintNode(p);
+				p = p->next;
+			}
+		}
+
 	}
 	else
 	{

@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Abstractor.h" />
+    <ClInclude Include="Analyzer.h" />
     <ClInclude Include="Assembler.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Diagram.h" />

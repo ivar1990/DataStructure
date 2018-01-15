@@ -28,9 +28,9 @@ public:
 		node_system = pNodeSystem;
 	}
 
-	void SetConnections(Connector *connections)
+	void SetConnections(Connector *pConnections)
 	{
-		connections = connections;
+		connections = pConnections;
 	}
 
 protected:

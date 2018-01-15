@@ -11,17 +11,14 @@ using namespace std;
 Assembler::Assembler()
 {
 	
-
-	LoadAsciiTable();
-
-	//Sets the default node system as the list that will be used 
-	pNodeSystem = &default_node_system;
 }
 
 Assembler::Assembler(NodeSystem *pComponents)
 {
 	//Sets the User supplied inputs as the list that will be used
-	pNodeSystem = pComponents;
+	node_system = pComponents;
+
+	LoadAsciiTable();
 }
 
 
@@ -40,3 +37,25 @@ void Assembler::LoadAsciiTable()
 	
 }
 
+Node* Assembler::CreateNode()
+{
+	//Points to node created
+	Node *pResult;
+
+	//Create new node ID
+	int new_node_id = node_system->listLength + 1;
+	//sets the created node's data to its node id
+	node_system->Add(new_node_id);
+
+	//Find and set resulting node
+	node_system->FindNode(0, 0, new_node_id);
+	pResult = node_system->search_node;
+
+	return pResult;
+}
+
+Connection* Assembler::CreateConnection(Node *pParentNode, Node *pChildNode)
+{
+
+	connections->AddConnection(pParentNode, pChildNode);
+}

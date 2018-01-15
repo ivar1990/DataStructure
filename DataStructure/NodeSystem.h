@@ -40,13 +40,11 @@ class NodeSystem
 {
 
 public:
-
-	// Applies to the Linked List.
 	// origin of the list contains no data, 
-	// but points to the end of the list.
+	// Node points to the begining of the list.
 	Node *origin = new Node;
 
-	// End of Linked list
+	// Node points to end of list
 	Node *end = new Node;
 
 	// Number of Nodes in the List.
@@ -63,14 +61,24 @@ public:
 	//Position starts at 1 with the origin as position 0.
 	void repositionNodes();
 
-	///
+	/// <summary>
+	/// does nothing
+	/// </summary>
+	/// <param name="data">value assigned</param>
+	/// <param name="node_id">tracks individual node. pre-calculated id</param>
+	/// <returns></returns>
 	bool Insert(int data, int node_id = 0);
 
-	// adds a node to the list at a pre-determined position.
-	// Duplicates are allowed.
-	// Takes a value as parameters.
-	// Position is calculated between 1 and the number of data nodes.
-	// Returns true if the operation is successful.
+	
+	/// <summary>
+	/// adds a node to the list at a pre-determined position.
+	/// Duplicate values are allowed.
+	/// Takes a value as parameter.
+	/// Position is calculated between 1 and the number of data nodes.
+	/// Returns true if the operation is successful.
+	/// </summary>
+	/// <param name="node_value">value assigned</param>
+	/// <returns>Return true if node wass added.</returns>
 	bool Add(int node_value);
 
 	// removes a single node by a given value.
@@ -81,8 +89,7 @@ public:
 	// Returns the number of nodes that were removed.
 	int removeAllNodes(int node_value);
 
-	// Searches for a node by a given value.
-	// Or search by a given position.
+	// Searches for a node by a given value, by node ID Or search by a given position.
 	// Returns true if the operation is successful.
 	// Node can be access via *search_node
 	bool FindNode(int node_value, int position = 0, unsigned int node_id = 0);

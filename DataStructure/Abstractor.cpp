@@ -754,6 +754,7 @@ void Abstractor::Run()
 	{
 		//Output Node and Connections
 		affinity = GetFeedBack();
+		
 
 		if (affinity < 7)
 		{
@@ -802,6 +803,7 @@ void Abstractor::Run()
 		else
 		{
 			running = false;
+			textdiagram.Print();
 			//write connections to disk
 		}
 	}

@@ -52,6 +52,7 @@ public:
 
 	NodeSystem default_node_system;
 
+	//Contains list of nodes
 	NodeSystem *pNodeSystem;
 
 	// Number of Connections in the List

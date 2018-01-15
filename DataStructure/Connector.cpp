@@ -564,7 +564,7 @@ int Connector::GetConnections(Node *source)
 
 		}
 	}
-	cout << "Number of connections: " << count << endl;
+	//cout << "Number of connections: " << count << endl;
 	//sets a linked list of nodes beginning at the head.
 	node_connections = head;
 
