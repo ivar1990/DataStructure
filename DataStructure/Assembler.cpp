@@ -59,3 +59,13 @@ Connection* Assembler::CreateConnection(Node *pParentNode, Node *pChildNode)
 
 	connections->AddConnection(pParentNode, pChildNode);
 }
+
+void Assembler::DestoryNode()
+{
+
+}
+
+void Assembler::DestroyConnections(Node *pNode)
+{
+	connections->RemoveConnection(pNode,NULL,0);
+}
