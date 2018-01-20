@@ -33,15 +33,12 @@ void Assembler::LoadAsciiTable()
 		cout << i << ": " << static_cast<char>(i) << endl;
 
 	}
-
 	
 }
 
-Node* Assembler::CreateNode()
+void Assembler::CreateNode()
 {
-	//Points to node created
-	Node *pResult;
-
+	ResetNode(generated_node);
 	//Create new node ID
 	int new_node_id = node_system->listLength + 1;
 	//sets the created node's data to its node id
@@ -49,9 +46,8 @@ Node* Assembler::CreateNode()
 
 	//Find and set resulting node
 	node_system->FindNode(0, 0, new_node_id);
-	pResult = node_system->search_node;
-
-	return pResult;
+	//set the node to the generated node
+	generated_node = node_system->search_node;
 }
 
 Connection* Assembler::CreateConnection(Node *pParentNode, Node *pChildNode)
@@ -62,10 +58,26 @@ Connection* Assembler::CreateConnection(Node *pParentNode, Node *pChildNode)
 
 void Assembler::DestoryNode()
 {
-
+	node_system->removeNode(generated_node);
 }
 
 void Assembler::DestroyConnections(Node *pNode)
 {
-	connections->RemoveConnection(pNode,NULL,0);
+	connections->RemoveAllConnections(pNode);
+}
+
+void Assembler::ResetNode(Node *pGeneratedNode)
+{
+	if (generated_node != NULL)
+	{
+		cout << "Generated Node will be overwritten!!!" << endl;
+		DestroyConnections(generated_node);
+		DestoryNode();
+
+		generated_node = pGeneratedNode;
+	}
+	else
+	{
+		generated_node = pGeneratedNode;
+	}
 }

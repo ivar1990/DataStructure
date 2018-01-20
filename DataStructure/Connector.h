@@ -84,6 +84,8 @@ public:
 
 	bool RemoveConnection(Node *source = NULL, Node *target = NULL, int position = 0, int connection_id = 0);
 
+	unsigned int RemoveAllConnections(Node *source);
+
 	bool MoveConnection(int current_position, int destination_postion);
 
 	bool GetConnection(Node *source, int position = 0, unsigned int connection_id = 0);

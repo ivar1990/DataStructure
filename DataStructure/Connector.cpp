@@ -271,8 +271,6 @@ bool Connector::RemoveConnection(Node *source, Node *target, int position, int c
 	Connection *current_conn = start_connection;
 	Connection *next_conn = start_connection->Link;
 
-	
-
 	//Remove by Position.
 	if (position > 0)
 	{
@@ -403,6 +401,18 @@ bool Connector::RemoveConnection(Node *source, Node *target, int position, int c
 	}*/
 
 	return false;
+}
+
+unsigned int Connector::RemoveAllConnections(Node *source)
+{
+	int count = 0;
+
+	while (RemoveConnection(source, NULL))
+	{
+		count++;
+	}
+	RepositionConnections();
+	return count;
 }
 
 bool Connector::MoveConnection(int current_position, int destination_position)
@@ -539,8 +549,6 @@ int Connector::GetConnections(Node *source)
 	new_connection->Source = NULL;
 	new_connection->Target = NULL;
 	new_connection->Link = NULL;
-
-
 
 	//Gather connection by given Source node;
 	while (current_connection != end_connection)

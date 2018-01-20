@@ -37,6 +37,9 @@ public:
 	//Points to list of connections
 	Connector  *connections;
 
+	//Parent Node
+	Node *generated_node = NULL;
+
 	/// <summary>
 	/// Data that the assembler will use 
 	/// To construct Structures
@@ -52,8 +55,9 @@ public:
 	//Adds Data(numbers 1-255 of the ascii table) to the node_system
 	void LoadAsciiTable();
 
-	//creates a node 
-	Node* CreateNode();
+	//creates a node
+	//sets the created node to generated node
+	void CreateNode();
 
 	/// <summary>
 	/// Creates a connection
@@ -68,7 +72,8 @@ public:
 	//remove connections to Connector 
 	void DestroyConnections(Node *pNode);
 
-
+	//used to remove dangling memory
+	void ResetNode(Node *pGeneratedNode);
 	
 	
 };
