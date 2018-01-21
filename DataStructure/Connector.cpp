@@ -346,59 +346,42 @@ bool Connector::RemoveConnection(Node *source, Node *target, int position, int c
 	}
 
 
-	/*while (next_connection != NULL || next_connection != end_connection)
+	//Remove by Source Node.
+	if (source != NULL)
 	{
-		previous_connection = current_connection;
-		current_connection = current_connection->Link;
-		next_connection = next_connection->Link;
-		if (current_connection->Source == source && current_connection->Target == target)
+		while (next_conn != NULL || next_conn != end_connection)
 		{
-			cout << " " << endl;
-			cout << " " << endl;
-			cout << "Match:" << endl;
-			cout << " " << endl;
-			cout << " " << endl;
+			previous_conn = current_conn;
+			current_conn = next_conn;
 
-			cout << "Previous Connection: " << previous_connection << endl;
-			cout << "|| position: " << previous_connection->position << " Parent: " << previous_connection->Source << " Child: " << previous_connection->Target << endl;
-			cout << "|| Next Connection: " << previous_connection->Link << endl;
-			cout << " " << endl;
+			if (next_conn->Link != NULL)
+			{
+				next_conn = next_conn->Link;
+			}
+			else
+			{
+				next_conn = end_connection;
+			}
 
-			cout << "Current Connection: " << current_connection << endl;
-			cout << "|| position: " << current_connection->position << " Parent: " << current_connection->Source << " Child: " << current_connection->Target << endl;
-			cout << "|| Next Connection: " << current_connection->Link << endl;
-			cout << " " << endl;
+			if (current_conn->Source == source)
+			{
 
-			cout << "Next Connection: " << next_connection << endl;
-			cout << "|| position: " << next_connection->position << " Parent: " << next_connection->Source << " Child: " << next_connection->Target << endl;
-			cout << "|| Next Connection: " << next_connection->Link << endl;
-			cout << " " << endl;
-			cout << " " << endl;
-
-			previous_connection->Link = next_connection;
-
-			cout << "Previous Connection: " << previous_connection << endl;
-			cout << "|| position: " << previous_connection->position << " Parent: " << previous_connection->Source << " Child: " << previous_connection->Target << endl;
-			cout << "|| Next Connection: " << previous_connection->Link << endl;
-			cout << " " << endl;
-
-			cout << "Deleted Connection: " << current_connection << endl;
-			cout << "|| position: " << current_connection->position << " Parent: " << current_connection->Source << " Child: " << current_connection->Target << endl;
-			cout << "|| Next Connection: " << current_connection->Link << endl;
-			cout << " " << endl;
-
-			cout << "Next Connection: " << next_connection << endl;
-			cout << "|| position: " << next_connection->position << " Parent: " << next_connection->Source << " Child: " << next_connection->Target << endl;
-			cout << "|| Next Connection: " << next_connection->Link << endl;
-			cout << " " << endl;
-			cout << " " << endl;
-
-			delete current_connection;
-			RepositionConnections();
-			return true;
+				if (previous_conn->Link != NULL)
+				{
+					//Set previous node pointer to the next node
+					previous_conn->Link = current_conn->Link;
+				}
+				else
+				{
+					previous_conn->Link = end_connection;
+				}
+				delete current_conn;
+				RepositionConnections();
+				return true;
+			}
 		}
 
-	}*/
+	}
 
 	return false;
 }

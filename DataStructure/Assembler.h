@@ -64,16 +64,21 @@ public:
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns></returns>
-	Connection* CreateConnection(Node *pParentNode, Node *pChildNode);
+	bool Connect(Node *pParentNode, Node *pChildNode);
 
 	//removes node from NodeSystem and connections from connector
 	void DestoryNode();
 	
+	//removes connection from generated node
+	bool Disconnect(Node *pNode);
+
 	//remove connections to Connector 
 	void DestroyConnections(Node *pNode);
 
 	//used to remove dangling memory
 	void ResetNode(Node *pGeneratedNode);
+
+	
 	
 	
 };

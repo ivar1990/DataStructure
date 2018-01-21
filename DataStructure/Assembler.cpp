@@ -50,15 +50,23 @@ void Assembler::CreateNode()
 	generated_node = node_system->search_node;
 }
 
-Connection* Assembler::CreateConnection(Node *pParentNode, Node *pChildNode)
+bool Assembler::Connect(Node *pParentNode, Node *pChildNode)
 {
 
 	connections->AddConnection(pParentNode, pChildNode);
 }
 
+bool Assembler::Disconnect(Node *pChildNode)
+{
+	connections->GetConnections(generated_node);
+	//needs to finish
+	//get connection with child node
+	return connections->RemoveConnection(pChildNode);
+}
+
 void Assembler::DestoryNode()
 {
-	node_system->removeNode(generated_node);
+	node_system->RemoveNode(generated_node);
 }
 
 void Assembler::DestroyConnections(Node *pNode)

@@ -85,6 +85,10 @@ public:
 	// Returns true if the operation is successful.
 	bool removeNode(int node_value);
 
+	//remove a sigle node by pointer
+	//returns true if the operation is successful.
+	bool RemoveNode(Node *pNode);
+
 	// Setter removes all duplicate nodes by a given value;
 	// Returns the number of nodes that were removed.
 	int removeAllNodes(int node_value);

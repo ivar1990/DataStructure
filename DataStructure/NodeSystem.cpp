@@ -184,6 +184,69 @@ bool NodeSystem::removeNode(int node_value)
 	return false;
 }
 
+bool NodeSystem::RemoveNode(Node *pNode)
+{
+	///Needs to finish
+	Node *previous_node = origin;
+	Node *current_node = origin;
+	Node *next_node = origin->next;
+	while (current_node != end)
+	{
+		previous_node = current_node;
+		current_node = current_node->next;
+		next_node = next_node->next;
+		if (current_node == pNode)
+		{
+			cout << " " << endl;
+			cout << " " << endl;
+			cout << "Match:" << endl;
+			cout << " " << endl;
+			cout << " " << endl;
+
+			cout << "Previous Node: " << previous_node << endl;
+			cout << "|| position: " << previous_node->position << " value: " << previous_node->data << endl;
+			cout << "|| Next Node: " << previous_node->next << endl;
+			cout << " " << endl;
+
+			cout << "Current Node: " << current_node << endl;
+			cout << "|| position: " << current_node->position << " value: " << current_node->data << endl;
+			cout << "|| Next Node: " << current_node->next << endl;
+			cout << " " << endl;
+
+			cout << "Next Node: " << next_node << endl;
+			cout << "|| position: " << next_node->position << " value: " << next_node->data << endl;
+			cout << "|| Next Node: " << next_node->next << endl;
+			cout << " " << endl;
+			cout << " " << endl;
+
+			previous_node->next = next_node;
+
+			cout << "Previous Node: " << previous_node << endl;
+			cout << "|| position: " << previous_node->position << " value: " << previous_node->data << endl;
+			cout << "|| Next Node: " << previous_node->next << endl;
+			cout << " " << endl;
+
+			cout << "Deleted Node: " << current_node << endl;
+			cout << "|| position: " << current_node->position << " value: " << current_node->data << endl;
+			cout << "|| Next Node: " << current_node->next << endl;
+			cout << " " << endl;
+
+			cout << "Next Node: " << next_node << endl;
+			cout << "|| position: " << next_node->position << " value: " << next_node->data << endl;
+			cout << "|| Next Node: " << next_node->next << endl;
+			cout << " " << endl;
+			cout << " " << endl;
+
+			delete current_node;
+			repositionNodes();
+			return true;
+		}
+
+	}
+
+	return false;
+}
+
 
 
 int NodeSystem::removeAllNodes(int node_value)
