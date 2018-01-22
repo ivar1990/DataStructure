@@ -363,7 +363,7 @@ bool Connector::RemoveConnection(Node *source, Node *target, int position, int c
 				next_conn = end_connection;
 			}
 
-			if (current_conn->Source == source)
+			if (current_conn->Source == source) 
 			{
 
 				if (previous_conn->Link != NULL)

@@ -59,9 +59,22 @@ bool Assembler::Connect(Node *pParentNode, Node *pChildNode)
 bool Assembler::Disconnect(Node *pChildNode)
 {
 	connections->GetConnections(generated_node);
-	//needs to finish
-	//get connection with child node
-	return connections->RemoveConnection(pChildNode);
+
+	Connection *p = connections->node_connections;
+	Connection *connection_to_be_removed;
+
+	while (p != NULL)
+	{
+		if (p->Source != NULL)
+		{
+			if(p->Target == pChildNode)
+			{
+				connection_to_be_removed = p;
+			}
+		}
+		p = p->Link;
+	}
+	return connections->RemoveConnection(NULL,NULL,0,connection_to_be_removed->connection_id);
 }
 
 void Assembler::DestoryNode()
