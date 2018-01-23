@@ -11,6 +11,7 @@
 #include "Storage.h"
 #include "Abstractor.h"
 #include "Controller.h"
+#include "Assembler.h"
 
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -23,10 +24,25 @@ int _tmain(int argc, _TCHAR* argv[])
 	Storage storage;
 	Abstractor abstractor(storage.nodes);
 	Controller controller;
+	Assembler assembler;
+	TextDiagram textdiagram;
 
+	controller.SetStorage(&storage);
+	controller.SetAbstractor(&abstractor);
+	
+
+	storage.LoadFromDisk();
+
+	assembler.SetNodeSystem(storage.nodes);
+	assembler.SetConnections(storage.connections);
+
+	textdiagram.SetNodeSystem(storage.nodes);
+	textdiagram.SetConnections(storage.connections);
 
 	char ch;
 	bool running = true;
+
+	
 
 	while (running)
 	{
@@ -45,38 +61,49 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		}*/
 
-		controller.SetStorage(&storage);
-		controller.SetAbstractor(&abstractor);
 		controller.HandleInput(text);
 
-		storage.LoadFromDisk();
+		assembler.CreateNode();
+		cout << "Showing connnections for Node: " << assembler.generated_node->node_id << endl;
+		storage.connections->ShowConnections();
+		storage.connections->Connect(assembler.generated_node->node_id, 2);
+		/*storage.connections->GetConnections(assembler.generated_node);
+		storage.connections->PrintNodeConnections();*/
+		textdiagram.PrintNode(assembler.generated_node);
+
+		//needs to properly destroy node
+		//write 0|0 to data.dat
+		cout << endl;
+		cout << "Destroying Node" << endl;
+		assembler.DestoryNode();
+		
 
 	
-		abstractor.OutputFrequencyTable();
-		abstractor.Output();
-		
-		cout << "Dataset size: " << abstractor.size << endl;
-		cout << "Dataset list length: " << abstractor.dataset.size() << endl;
-		cout << "Dataset changed: " << abstractor.IsChanged() << endl;
+		//abstractor.OutputFrequencyTable();
+		//abstractor.Output();
+		//
+		//cout << "Dataset size: " << abstractor.size << endl;
+		//cout << "Dataset list length: " << abstractor.dataset.size() << endl;
+		//cout << "Dataset changed: " << abstractor.IsChanged() << endl;
 
-		if (abstractor.IsChanged())
-		{
-			abstractor.LogInputs();
-			abstractor.OutputInputs();
-			
-			controller.LogStream(text);
-			controller.OutputStream();
+		//if (abstractor.IsChanged())
+		//{
+		//	abstractor.LogInputs();
+		//	abstractor.OutputInputs();
+		//	
+		//	controller.LogStream(text);
+		//	controller.OutputStream();
 
-			controller.LogHistory();
-			controller.ShowHistory();
-		}
+		//	controller.LogHistory();
+		//	controller.ShowHistory();
+		//}
 
-		abstractor.size = abstractor.dataset.size();
+		//abstractor.size = abstractor.dataset.size();
 
-		//abstractor.GenerateRandomNodes(2);
-		//abstractor.GenerateRandomConnections(3);
+		////abstractor.GenerateRandomNodes(2);
+		////abstractor.GenerateRandomConnections(3);
 
-		abstractor.Run();
+		//abstractor.Run();
 
 		cout << "Continue? y/n: " << endl;
 		cin.get(ch);

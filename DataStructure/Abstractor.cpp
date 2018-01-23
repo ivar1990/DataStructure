@@ -598,7 +598,7 @@ void Abstractor::ConsolidateBestModification()
 	int affinity = 0;
 	int rand_num = 0;
 
-	char should_remove;
+	//char should_remove;
 	
 
 	while (running)

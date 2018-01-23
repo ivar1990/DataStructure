@@ -46,12 +46,6 @@ class TextDiagram : public Diagram
 public:
 	TextDiagram();
 
-	
-
-	void DisplayNode(Node *pNode);
-
-	void DisplayConnection(Connection *pConnection);
-
 	bool IsPrintable();
 
 	void Print();
@@ -61,6 +55,10 @@ public:
 private:
 
 	void Init();
+
+	void DisplayNode(Node *pNode);
+
+	void DisplayConnection(Connection *pConnection);
 
 };
 

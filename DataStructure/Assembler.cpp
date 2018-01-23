@@ -53,7 +53,7 @@ void Assembler::CreateNode()
 bool Assembler::Connect(Node *pParentNode, Node *pChildNode)
 {
 
-	connections->AddConnection(pParentNode, pChildNode);
+	return connections->AddConnection(pParentNode, pChildNode);
 }
 
 bool Assembler::Disconnect(Node *pChildNode)
@@ -61,7 +61,7 @@ bool Assembler::Disconnect(Node *pChildNode)
 	connections->GetConnections(generated_node);
 
 	Connection *p = connections->node_connections;
-	Connection *connection_to_be_removed;
+	Connection *connection_to_be_removed = NULL;
 
 	while (p != NULL)
 	{
