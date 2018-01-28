@@ -77,14 +77,16 @@ bool Assembler::Disconnect(Node *pChildNode)
 	return connections->RemoveConnection(NULL,NULL,0,connection_to_be_removed->connection_id);
 }
 
-void Assembler::DestoryNode()
+void Assembler::DestroyNode()
 {
+	DestroyConnections(generated_node);
 	node_system->RemoveNode(generated_node);
+	
 }
 
 void Assembler::DestroyConnections(Node *pNode)
 {
-	connections->RemoveAllConnections(pNode);
+	cout << "Number of Destroyed Connections: " << connections->RemoveAllConnections(pNode);
 }
 
 void Assembler::ResetNode(Node *pGeneratedNode)
@@ -93,7 +95,7 @@ void Assembler::ResetNode(Node *pGeneratedNode)
 	{
 		cout << "Generated Node will be overwritten!!!" << endl;
 		DestroyConnections(generated_node);
-		DestoryNode();
+		DestroyNode();
 
 		generated_node = pGeneratedNode;
 	}

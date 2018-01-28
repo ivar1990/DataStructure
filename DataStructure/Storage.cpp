@@ -237,7 +237,7 @@ void Storage::SaveNodes()
 		//Set search Node to node position 0
 		nodes->FindNode(0, 0);
 		cout << "Has Node to write.!!!!" << endl;
-		while (current_node_position != nodes->listLength + 1)
+		while (current_node_position < nodes->listLength + 1)
 		{
 
 			nodes->FindNode(0, current_node_position);

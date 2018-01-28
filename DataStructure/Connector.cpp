@@ -390,8 +390,9 @@ unsigned int Connector::RemoveAllConnections(Node *source)
 {
 	int count = 0;
 
-	while (RemoveConnection(source, NULL))
+	while (GetConnections(source) > 0)
 	{
+		RemoveConnection(source, NULL, 0, 0);
 		count++;
 	}
 	RepositionConnections();

@@ -31,7 +31,7 @@ void NodeSystem::repositionNodes()
 {
 	listLength = 0;
 	Node *p = origin;
-	while (p != end)
+	while (p->next != end)
 	{
 		p = p->next;
 		listLength++;

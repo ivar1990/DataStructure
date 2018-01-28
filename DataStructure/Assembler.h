@@ -67,7 +67,7 @@ public:
 	bool Connect(Node *pParentNode, Node *pChildNode);
 
 	//removes node from NodeSystem and connections from connector
-	void DestoryNode();
+	void DestroyNode();
 	
 	//removes connection from generated node
 	bool Disconnect(Node *pNode);

@@ -68,19 +68,15 @@ int _tmain(int argc, _TCHAR* argv[])
 		cout << "Showing connnections for Node: " << assembler.generated_node->node_id << endl;
 		storage.connections->ShowConnections();
 		storage.connections->Connect(assembler.generated_node->node_id, 2);
+		storage.connections->Connect(assembler.generated_node->node_id, 65);
 		/*storage.connections->GetConnections(assembler.generated_node);
 		storage.connections->PrintNodeConnections();*/
 		textdiagram.PrintNode(assembler.generated_node);
 
-		//needs to properly destroy node
-		//write 0|0 to data.dat
-		//cout << endl;
-		//cout << "Destroying Node" << endl;
-		//assembler.DestoryNode();
+		assembler.DestroyNode();
 		
-
-	
-		//abstractor.OutputFrequencyTable();
+		//abstractor.OutputF
+		//requencyTable();
 		//abstractor.Output();
 		//
 		//cout << "Dataset size: " << abstractor.size << endl;
@@ -148,9 +144,6 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	cout << text << endl;
 */
-
-
-
 
 	system("pause");
 
