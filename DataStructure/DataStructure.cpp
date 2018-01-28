@@ -27,17 +27,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	Assembler assembler;
 	TextDiagram textdiagram;
 
-	controller.SetStorage(&storage);
-	controller.SetAbstractor(&abstractor);
 	
-
-	storage.LoadFromDisk();
-
-	assembler.SetNodeSystem(storage.nodes);
-	assembler.SetConnections(storage.connections);
-
-	textdiagram.SetNodeSystem(storage.nodes);
-	textdiagram.SetConnections(storage.connections);
 
 	char ch;
 	bool running = true;
@@ -61,7 +51,18 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		}*/
 
+		controller.SetStorage(&storage);
+		controller.SetAbstractor(&abstractor);
 		controller.HandleInput(text);
+
+		storage.LoadFromDisk();
+
+		assembler.SetNodeSystem(storage.nodes);
+		assembler.SetConnections(storage.connections);
+
+		textdiagram.SetNodeSystem(storage.nodes);
+		textdiagram.SetConnections(storage.connections);
+		
 
 		assembler.CreateNode();
 		cout << "Showing connnections for Node: " << assembler.generated_node->node_id << endl;
@@ -73,9 +74,9 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		//needs to properly destroy node
 		//write 0|0 to data.dat
-		cout << endl;
-		cout << "Destroying Node" << endl;
-		assembler.DestoryNode();
+		//cout << endl;
+		//cout << "Destroying Node" << endl;
+		//assembler.DestoryNode();
 		
 
 	
