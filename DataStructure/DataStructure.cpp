@@ -22,7 +22,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	//Assembler assembler;
 	Storage storage;
-	Abstractor abstractor(storage.nodes);
+	Abstractor abstractor();
 	Controller controller;
 	Assembler assembler;
 	TextDiagram textdiagram;
@@ -73,7 +73,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		storage.connections->PrintNodeConnections();*/
 		textdiagram.PrintNode(assembler.generated_node);
 
-		assembler.DestroyNode();
+		//assembler.DestroyNode();
 		
 		//abstractor.OutputF
 		//requencyTable();
