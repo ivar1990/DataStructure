@@ -93,5 +93,8 @@ void Abstractor::CreateRandomNodeConnections(Node *pNode, int max_size)
 }
 /*End of Node Creation Process*/
 
-
+void Abstractor::MakeParentNode()
+{
+	pParentNode = CreateNode();
+}
 

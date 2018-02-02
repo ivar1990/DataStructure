@@ -28,6 +28,9 @@ public:
 	Assembler *assembler;
 	TextDiagram textdiagram;
 
+	Node *pParentNode;
+	Node *pCurrentNode;
+
 	Abstractor();
 
 	void SetStorage(Storage *pStorage);
@@ -40,6 +43,8 @@ public:
 
 	void CreateRandomNodeConnections(Node *pNode, int max_size = 0);
 	
+	void MakeParentNode();
+
 
 	
 

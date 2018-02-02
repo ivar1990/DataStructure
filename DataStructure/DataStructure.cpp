@@ -22,7 +22,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	//Assembler assembler;
 	Storage storage;
-	Abstractor abstractor();
+	Abstractor abstractor;
 	Controller controller;
 	Assembler assembler;
 	TextDiagram textdiagram;

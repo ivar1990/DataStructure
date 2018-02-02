@@ -37,7 +37,7 @@ void Controller::HandleInput(string text)
 		//Convert Character to number
 		ascChar = text[i];
 		//Add number to Abstractor Node System
-		pAbstractor->Input(ascChar);
+		//pAbstractor->Input(ascChar);
 		//Add to container
 		dataset.push_back(ascChar);
 		//Output the number and character representation to the console
