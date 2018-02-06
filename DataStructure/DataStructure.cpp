@@ -17,9 +17,6 @@
 int _tmain(int argc, _TCHAR* argv[])
 {
 	
-
-
-
 	//Assembler assembler;
 	Storage storage;
 	Abstractor abstractor;
@@ -72,6 +69,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		/*storage.connections->GetConnections(assembler.generated_node);
 		storage.connections->PrintNodeConnections();*/
 		textdiagram.PrintNode(assembler.generated_node);
+		textdiagram.Print();
 
 		//assembler.DestroyNode();
 		
