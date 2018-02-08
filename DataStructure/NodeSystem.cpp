@@ -24,6 +24,9 @@ NodeSystem::NodeSystem()
 
 	listLength = 0;
 
+	Start = origin;
+	End = end;
+
 }
 
 

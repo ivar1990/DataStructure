@@ -57,18 +57,24 @@ int _tmain(int argc, _TCHAR* argv[])
 		assembler.SetNodeSystem(storage.nodes);
 		assembler.SetConnections(storage.connections);
 
+		mapper.SetAssembler(&assembler);
+		mapper.SetStorage(&storage);
+
 		textdiagram.SetNodeSystem(storage.nodes);
 		textdiagram.SetConnections(storage.connections);
 		
 
 		assembler.CreateNode();
-		cout << "Showing connnections for Node: " << assembler.generated_node->node_id << endl;
+		cout << "Showing connnections for Node: " << assembler.pCurrentNode->node_id << endl;
 		storage.connections->ShowConnections();
-		storage.connections->Connect(assembler.generated_node->node_id, 2);
-		storage.connections->Connect(assembler.generated_node->node_id, 65);
+		storage.connections->Connect(assembler.pCurrentNode->node_id, 2);
+		storage.connections->Connect(assembler.pCurrentNode->node_id, 65);
+
+		mapper.pCurrentNode = assembler.pCurrentNode;
+		mapper.CreateRandomNodeConnections(assembler.pCurrentNode,10);
 		/*storage.connections->GetConnections(assembler.generated_node);
 		storage.connections->PrintNodeConnections();*/
-		textdiagram.PrintNode(assembler.generated_node);
+		textdiagram.PrintNode(assembler.pCurrentNode);
 		textdiagram.Print();
 
 		//assembler.DestroyNode();

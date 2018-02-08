@@ -38,7 +38,7 @@ public:
 	Connector  *connections;
 
 	//Parent Node
-	Node *generated_node = NULL;
+	Node *pCurrentNode = NULL;
 
 	/// <summary>
 	/// Data that the assembler will use 

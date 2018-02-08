@@ -27,6 +27,9 @@ Connector::Connector(NodeSystem *pNode_system)
 	end_connection->Source = NULL;
 	end_connection->Target = NULL;
 	end_connection->Link = NULL;
+
+	Start = start_connection;
+	End = end_connection;
 }
 
 Connector::Connector()
@@ -72,6 +75,8 @@ Connector::Connector()
 	end_connection->Target = NULL;
 	end_connection->Link = NULL;
 
+	Start = start_connection;
+	End = end_connection;
 
 	PrintNodeConnections();
 }

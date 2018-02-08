@@ -19,21 +19,19 @@ using namespace std;
 class Mapper
 {
 public:
-
-	
-
-	
 	
 	Storage *storage;
 	Assembler *assembler;
 	TextDiagram textdiagram;
 
 	Node *pParentNode;
-	Node *pCurrentNode;
+	Node *pCurrentNode = NULL;
 
 	Mapper();
 
 	void SetStorage(Storage *pStorage);
+
+	void SetAssembler(Assembler *pAssembler);
 
 	//Creates A Map of nodes in an Object
 	//Describes How They Are related
@@ -45,7 +43,7 @@ public:
 	
 	void MakeNode();
 
-	void 
+	
 	
 
 private:

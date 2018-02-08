@@ -40,18 +40,16 @@ class NodeSystem
 {
 
 public:
-	// origin of the list contains no data, 
-	// Node points to the begining of the list.
-	Node *origin = new Node;
-
-	// Node points to end of list
-	Node *end = new Node;
+	
 
 	// Number of Nodes in the List.
 	int listLength;
 
 	// Result node at FindNode() operation.
 	Node *search_node;
+
+	Node *Start;
+	Node *End;
 
 	// Default Constructor creates the origin node.
 	NodeSystem();
@@ -122,7 +120,12 @@ private:
 	//Max number of nodes required for parallel search.
 	unsigned const int MAX_LENGTH = 100;
 
-	
+	// origin of the list contains no data, 
+	// Node points to the begining of the list.
+	Node *origin = new Node;
+
+	// Node points to end of list
+	Node *end = new Node;
 
 
 };

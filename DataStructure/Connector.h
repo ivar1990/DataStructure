@@ -71,6 +71,9 @@ public:
 
 	Connector();
 
+	const Connection *Start;
+	const Connection *End;
+
 	/***********************List of Connections***********************/
 	void RepositionConnections();
 

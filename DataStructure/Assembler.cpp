@@ -31,14 +31,12 @@ void Assembler::LoadAsciiTable()
 	{
 		default_node_system.Add(i);
 		cout << i << ": " << static_cast<char>(i) << endl;
-
 	}
-	
 }
 
 void Assembler::CreateNode()
 {
-	ResetNode(generated_node);
+	ResetNode(pCurrentNode);
 	//Create new node ID
 	int new_node_id = node_system->listLength + 1;
 	//sets the created node's data to its node id
@@ -47,7 +45,7 @@ void Assembler::CreateNode()
 	//Find and set resulting node
 	node_system->FindNode(0, 0, new_node_id);
 	//set the node to the generated node
-	generated_node = node_system->search_node;
+	pCurrentNode = node_system->search_node;
 }
 
 bool Assembler::Connect(Node *pParentNode, Node *pChildNode)
@@ -58,7 +56,7 @@ bool Assembler::Connect(Node *pParentNode, Node *pChildNode)
 
 bool Assembler::Disconnect(Node *pChildNode)
 {
-	connections->GetConnections(generated_node);
+	connections->GetConnections(pCurrentNode);
 
 	Connection *p = connections->node_connections;
 	Connection *connection_to_be_removed = NULL;
@@ -79,8 +77,8 @@ bool Assembler::Disconnect(Node *pChildNode)
 
 void Assembler::DestroyNode()
 {
-	DestroyConnections(generated_node);
-	node_system->RemoveNode(generated_node);
+	DestroyConnections(pCurrentNode);
+	node_system->RemoveNode(pCurrentNode);
 	
 }
 
@@ -89,18 +87,18 @@ void Assembler::DestroyConnections(Node *pNode)
 	cout << "Number of Destroyed Connections: " << connections->RemoveAllConnections(pNode);
 }
 
-void Assembler::ResetNode(Node *pGeneratedNode)
+void Assembler::ResetNode(Node *pNode)
 {
-	if (generated_node != NULL)
+	if (pCurrentNode != NULL)
 	{
 		cout << "Generated Node will be overwritten!!!" << endl;
-		DestroyConnections(generated_node);
+		DestroyConnections(pCurrentNode);
 		DestroyNode();
 
-		generated_node = pGeneratedNode;
+		pCurrentNode = pNode;
 	}
 	else
 	{
-		generated_node = pGeneratedNode;
+		pCurrentNode = pNode;
 	}
 }

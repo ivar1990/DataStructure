@@ -16,6 +16,11 @@ void Mapper::SetStorage(Storage *pStorage)
 	assembler->SetConnections(storage->connections);
 }
 
+void Mapper::SetAssembler(Assembler *pAssembler)
+{
+	assembler = pAssembler;
+}
+
 /*Node Creation Process*/
 Node* Mapper::CreateNode()
 {
