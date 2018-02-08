@@ -23,9 +23,9 @@ void Controller::SetAssembler(Assembler* assembler)
 	pAssembler = assembler;
 }
 
-void Controller::SetAbstractor(Abstractor* abstractor)
+void Controller::SetAbstractor(Mapper* mapper)
 {
-	pAbstractor = abstractor;
+	pMapper = mapper;
 }
 
 void Controller::HandleInput(string text)

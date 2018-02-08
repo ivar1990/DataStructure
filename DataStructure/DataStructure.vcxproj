@@ -142,7 +142,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Abstractor.h" />
+    <ClInclude Include="Mapper.h" />
     <ClInclude Include="Analyzer.h" />
     <ClInclude Include="Assembler.h" />
     <ClInclude Include="Controller.h" />
@@ -158,7 +158,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Abstractor.cpp" />
+    <ClCompile Include="Mapper.cpp" />
     <ClCompile Include="Assembler.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Diagram.cpp" />

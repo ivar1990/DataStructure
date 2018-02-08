@@ -9,7 +9,7 @@
 #include "NodeSystem.h"
 #include "Assembler.h"
 #include "Storage.h"
-#include "Abstractor.h"
+#include "Mapper.h"
 #include "Controller.h"
 #include "Assembler.h"
 
@@ -19,7 +19,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	
 	//Assembler assembler;
 	Storage storage;
-	Abstractor abstractor;
+	Mapper mapper;
 	Controller controller;
 	Assembler assembler;
 	TextDiagram textdiagram;
@@ -49,7 +49,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		}*/
 
 		controller.SetStorage(&storage);
-		controller.SetAbstractor(&abstractor);
+		controller.SetAbstractor(&mapper);
 		controller.HandleInput(text);
 
 		storage.LoadFromDisk();

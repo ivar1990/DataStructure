@@ -51,13 +51,13 @@
     <ClInclude Include="Controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Abstractor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Diagram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Analyzer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -83,10 +83,10 @@
     <ClCompile Include="Controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Abstractor.cpp">
+    <ClCompile Include="Diagram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Diagram.cpp">
+    <ClCompile Include="Mapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

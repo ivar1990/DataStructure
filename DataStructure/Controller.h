@@ -8,7 +8,7 @@
 #include <map>
 #include <list>
 
-#include "Abstractor.h"
+#include "Mapper.h"
 #include "Storage.h"
 #include "Assembler.h"
 
@@ -20,7 +20,7 @@ public:
 
 	Storage *pStorage;
 	Assembler *pAssembler;
-	Abstractor *pAbstractor;
+	Mapper *pMapper;
 
 	map<int, list<int>> inputstream;
 	map<int, list<int>> history;
@@ -35,7 +35,7 @@ public:
 
 	void SetStorage(Storage *storage);
 	void SetAssembler(Assembler *assembler);
-	void SetAbstractor(Abstractor *abstractor);
+	void SetAbstractor(Mapper *mapper);
 
 	void LogStream(string text);
 	void OutputStream();

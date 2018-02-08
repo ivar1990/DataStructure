@@ -1,14 +1,14 @@
 #include "stdafx.h"
-#include "Abstractor.h"
+#include "Mapper.h"
 
 using namespace std;
 
-Abstractor::Abstractor()
+Mapper::Mapper()
 {
 	
 }
 
-void Abstractor::SetStorage(Storage *pStorage)
+void Mapper::SetStorage(Storage *pStorage)
 {
 	storage = pStorage;
 
@@ -17,7 +17,7 @@ void Abstractor::SetStorage(Storage *pStorage)
 }
 
 /*Node Creation Process*/
-Node* Abstractor::CreateNode()
+Node* Mapper::CreateNode()
 {
 	Node *pResult;
 
@@ -32,7 +32,7 @@ Node* Abstractor::CreateNode()
 	
 }
 
-void Abstractor::CreateRandomNodeConnection(Node *pNode)
+void Mapper::CreateRandomNodeConnection(Node *pNode)
 {
 	//Node positions
 	int parent_node_position = 0;
@@ -55,7 +55,7 @@ void Abstractor::CreateRandomNodeConnection(Node *pNode)
 
 }
 
-void Abstractor::CreateRandomNodeConnections(Node *pNode, int max_size)
+void Mapper::CreateRandomNodeConnections(Node *pNode, int max_size)
 {
 	//Modification Log for children nodes
 	list<int> changes;
@@ -93,7 +93,7 @@ void Abstractor::CreateRandomNodeConnections(Node *pNode, int max_size)
 }
 /*End of Node Creation Process*/
 
-void Abstractor::MakeParentNode()
+void Mapper::MakeNode()
 {
 	pParentNode = CreateNode();
 }

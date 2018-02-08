@@ -16,7 +16,7 @@
 
 using namespace std;
 
-class Abstractor
+class Mapper
 {
 public:
 
@@ -31,7 +31,7 @@ public:
 	Node *pParentNode;
 	Node *pCurrentNode;
 
-	Abstractor();
+	Mapper();
 
 	void SetStorage(Storage *pStorage);
 
@@ -43,9 +43,9 @@ public:
 
 	void CreateRandomNodeConnections(Node *pNode, int max_size = 0);
 	
-	void MakeParentNode();
+	void MakeNode();
 
-
+	void 
 	
 
 private:

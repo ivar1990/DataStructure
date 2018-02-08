@@ -12,7 +12,7 @@
 #include "NodeSystem.h"
 #include "Connector.h"
 #include "Diagram.h"
-#include "Abstractor.h"
+#include "Mapper.h"
 
 using namespace std;
 
