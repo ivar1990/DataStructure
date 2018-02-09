@@ -48,6 +48,8 @@ public:
 	bool IsCircular(Node *pStart);
 
 	bool CheckChildIsParent(Node *pParentNode);
+
+	void DisplayAllNodeConnections(Node *pParentNode);
 	
 
 private:

@@ -14,6 +14,9 @@ void Mapper::SetStorage(Storage *pStorage)
 
 	assembler->SetNodeSystem(storage->nodes);
 	assembler->SetConnections(storage->connections);
+
+	textdiagram.SetNodeSystem(storage->nodes);
+	textdiagram.SetConnections(storage->connections);
 }
 
 void Mapper::SetAssembler(Assembler *pAssembler)
@@ -134,4 +137,26 @@ bool Mapper::CheckChildIsParent(Node *pParentNode)
 {
 	//needs to finish
 	return false;
+}
+
+void Mapper::DisplayAllNodeConnections(Node *pParentNode)
+{
+	Connection *node_connections;
+	Connection *current_connection;
+    storage->connections->GetConnections(pParentNode);
+
+	node_connections = storage->connections->node_connections;
+	current_connection = node_connections->Link;
+
+
+	while (current_connection != NULL)
+	{
+		//while (current_connection->Target != NULL)
+		//{
+			textdiagram.PrintNode(current_connection->Target);
+			cout << '\t';
+
+		//}
+		current_connection = current_connection->Link;
+	}
 }

@@ -77,6 +77,8 @@ int _tmain(int argc, _TCHAR* argv[])
 		textdiagram.PrintNode(assembler.pCurrentNode);
 		textdiagram.Print();
 
+		mapper.DisplayAllNodeConnections(mapper.pCurrentNode);
+
 		//assembler.DestroyNode();
 		
 		//abstractor.OutputF
