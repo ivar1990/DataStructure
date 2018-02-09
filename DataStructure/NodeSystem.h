@@ -48,8 +48,8 @@ public:
 	// Result node at FindNode() operation.
 	Node *search_node;
 
-	Node *Start;
-	Node *End;
+	const Node *Start;
+	const Node *End;
 
 	// Default Constructor creates the origin node.
 	NodeSystem();

@@ -43,7 +43,11 @@ public:
 	
 	void MakeNode();
 
-	
+	// Checks if there is a loop 
+	// In a Connected Node list;
+	bool IsCircular(Node *pStart);
+
+	bool CheckChildIsParent(Node *pParentNode);
 	
 
 private:

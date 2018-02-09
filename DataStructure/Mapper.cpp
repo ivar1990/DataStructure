@@ -103,3 +103,35 @@ void Mapper::MakeNode()
 	pParentNode = CreateNode();
 }
 
+bool Mapper::IsCircular(Node *pStart)
+{
+	if (pStart == NULL)
+		return false;
+
+	Node *pSlow, *pFast;
+
+	pSlow = pFast = pStart;
+
+	while (true)
+	{
+		pSlow = pSlow->next;
+
+		if (pFast->next != NULL)
+			pFast = pFast->next->next;
+		else
+			return false;
+
+		if (pSlow == NULL || pFast == NULL)
+			return false;
+
+		if (pSlow == pFast)
+			return true;
+	}
+
+}
+
+bool Mapper::CheckChildIsParent(Node *pParentNode)
+{
+	//needs to finish
+	return false;
+}
