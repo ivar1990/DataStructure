@@ -22,7 +22,7 @@ void TextDiagram::DisplayNode(Node *pNode)
 
 void TextDiagram::DisplayConnection(Connection *pConnection)
 {
-	cout << "	------->" << pConnection->Target->data << endl;
+	cout << "\t ------->" << pConnection->Target->data << endl;
 }
 
 bool TextDiagram::IsPrintable()

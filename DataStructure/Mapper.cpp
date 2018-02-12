@@ -148,15 +148,14 @@ void Mapper::DisplayAllNodeConnections(Node *pParentNode)
 	node_connections = storage->connections->node_connections;
 	current_connection = node_connections->Link;
 
-
+	//Parent's and Child connections
 	while (current_connection != NULL)
 	{
-		//while (current_connection->Target != NULL)
-		//{
-			textdiagram.PrintNode(current_connection->Target);
-			cout << '\t';
-
-		//}
+		textdiagram.PrintNode(current_connection->Target);
+		//Children of Children connections
+		cout << "Starting Child Connections" << endl;
+		DisplayAllNodeConnections(current_connection->Target);
+		cout << "Ending Child Connection" << endl;
 		current_connection = current_connection->Link;
 	}
 }
