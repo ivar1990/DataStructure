@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Mapper.h"
 
+#include <iomanip>
+
 using namespace std;
 
 Mapper::Mapper()
@@ -151,6 +153,7 @@ void Mapper::DisplayAllNodeConnections(Node *pParentNode)
 	//Parent's and Child connections
 	while (current_connection != NULL)
 	{
+		cout << std::setw(2) << "******";
 		textdiagram.PrintNode(current_connection->Target);
 		//Children of Children connections
 		cout << "Starting Child Connections" << endl;
