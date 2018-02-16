@@ -162,3 +162,33 @@ void Mapper::DisplayAllNodeConnections(Node *pParentNode)
 		current_connection = current_connection->Link;
 	}
 }
+
+Node* Mapper::Iterate(Node *pParentNode, int stop_node_id)
+{
+	Connection *node_connections;
+	Connection *current_connection;
+	storage->connections->GetConnections(pParentNode);
+
+	node_connections = storage->connections->node_connections;
+	current_connection = node_connections->Link;
+
+	//Parent's and Child connections
+	while (current_connection != NULL)
+	{
+		cout << std::setw(2) << "******";
+		textdiagram.PrintNode(current_connection->Target);
+		if (current_connection->Target->node_id != stop_node_id && stop_node_id != 0)
+		{
+			//Children of Children connections
+			cout << "Starting Child Connections" << endl;
+			Iterate(current_connection->Target);
+			cout << "Ending Child Connection" << endl;
+			current_connection = current_connection->Link;
+		}
+		else
+		{
+			return current_connection->Target;
+		}
+		
+	}
+}

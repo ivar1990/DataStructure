@@ -50,6 +50,8 @@ public:
 	bool CheckChildIsParent(Node *pParentNode);
 
 	void DisplayAllNodeConnections(Node *pParentNode);
+
+	Node* Iterate(Node *pParentNode, int stop_node_id = 0);
 	
 
 private:

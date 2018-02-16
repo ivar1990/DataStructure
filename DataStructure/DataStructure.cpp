@@ -78,7 +78,11 @@ int _tmain(int argc, _TCHAR* argv[])
 		textdiagram.Print();
 
 		//cout << "Node has Loop: " << mapper.IsCircular(mapper.pCurrentNode);
-		mapper.DisplayAllNodeConnections(mapper.pCurrentNode);
+		//mapper.DisplayAllNodeConnections(mapper.pCurrentNode);
+
+		storage.nodes->FindNode(0, 0, 107);
+		mapper.pCurrentNode = storage.nodes->search_node;
+		mapper.Iterate(mapper.pCurrentNode, 43);
 
 		//assembler.DestroyNode();
 		
