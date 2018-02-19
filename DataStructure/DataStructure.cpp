@@ -68,7 +68,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		cout << "Showing connnections for Node: " << assembler.pCurrentNode->node_id << endl;
 		storage.connections->ShowConnections();
 		storage.connections->Connect(assembler.pCurrentNode->node_id, 2);
-		storage.connections->Connect(assembler.pCurrentNode->node_id, 65);
+		storage.connections->Connect(assembler.pCurrentNode->node_id, 25);
 
 		mapper.pCurrentNode = assembler.pCurrentNode;
 		mapper.CreateRandomNodeConnections(assembler.pCurrentNode,10);
@@ -80,9 +80,10 @@ int _tmain(int argc, _TCHAR* argv[])
 		//cout << "Node has Loop: " << mapper.IsCircular(mapper.pCurrentNode);
 		//mapper.DisplayAllNodeConnections(mapper.pCurrentNode);
 
-		storage.nodes->FindNode(0, 0, 107);
+		storage.nodes->FindNode(0, 0, 60);
 		mapper.pCurrentNode = storage.nodes->search_node;
-		mapper.Iterate(mapper.pCurrentNode, 99);
+		mapper.Iterate(mapper.pCurrentNode, 38);
+		cout << "Result Node: " << mapper.pResultNode << endl;
 
 		//assembler.DestroyNode();
 		

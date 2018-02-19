@@ -26,6 +26,7 @@ public:
 
 	Node *pParentNode;
 	Node *pCurrentNode = NULL;
+	Node *pResultNode = NULL;
 
 	Mapper();
 
@@ -50,8 +51,9 @@ public:
 	bool CheckChildIsParent(Node *pParentNode);
 
 	void DisplayAllNodeConnections(Node *pParentNode);
-
-	Node* Iterate(Node *pParentNode, int stop_node_id = 0);
+	//Number returned is useless
+	//Sets pResultNode
+	int Iterate(Node *pParentNode, int stop_node_id = 0);
 	
 
 private:
