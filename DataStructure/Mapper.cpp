@@ -187,8 +187,10 @@ Node* Mapper::Iterate(Node *pParentNode, int stop_node_id)
 		}
 		else
 		{
+			cout << "Found node in connections! Node ID: " << current_connection->Target->node_id << endl;
 			return current_connection->Target;
 		}
 		
 	}
+	return NULL;
 }

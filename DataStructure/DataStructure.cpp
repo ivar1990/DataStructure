@@ -82,7 +82,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		storage.nodes->FindNode(0, 0, 107);
 		mapper.pCurrentNode = storage.nodes->search_node;
-		mapper.Iterate(mapper.pCurrentNode, 43);
+		mapper.Iterate(mapper.pCurrentNode, 99);
 
 		//assembler.DestroyNode();
 		
