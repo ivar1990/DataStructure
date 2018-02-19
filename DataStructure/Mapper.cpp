@@ -163,10 +163,13 @@ void Mapper::DisplayAllNodeConnections(Node *pParentNode)
 	}
 }
 
-Node* Mapper::Iterate(Node *pParentNode, int stop_node_id)
+//works but needs better implementation
+//Return Parameter is useless
+int Mapper::Iterate(Node *pParentNode, int stop_node_id)
 {
 	Connection *node_connections;
 	Connection *current_connection;
+	
 	storage->connections->GetConnections(pParentNode);
 
 	node_connections = storage->connections->node_connections;
@@ -180,17 +183,19 @@ Node* Mapper::Iterate(Node *pParentNode, int stop_node_id)
 		if (current_connection->Target->node_id != stop_node_id && stop_node_id != 0)
 		{
 			//Children of Children connections
-			cout << "Starting Child Connections" << endl;
-			Iterate(current_connection->Target);
-			cout << "Ending Child Connection" << endl;
+			cout << "Parent Node ID: " << current_connection->Source->node_id << " Child Node ID: " << current_connection->Target->node_id << " Query Node ID: " << stop_node_id << endl;
+			Iterate(current_connection->Target, stop_node_id);
+			//cout << "Ending Child Connection" << endl;
 			current_connection = current_connection->Link;
 		}
 		else
 		{
 			cout << "Found node in connections! Node ID: " << current_connection->Target->node_id << endl;
-			return current_connection->Target;
+			pResultNode = current_connection->Target;
+			return 1;
 		}
 		
 	}
-	return NULL;
+	cout << "Could not Find Node ID: " << stop_node_id << endl;
+	return 0;
 }
