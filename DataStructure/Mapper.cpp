@@ -199,3 +199,8 @@ int Mapper::Iterate(Node *pParentNode, int stop_node_id)
 	cout << "Could not Find Node ID: " << stop_node_id << endl;
 	return 0;
 }
+
+bool Mapper::AttachNode(Node *pTarget)
+{
+	return storage->connections->AddConnection(pResultNode, pTarget);
+}

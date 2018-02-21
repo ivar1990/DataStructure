@@ -55,6 +55,7 @@ public:
 	//Sets pResultNode
 	int Iterate(Node *pParentNode, int stop_node_id = 0);
 	
+	bool AttachNode(Node *pTarget);
 
 private:
 	void Init();

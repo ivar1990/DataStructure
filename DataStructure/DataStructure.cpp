@@ -84,7 +84,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		mapper.pCurrentNode = storage.nodes->search_node;
 		mapper.Iterate(mapper.pCurrentNode, 38);
 		cout << "Result Node: " << mapper.pResultNode << endl;
-
+		cout << "Result Node: " << mapper.pResultNode->node_id << endl;
 		//assembler.DestroyNode();
 		
 		//abstractor.OutputF
