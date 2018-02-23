@@ -15,17 +15,22 @@ Controller::Controller()
 
 void Controller::SetStorage(Storage* storage)
 {
-	pStorage = storage;
+	this->pStorage = storage;
 }
 
 void Controller::SetAssembler(Assembler* assembler)
 {
-	pAssembler = assembler;
+	this->pAssembler = assembler;
 }
 
-void Controller::SetAbstractor(Mapper* mapper)
+void Controller::SetMapper(Mapper* mapper)
 {
-	pMapper = mapper;
+	this->pMapper = mapper;
+}
+
+void Controller::SetDevice(Device *device)
+{
+	this->pDevice = device;
 }
 
 void Controller::HandleInput(string text)
@@ -55,10 +60,12 @@ void Controller::Init()
 
 }
 
-//bool CheckConnections(Connection *connection)
-//{
-//	return false;
-//}
+void Controller::InitDefaultDevice()
+{
+
+}
+
+
 
 void Controller::LogStream(string text)
 {

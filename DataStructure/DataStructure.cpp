@@ -49,7 +49,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		}*/
 
 		controller.SetStorage(&storage);
-		controller.SetAbstractor(&mapper);
+		controller.SetMapper(&mapper);
 		controller.HandleInput(text);
 
 		storage.LoadFromDisk();
@@ -80,39 +80,13 @@ int _tmain(int argc, _TCHAR* argv[])
 		//cout << "Node has Loop: " << mapper.IsCircular(mapper.pCurrentNode);
 		//mapper.DisplayAllNodeConnections(mapper.pCurrentNode);
 
-		storage.nodes->FindNode(0, 0, 60);
+		storage.nodes->FindNode(0, 0, 97);
 		mapper.pCurrentNode = storage.nodes->search_node;
-		mapper.Iterate(mapper.pCurrentNode, 38);
+		mapper.Iterate(mapper.pCurrentNode, 84);
 		cout << "Result Node: " << mapper.pResultNode << endl;
 		cout << "Result Node: " << mapper.pResultNode->node_id << endl;
 		//assembler.DestroyNode();
 		
-		//abstractor.OutputF
-		//requencyTable();
-		//abstractor.Output();
-		//
-		//cout << "Dataset size: " << abstractor.size << endl;
-		//cout << "Dataset list length: " << abstractor.dataset.size() << endl;
-		//cout << "Dataset changed: " << abstractor.IsChanged() << endl;
-
-		//if (abstractor.IsChanged())
-		//{
-		//	abstractor.LogInputs();
-		//	abstractor.OutputInputs();
-		//	
-		//	controller.LogStream(text);
-		//	controller.OutputStream();
-
-		//	controller.LogHistory();
-		//	controller.ShowHistory();
-		//}
-
-		//abstractor.size = abstractor.dataset.size();
-
-		////abstractor.GenerateRandomNodes(2);
-		////abstractor.GenerateRandomConnections(3);
-
-		//abstractor.Run();
 
 		cout << "Continue? y/n: " << endl;
 		cin.get(ch);
