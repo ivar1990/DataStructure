@@ -21,22 +21,16 @@ class Device
 public:
 	unsigned int device_type = 0;
 
+	NodeSystem node_system;
+	Connector Connections;
+
 	void SetDeviceType(unsigned int device_type)
 	{
 		this->device_type = device_type;
 	}
 
-	void SetNodeSystem(NodeSystem *pNodeSystem)
-	{
-		this->node_system = pNodeSystem;
-	}
-
-	void SetConnections(Connector *pConnections)
-	{
-		this->connections = pConnections;
-	}
-
-	void SetDeviceData();
+	
+	void GetDeviceData(NodeSystem *pNodeSystem, int device_data_id);
 
 	void Receive();
 
@@ -46,8 +40,7 @@ public:
 
 protected:
 
-	NodeSystem *node_system;
-	Connector *connections;
+	
 	Mapper mapper;
 
 	void Init();
