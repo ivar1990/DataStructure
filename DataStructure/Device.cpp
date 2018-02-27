@@ -10,7 +10,16 @@ void Device::Init()
 
 void Device::GetDeviceData(NodeSystem *pNodeSystem, int device_data_id)
 {
-	
+	Node *Start = pNodeSystem->Start;
+	Node *End = pNodeSystem->End;
+
+	Node *p = pNodeSystem->Start->next;
+
+	while (p != NULL)
+	{
+		node_system.Add(p->data);
+		p = p->next;
+	}
 }
 
 void Device::Receive()
