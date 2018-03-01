@@ -67,11 +67,10 @@ int _tmain(int argc, _TCHAR* argv[])
 		assembler.CreateNode();
 		cout << "Showing connnections for Node: " << assembler.pCurrentNode->node_id << endl;
 		storage.connections->ShowConnections();
-		storage.connections->Connect(assembler.pCurrentNode->node_id, 2);
-		storage.connections->Connect(assembler.pCurrentNode->node_id, 25);
+		storage.connections->Connect(assembler.pCurrentNode->node_id, 61);
 
 		mapper.pCurrentNode = assembler.pCurrentNode;
-		mapper.CreateRandomNodeConnections(assembler.pCurrentNode,10);
+		mapper.CreateRandomNodeConnections(assembler.pCurrentNode,1);
 		/*storage.connections->GetConnections(assembler.generated_node);
 		storage.connections->PrintNodeConnections();*/
 		textdiagram.PrintNode(assembler.pCurrentNode);
@@ -80,9 +79,9 @@ int _tmain(int argc, _TCHAR* argv[])
 		//cout << "Node has Loop: " << mapper.IsCircular(mapper.pCurrentNode);
 		//mapper.DisplayAllNodeConnections(mapper.pCurrentNode);
 
-		storage.nodes->FindNode(0, 0, 97);
+		storage.nodes->FindNode(0, 0, 103);
 		mapper.pCurrentNode = storage.nodes->search_node;
-		mapper.Iterate(mapper.pCurrentNode, 84);
+		mapper.Iterate(mapper.pCurrentNode, 22);
 		cout << "Result Node: " << mapper.pResultNode << endl;
 		cout << "Result Node: " << mapper.pResultNode->node_id << endl;
 		//assembler.DestroyNode();
