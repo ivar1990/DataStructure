@@ -62,7 +62,6 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		textdiagram.SetNodeSystem(storage.nodes);
 		textdiagram.SetConnections(storage.connections);
-		
 
 		assembler.CreateNode();
 		cout << "Showing connnections for Node: " << assembler.pCurrentNode->node_id << endl;
@@ -79,9 +78,9 @@ int _tmain(int argc, _TCHAR* argv[])
 		//cout << "Node has Loop: " << mapper.IsCircular(mapper.pCurrentNode);
 		//mapper.DisplayAllNodeConnections(mapper.pCurrentNode);
 
-		storage.nodes->FindNode(0, 0, 103);
+		storage.nodes->FindNode(0, 0, 112);
 		mapper.pCurrentNode = storage.nodes->search_node;
-		mapper.Iterate(mapper.pCurrentNode, 22);
+		mapper.Iterate(mapper.pCurrentNode, 44);
 		cout << "Result Node: " << mapper.pResultNode << endl;
 		cout << "Result Node: " << mapper.pResultNode->node_id << endl;
 		//assembler.DestroyNode();

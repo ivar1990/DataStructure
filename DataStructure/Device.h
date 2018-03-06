@@ -28,7 +28,6 @@ public:
 	{
 		this->device_type = device_type;
 	}
-
 	
 	void GetDeviceData(NodeSystem *pNodeSystem, int device_data_id);
 
@@ -40,7 +39,6 @@ public:
 
 protected:
 
-	
 	Mapper mapper;
 
 	void Init();
