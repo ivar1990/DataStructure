@@ -169,6 +169,7 @@ int Mapper::Iterate(Node *pParentNode, int stop_node_id)
 {
 	Connection *node_connections;
 	Connection *current_connection;
+	int distance = 0;
 	
 	storage->connections->GetConnections(pParentNode);
 
@@ -187,10 +188,13 @@ int Mapper::Iterate(Node *pParentNode, int stop_node_id)
 			Iterate(current_connection->Target, stop_node_id);
 			//cout << "Ending Child Connection" << endl;
 			current_connection = current_connection->Link;
+			distance++;
 		}
 		else
 		{
+			distance++;
 			cout << "Found node in connections! Node ID: " << current_connection->Target->node_id << endl;
+			cout << "Distance: " << distance << endl;
 			pResultNode = current_connection->Target;
 			return 1;
 		}
