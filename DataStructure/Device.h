@@ -26,6 +26,13 @@ public:
 	NodeSystem node_system;
 	Connector Connections;
 
+	int input[3];
+	string output[3];
+
+
+	int input_node_position = 0;
+	int output_node_position = 0;
+
 	void SetDeviceType(unsigned int device_type)
 	{
 		this->device_type = device_type;
