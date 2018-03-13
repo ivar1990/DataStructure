@@ -78,9 +78,9 @@ int _tmain(int argc, _TCHAR* argv[])
 		//cout << "Node has Loop: " << mapper.IsCircular(mapper.pCurrentNode);
 		//mapper.DisplayAllNodeConnections(mapper.pCurrentNode);
 
-		storage.nodes->FindNode(0, 0, 112);
+		storage.nodes->FindNode(0, 0, 117);
 		mapper.pCurrentNode = storage.nodes->search_node;
-		mapper.Iterate(mapper.pCurrentNode, 44);
+		mapper.Iterate(mapper.pCurrentNode, 61);
 		cout << "Result Node: " << mapper.pResultNode << endl;
 		cout << "Result Node: " << mapper.pResultNode->node_id << endl;
 		//assembler.DestroyNode();

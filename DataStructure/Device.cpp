@@ -22,6 +22,11 @@ void Device::GetDeviceData(NodeSystem *pNodeSystem, int device_data_id)
 	}
 }
 
+void Device::Connect()
+{
+
+}
+
 void Device::Receive()
 {
 
