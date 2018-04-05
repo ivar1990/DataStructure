@@ -36,6 +36,8 @@ public:
 	int input_node_position = 0;
 	int output_node_position = 0;
 
+	
+
 	void SetDeviceID(unsigned int device_id)
 	{
 		this->device_id = device_id;

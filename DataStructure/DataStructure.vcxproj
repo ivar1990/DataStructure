@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h" />
+    <ClInclude Include="DeviceManager.h" />
     <ClInclude Include="Mapper.h" />
     <ClInclude Include="Analyzer.h" />
     <ClInclude Include="Assembler.h" />
@@ -163,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp" />
+    <ClCompile Include="DeviceManager.cpp" />
     <ClCompile Include="Mapper.cpp" />
     <ClCompile Include="Assembler.cpp" />
     <ClCompile Include="Controller.cpp" />
