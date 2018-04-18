@@ -12,7 +12,7 @@
 #include "Mapper.h"
 #include "Controller.h"
 #include "Assembler.h"
-#include "Device.h"
+
 
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -24,10 +24,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	Controller controller;
 	Assembler assembler;
 	TextDiagram textdiagram;
-	Device input_device;
-	Device output_device;
-	
 
+	
 	char ch;
 	bool running = true;
 

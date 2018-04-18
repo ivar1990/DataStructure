@@ -28,10 +28,7 @@ void Controller::SetMapper(Mapper* mapper)
 	this->pMapper = mapper;
 }
 
-void Controller::SetDevice(Device *device)
-{
-	this->pDevice = device;
-}
+
 
 void Controller::HandleInput(string text)
 {

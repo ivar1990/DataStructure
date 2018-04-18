@@ -11,7 +11,7 @@
 #include "Mapper.h"
 #include "Storage.h"
 #include "Assembler.h"
-#include "Device.h"
+
 
 using namespace std;
 
@@ -22,7 +22,7 @@ public:
 	Storage *pStorage;
 	Assembler *pAssembler;
 	Mapper *pMapper;
-	Device *pDevice;
+	
 
 	map<int, list<int>> inputstream;
 	map<int, list<int>> history;
@@ -38,7 +38,6 @@ public:
 	void SetStorage(Storage *storage);
 	void SetAssembler(Assembler *assembler);
 	void SetMapper(Mapper *mapper);
-	void SetDevice(Device *device);
 
 	void LogStream(string text);
 	void OutputStream();

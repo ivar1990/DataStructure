@@ -145,17 +145,13 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Device.h" />
-    <ClInclude Include="DeviceManager.h" />
     <ClInclude Include="Mapper.h" />
-    <ClInclude Include="Analyzer.h" />
     <ClInclude Include="Assembler.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Diagram.h" />
     <ClInclude Include="Storage.h" />
     <ClInclude Include="Connector.h" />
     <ClInclude Include="NodeSystem.h" />
-    <ClInclude Include="Organizer.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="PLinkedList.h" />
@@ -163,8 +159,6 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Device.cpp" />
-    <ClCompile Include="DeviceManager.cpp" />
     <ClCompile Include="Mapper.cpp" />
     <ClCompile Include="Assembler.cpp" />
     <ClCompile Include="Controller.cpp" />

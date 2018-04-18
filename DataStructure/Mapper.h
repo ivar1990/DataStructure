@@ -28,6 +28,8 @@ public:
 	Node *pCurrentNode = NULL;
 	Node *pResultNode = NULL;
 
+	list<Node> generated_nodes;
+
 	Mapper();
 
 	void SetStorage(Storage *pStorage);
@@ -60,5 +62,18 @@ public:
 private:
 	void Init();
 };
+
+/*
+enter a number: 5
+search for number: 5
+if 5 is found 
+print connection steps
+else
+create a node 
+create connections
+test for r
+
+
+*/
 
 #endif
