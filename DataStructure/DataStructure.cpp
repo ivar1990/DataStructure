@@ -47,7 +47,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			cout << ascChar << ": " << static_cast<char>(ascChar) << endl;
 
 		}*/
-
+		/*
 		controller.SetStorage(&storage);
 		controller.SetMapper(&mapper);
 		controller.HandleInput(text);
@@ -70,8 +70,8 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		mapper.pCurrentNode = assembler.pCurrentNode;
 		mapper.CreateRandomNodeConnections(assembler.pCurrentNode,1);
-		/*storage.connections->GetConnections(assembler.generated_node);
-		storage.connections->PrintNodeConnections();*/
+		storage.connections->GetConnections(assembler.generated_node);
+		storage.connections->PrintNodeConnections();
 		textdiagram.PrintNode(assembler.pCurrentNode);
 		textdiagram.Print();
 
@@ -84,7 +84,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		cout << "Result Node: " << mapper.pResultNode << endl;
 		cout << "Result Node: " << mapper.pResultNode->node_id << endl;
 		//assembler.DestroyNode();
-		
+		*/
 
 		cout << "Continue? y/n: " << endl;
 		cin.get(ch);
@@ -102,7 +102,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		getline(cin,text);
 	}
 	
-	controller.Close();
+	//controller.Close();
 
 
 	/*Abstractor abstractor(&node_system, &connector);

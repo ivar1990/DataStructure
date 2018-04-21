@@ -71,7 +71,7 @@ print connection steps
 else
 create a node 
 create connections
-test for r
+test for result
 
 
 */
