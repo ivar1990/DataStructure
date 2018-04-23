@@ -86,6 +86,20 @@ int _tmain(int argc, _TCHAR* argv[])
 		//assembler.DestroyNode();
 		*/
 
+		bool stop = false;
+
+		while (!stop)
+		{
+			if (GetKeyState(VK_ESCAPE) & 0x80)
+			{
+				stop = true;
+			}
+			else
+			{
+				cout << "running" << endl;
+			}
+		}
+
 		cout << "Continue? y/n: " << endl;
 		cin.get(ch);
 		cout << ch << endl;
