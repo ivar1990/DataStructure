@@ -72,8 +72,6 @@ else
 create a node 
 create connections
 test for result
-
-
 */
 
 #endif
