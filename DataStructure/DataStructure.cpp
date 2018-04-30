@@ -47,7 +47,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			cout << ascChar << ": " << static_cast<char>(ascChar) << endl;
 
 		}*/
-		/*
+		
 		controller.SetStorage(&storage);
 		controller.SetMapper(&mapper);
 		controller.HandleInput(text);
@@ -63,6 +63,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		textdiagram.SetNodeSystem(storage.nodes);
 		textdiagram.SetConnections(storage.connections);
 
+		/*
 		assembler.CreateNode();
 		cout << "Showing connnections for Node: " << assembler.pCurrentNode->node_id << endl;
 		storage.connections->ShowConnections();
@@ -97,6 +98,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			else
 			{
 				cout << "running" << endl;
+				storage.connections->ShowConnections();
 			}
 		}
 
