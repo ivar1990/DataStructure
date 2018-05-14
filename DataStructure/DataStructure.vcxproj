@@ -145,6 +145,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="InputDevice.h" />
     <ClInclude Include="Mapper.h" />
     <ClInclude Include="Assembler.h" />
     <ClInclude Include="Controller.h" />
@@ -159,6 +160,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="InputDevice.cpp" />
     <ClCompile Include="Mapper.cpp" />
     <ClCompile Include="Assembler.cpp" />
     <ClCompile Include="Controller.cpp" />

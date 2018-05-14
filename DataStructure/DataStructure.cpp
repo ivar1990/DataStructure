@@ -12,6 +12,7 @@
 #include "Mapper.h"
 #include "Controller.h"
 #include "Assembler.h"
+#include "InputDevice.h"
 
 
 
@@ -24,7 +25,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	Controller controller;
 	Assembler assembler;
 	TextDiagram textdiagram;
-
+	InputDevice idevice;
 	
 	char ch;
 	bool running = true;
@@ -86,7 +87,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		cout << "Result Node: " << mapper.pResultNode->node_id << endl;
 		//assembler.DestroyNode();
 		*/
-
+		/*
 		bool stop = false;
 
 		while (!stop)
@@ -98,9 +99,13 @@ int _tmain(int argc, _TCHAR* argv[])
 			else
 			{
 				cout << "running" << endl;
-				storage.connections->ShowConnections();
+				storage.nodes->printList();
+				//storage.connections->ShowConnections();
 			}
 		}
+		*/
+
+		idevice.Run();
 
 		cout << "Continue? y/n: " << endl;
 		cin.get(ch);
