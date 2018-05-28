@@ -59,6 +59,15 @@ public:
 	
 	bool AttachNode(Node *pTarget);
 
+
+
+	/***************************************/
+	Connection* GetNode();
+	Connection* MapNode(Node* pNode);
+
+
+
+	/**************************************/
 private:
 	void Init();
 };

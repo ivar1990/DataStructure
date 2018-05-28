@@ -40,7 +40,12 @@ void InputDevice::Init()
 
 void InputDevice::LoadNodeData()
 {
-	for (int i = 0; i<=10; i++) data_nodes.push_back(i*10);
+	for (int i = 0; i <= 10; i++)
+	{
+		data_nodes.push_back(i * 10);
+		cout << "Data: " << i * 10 << endl;
+	}
+	std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 }
 
 void InputDevice::CreateRandomNodes()

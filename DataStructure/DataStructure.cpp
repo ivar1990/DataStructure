@@ -105,7 +105,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 		*/
 
-		idevice.Run();
+		//idevice.Run();
 
 		cout << "Continue? y/n: " << endl;
 		cin.get(ch);
