@@ -62,7 +62,11 @@ public:
 
 
 	/***************************************/
-	Connection* GetNode(Node* pInputNodes);
+
+	Connection *current_node_connections;
+
+
+	void GetNode(Node* pInputNodes);
 	Connection* MapNode(Node* pNode);
 
 

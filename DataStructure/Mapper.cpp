@@ -209,9 +209,37 @@ bool Mapper::AttachNode(Node *pTarget)
 	return storage->connections->AddConnection(pResultNode, pTarget);
 }
 
-Connection* Mapper::GetNode(Node* pInputNodes)
+void Mapper::GetNode(Node* pInputNode)
 {
+	Connection *node_connections;
+	Connection *current_connection;
 
+	storage->connections->GetConnections(pInputNode);
+
+	node_connections = storage->connections->node_connections;
+	current_connection = node_connections->Link;
+
+	if (current_node_connections != NULL)
+	{
+		while (current_node_connections != NULL)
+		{
+			//Parent's and Child connections
+			while (current_connection != NULL)
+			{
+
+				if (current_connection->Target == current_node_connections->Target)
+				{
+					current_node_connections = current_connection;
+				}
+
+			}
+		}
+		
+	}
+	else
+	{
+		current_node_connections = node_connections;
+	}
 }
 
 Connection* MapNode(Node* pNode)
