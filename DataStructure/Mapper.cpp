@@ -208,3 +208,13 @@ bool Mapper::AttachNode(Node *pTarget)
 {
 	return storage->connections->AddConnection(pResultNode, pTarget);
 }
+
+Connection* Mapper::GetNode(Node* pInputNodes)
+{
+
+}
+
+Connection* MapNode(Node* pNode)
+{
+
+}
