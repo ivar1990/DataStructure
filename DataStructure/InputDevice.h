@@ -14,6 +14,9 @@ class InputDevice
 {
 public:
 
+	//Identify each device
+	unsigned int device_id = 0;
+
 	//Number of nodes that can be generated in the input buffer
 	unsigned const int MAX_SIZE = 7;
 	//generates nodes every N seconds

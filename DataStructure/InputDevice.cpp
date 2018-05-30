@@ -18,6 +18,7 @@ InputDevice::InputDevice()
 
 void InputDevice::Init()
 {
+	device_id = 1;
 	
 	cout << "Please enter the size of the input buffer(must be less than 8): ";
 	cin >> max_size;

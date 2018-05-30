@@ -30,27 +30,6 @@ void Controller::SetMapper(Mapper* mapper)
 
 
 
-void Controller::HandleInput(string text)
-{
-	//Gets numerical value of ascii character
-	int ascChar;
-	for (int i = 0; i<text.length(); i++)
-	{
-		//Convert Character to number
-		ascChar = text[i];
-		//Add number to Abstractor Node System
-		//pAbstractor->Input(ascChar);
-		//Add to container
-		dataset.push_back(ascChar);
-		//Output the number and character representation to the console
-		cout << ascChar << ": " << static_cast<char>(ascChar) << endl;
-	}
-}
-
-bool Controller::GetFeedback(bool response)
-{
-	return false;
-}
 
 void Controller::Init()
 {
@@ -62,6 +41,10 @@ void Controller::InitDefaultDevice()
 
 }
 
+void Controller::InitDevice()
+{
+
+}
 
 
 void Controller::LogStream(string text)

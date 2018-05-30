@@ -229,7 +229,13 @@ void Mapper::GetNode(Node* pInputNode)
 
 				if (current_connection->Target == current_node_connections->Target)
 				{
+					cout << "Printing Previous connections: " << endl;
+					storage->connections->PrintConnections(current_node_connections);
+
 					current_node_connections = current_connection;
+
+					cout << "Printing Current connections: " << endl;
+					storage->connections->PrintConnections(current_node_connections);
 				}
 
 			}

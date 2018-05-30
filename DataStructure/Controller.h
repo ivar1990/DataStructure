@@ -11,6 +11,7 @@
 #include "Mapper.h"
 #include "Storage.h"
 #include "Assembler.h"
+#include "InputDevice.h"
 
 
 using namespace std;
@@ -22,7 +23,10 @@ public:
 	Storage *pStorage;
 	Assembler *pAssembler;
 	Mapper *pMapper;
+	InputDevice idevice;
 	
+
+	list<Node> devices;
 
 	map<int, list<int>> inputstream;
 	map<int, list<int>> history;
@@ -32,8 +36,7 @@ public:
 
 	Controller();
 
-	void HandleInput(string text);
-	bool GetFeedback(bool response);
+	
 
 	void SetStorage(Storage *storage);
 	void SetAssembler(Assembler *assembler);
@@ -51,6 +54,8 @@ public:
 private:
 	void Init();
 	void InitDefaultDevice();
+
+	void InitDevice();
 };
 
 #endif
