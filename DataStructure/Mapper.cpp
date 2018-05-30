@@ -244,5 +244,7 @@ void Mapper::GetNode(Node* pInputNode)
 
 Connection* MapNode(Node* pNode)
 {
-
+	//Creates a node to map to an output device
+	//If there is no matches in the Nodes and connections
+	//acts as a default mapping when something is unknown
 }
