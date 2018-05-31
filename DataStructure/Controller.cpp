@@ -46,6 +46,22 @@ void Controller::InitDevice()
 
 }
 
+bool Controller::ConnectDevice(unsigned int device_id)
+{
+	if (device_id > 0)
+	{
+		//Locate Device ID stored in node system
+		pStorage->nodes->FindNode(0, 0, device_id);
+		//Add to the list of devices under this controller
+		devices.push_back(pStorage->nodes->search_node);
+
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 
 void Controller::LogStream(string text)
 {

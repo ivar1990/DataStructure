@@ -51,7 +51,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		
 		controller.SetStorage(&storage);
 		controller.SetMapper(&mapper);
-		controller.HandleInput(text);
+		
 
 		storage.LoadFromDisk();
 

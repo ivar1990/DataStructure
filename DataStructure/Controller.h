@@ -26,10 +26,12 @@ public:
 	InputDevice idevice;
 	
 
-	list<Node> devices;
+	list<Node*> devices;
 
 	map<int, list<int>> inputstream;
 	map<int, list<int>> history;
+
+	
 
 	//For handling inputs
 	list<int> dataset;
@@ -41,6 +43,8 @@ public:
 	void SetStorage(Storage *storage);
 	void SetAssembler(Assembler *assembler);
 	void SetMapper(Mapper *mapper);
+
+	bool ConnectDevice(unsigned int device_id = 0);
 
 	void LogStream(string text);
 	void OutputStream();
