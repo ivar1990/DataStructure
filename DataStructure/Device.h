@@ -42,15 +42,21 @@ public:
 	void Run();
 
 
+	void CheckConnection();
+
 	void LoadNodeData(Storage *pStorage);
 
 	void CreateRandomNodes();
 
+	void Execute();
 
 private:
 
 	//Identify each device
 	unsigned int device_id = 0;
+
+	//Checks every one min to check if device is connected
+	bool is_connected = false;
 
 	//Number of nodes that can be generated in the input buffer
 	unsigned const int MAX_SIZE = 7;

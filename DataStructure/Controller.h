@@ -12,6 +12,7 @@
 #include "Storage.h"
 #include "Assembler.h"
 #include "InputDevice.h"
+#include "Device.h"
 
 
 using namespace std;
@@ -45,6 +46,8 @@ public:
 	void SetMapper(Mapper *mapper);
 
 	bool ConnectDevice(unsigned int device_id = 0);
+
+	bool DisconnectDevice(unsigned int device_id = 0);
 
 	void LogStream(string text);
 	void OutputStream();

@@ -4,6 +4,7 @@
 
 #include <string>
 
+
 #include "Controller.h"
 
 using namespace std;
@@ -30,7 +31,6 @@ void Controller::SetMapper(Mapper* mapper)
 
 
 
-
 void Controller::Init()
 {
 
@@ -54,6 +54,33 @@ bool Controller::ConnectDevice(unsigned int device_id)
 		pStorage->nodes->FindNode(0, 0, device_id);
 		//Add to the list of devices under this controller
 		devices.push_back(pStorage->nodes->search_node);
+
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool Controller::DisconnectDevice(unsigned int device_id)
+{
+	if (device_id > 0)
+	{
+		for (std::list<Node*>::iterator it = devices.begin(); it != devices.end(); ++it)
+		{
+			if ((*it)->node_id == device_id)
+			{
+				devices.remove((*it));
+
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+			
 
 		return true;
 	}

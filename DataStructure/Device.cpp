@@ -50,6 +50,11 @@ void Device::Init()
 	cout << "The input buffer size is " << seconds_to_wait << endl;
 }
 
+void Device::CheckConnection()
+{
+	 
+}
+
 void Device::LoadData()
 {
 	for (int i = 0; i <= 10; i++)
@@ -161,13 +166,39 @@ void Device::Run()
 		{
 			cout << "running" << endl;
 
-			CreateRandomNodes();
+			CreateRandomData();
 			for (std::list<int>::iterator it = input_buffer.begin(); it != input_buffer.end(); ++it)
 				std::cout << ' ' << *it;
 
 			std::cout << '\n';
 			std::this_thread::sleep_for(std::chrono::milliseconds(time_to_wait));
 			EmptyBuffer();
+		}
+	}
+}
+
+void Device::Execute()
+{
+	int time_to_wait = seconds_to_wait * 1000;
+	bool stop = false;
+
+	while (!stop)
+	{
+		if (GetKeyState(VK_ESCAPE) & 0x80)
+		{
+			stop = true;
+		}
+		else
+		{
+			cout << "running" << endl;
+
+			CreateRandomNodes();
+			for (std::list<Node*>::iterator it = input_node_buffer.begin(); it != input_node_buffer.end(); ++it)
+				std::cout << ' ' << *it;
+
+			std::cout << '\n';
+			std::this_thread::sleep_for(std::chrono::milliseconds(time_to_wait));
+			EmptyNodeBuffer();
 		}
 	}
 }
