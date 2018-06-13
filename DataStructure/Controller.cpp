@@ -82,7 +82,7 @@ bool Controller::DisconnectDevice(unsigned int device_id)
 		}
 			
 
-		return true;
+		return false;
 	}
 	else
 	{
